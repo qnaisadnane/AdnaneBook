@@ -7,6 +7,7 @@ use App\Http\Controllers\BookController;
 use App\Http\Controllers\AuthorController;
 
 Route::middleware(['auth','role:admin,manager'])->group(function(){
+    Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
     Route::resource('categories',CategoryController::class);
     Route::resource('authors',AuthorController::class);
     Route::resource('books',BookController::class)->except(['show','index']);

@@ -2,63 +2,109 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Book;
+use App\Models\Category;
+use App\Models\Author;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage; 
 
 class BookController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        
+        $books = Book::with(['category', 'authors'])->get();
+        return view('books.index', compact('books'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        $categories = Category::all();
+        $authors = Author::all();
+        
+        return view('books.create', compact('categories', 'authors'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'isbn' => 'required|string|unique:books,isbn',
+            'price' => 'required|numeric|min:0',
+            'quantity' => 'required|integer|min:0',
+            'category_id' => 'required|exists:categories,id',
+            'authors' => 'required|array',
+            'authors.*' => 'exists:authors,id',
+            'image' => 'nullable|image|max:2048',
+        ]);
+
+        $data = $request->except(['authors', 'image']);
+
+        if ($request->hasFile('image')) {
+            $data['image'] = $request->file('image')->store('books', 'public');
+        }
+
+        $book = Book::create($data);
+
+        $book->authors()->sync($request->authors);
+
+        return redirect()->route('books.index')->with('success', 'Livre ajouté au catalogue !');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(string $id)
     {
-        //
+        $book = Book::with(['category', 'authors'])->findOrFail($id);
+        return view('books.show', compact('book'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(string $id)
     {
-        //
+        $book = Book::findOrFail($id);
+        $categories = Category::all();
+        $authors = Author::all();
+        
+        return view('books.edit', compact('book', 'categories', 'authors'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
     {
-        //
+        $book = Book::findOrFail($id);
+
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'isbn' => 'required|string|unique:books,isbn,' . $book->id, 
+            'price' => 'required|numeric|min:0',
+            'quantity' => 'required|integer|min:0',
+            'category_id' => 'required|exists:categories,id',
+            'authors' => 'required|array',
+            'image' => 'nullable|image|max:2048', 
+        ]);
+
+        $data = $request->except(['authors', 'image']);
+
+        if ($request->hasFile('image')) {
+            if ($book->image) {
+                Storage::disk('public')->delete($book->image);
+            }
+            $data['image'] = $request->file('image')->store('books', 'public');
+        }
+
+        $book->update($data);
+        
+        $book->authors()->sync($request->authors);
+
+        return redirect()->route('books.index')->with('success', 'Informations du livre mises à jour !');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
-        //
+        $book = Book::findOrFail($id);
+
+        if ($book->image) {
+            Storage::disk('public')->delete($book->image);
+        }
+
+        $book->delete(); 
+
+        return redirect()->route('books.index')->with('success', 'Livre retiré des rayons !');
     }
 }
