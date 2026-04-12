@@ -1,47 +1,168 @@
-<x-guest-layout>
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
+<!DOCTYPE html>
+<html class="light" lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Connexion - Adnane Books</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-container": "#c9cffd",
+                        "on-surface-variant": "#454652",
+                        "background": "#fbf8ff",
+                        "on-primary-container": "#cbcfff",
+                        "tertiary-fixed": "#ffdcc6",
+                        "on-error": "#ffffff",
+                        "on-tertiary-fixed": "#301400",
+                        "on-primary-fixed-variant": "#303c9a",
+                        "secondary": "#565c84",
+                        "surface-tint": "#4955b3",
+                        "on-primary": "#ffffff",
+                        "surface-dim": "#dbd9e2",
+                        "primary-fixed-dim": "#bcc2ff",
+                        "surface-container": "#efedf6",
+                        "primary-container": "#4551af",
+                        "on-primary-fixed": "#000c62",
+                        "on-secondary-fixed-variant": "#3e446b",
+                        "on-tertiary-container": "#ffc7a2",
+                        "tertiary-fixed-dim": "#ffb784",
+                        "secondary-fixed": "#dee0ff",
+                        "inverse-primary": "#bcc2ff",
+                        "on-secondary": "#ffffff",
+                        "inverse-on-surface": "#f2eff9",
+                        "on-secondary-container": "#51577f",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "on-background": "#1a1b22",
+                        "surface-variant": "#e3e1ea",
+                        "surface": "#fbf8ff",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-fixed-variant": "#713700",
+                        "outline-variant": "#c5c5d4",
+                        "surface-container-high": "#e9e7f0",
+                        "surface-container-low": "#f4f2fc",
+                        "secondary-fixed-dim": "#bec4f2",
+                        "outline": "#757684",
+                        "inverse-surface": "#2f3037",
+                        "error": "#ba1a1a",
+                        "on-error-container": "#93000a",
+                        "on-surface": "#1a1b22",
+                        "on-secondary-fixed": "#12183d",
+                        "primary": "#2b3896",
+                        "surface-container-highest": "#e3e1ea",
+                        "tertiary-container": "#8f4700",
+                        "primary-fixed": "#dfe0ff",
+                        "surface-bright": "#fbf8ff",
+                        "tertiary": "#6c3400"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(251, 248, 255, 0.7);
+            backdrop-filter: blur(20px);
+        }
+        .ghost-border {
+            border: 1px solid rgba(197, 197, 212, 0.15);
+        }
+        .air-shadow {
+            box-shadow: 0 8px 64px rgba(26, 27, 34, 0.06);
+        }
+        .auth-gradient {
+            background: linear-gradient(135deg, #2b3896 0%, #4551af 100%);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface antialiased">
+    <main class="min-h-screen flex items-center justify-center p-6 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?q=80&w=2070');">
+        <div class="absolute inset-0 bg-surface/80 backdrop-blur-sm"></div>
+        <div class="w-full max-w-md mx-auto relative z-10">
+            <div class="bg-surface-container-lowest p-8 md:p-12 rounded-xl air-shadow ghost-border">
+                
+                <div class="mb-10 text-center">
+                    <h2 class="text-3xl font-bold font-headline tracking-tight text-on-surface mb-2">Bon retour</h2>
+                    <p class="text-sm text-on-surface-variant">Connectez-vous à votre espace Adnane Books.</p>
+                </div>
 
-    <form method="POST" action="{{ route('login') }}">
-        @csrf
+                <form method="POST" action="{{ route('login') }}" class="space-y-6">
+                    @csrf
+                    
+                    <!-- Email -->
+                    <div class="space-y-2">
+                        <label class="block text-xs font-semibold tracking-wide uppercase text-on-surface-variant ml-1" for="email">Adresse E-mail</label>
+                        <input class="w-full px-4 py-3.5 rounded-xl bg-surface-container-low border-transparent focus:border-primary focus:ring-4 focus:ring-primary-fixed transition-all outline-none text-on-surface text-sm ghost-border" id="email" name="email" :value="old('email')" required autofocus placeholder="exemple@adnanebooks.com" type="email"/>
+                        <x-input-error :messages="$errors->get('email')" class="mt-1 text-error text-xs ml-1" />
+                    </div>
 
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                    <!-- Password Fields Group -->
+                    <div class="space-y-2">
+                        <div class="flex justify-between items-center">
+                            <label class="block text-xs font-semibold tracking-wide uppercase text-on-surface-variant ml-1" for="password">Mot de passe</label>
+                            @if (Route::has('password.request'))
+                                <a class="text-primary font-bold text-xs hover:underline decoration-primary/30 transition-all" href="{{ route('password.request') }}">Oublié ?</a>
+                            @endif
+                        </div>
+                        <input class="w-full px-4 py-3.5 rounded-xl bg-surface-container-low border-transparent focus:border-primary focus:ring-4 focus:ring-primary-fixed transition-all outline-none text-on-surface text-sm ghost-border" id="password" name="password" required autocomplete="current-password" placeholder="••••••••" type="password"/>
+                        <x-input-error :messages="$errors->get('password')" class="mt-1 text-error text-xs ml-1" />
+                    </div>
+
+                    <!-- Terms -->
+                    <div class="flex items-start gap-3 py-2">
+                        <div class="flex items-center h-5">
+                            <input class="h-4 w-4 rounded border-outline-variant text-primary focus:ring-primary-fixed" id="remember_me" name="remember" type="checkbox"/>
+                        </div>
+                        <label class="text-xs font-bold text-on-surface-variant leading-relaxed cursor-pointer" for="remember_me">
+                            Se souvenir de moi
+                        </label>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button class="w-full py-4 rounded-xl auth-gradient text-on-primary font-bold text-sm tracking-wide shadow-lg hover:shadow-primary/20 hover:scale-[1.01] active:scale-[0.98] transition-all duration-200" type="submit">
+                        Se connecter
+                    </button>
+                    
+                </form>
+
+                <!-- Divider -->
+                <div class="relative my-8">
+                    <div aria-hidden="true" class="absolute inset-0 flex items-center">
+                        <div class="w-full border-t border-outline-variant opacity-20"></div>
+                    </div>
+                </div>
+
+                <!-- Login Link -->
+                <div class="mt-10 text-center">
+                    <p class="text-sm text-on-surface-variant">
+                        Pas encore membre ? 
+                        <a class="text-primary font-bold hover:underline decoration-primary/30 transition-all" href="{{ route('register') }}">S'inscrire</a>
+                    </p>
+                </div>
+            </div>
         </div>
-
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
-
-        <!-- Remember Me -->
-        <div class="block mt-4">
-            <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="remember">
-                <span class="ms-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-            </label>
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
-                </a>
-            @endif
-
-            <x-primary-button class="ms-3">
-                {{ __('Log in') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout>
+    </main>
+</body>
+</html>
