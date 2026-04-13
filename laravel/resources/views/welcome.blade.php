@@ -73,7 +73,7 @@
                     </button>
                 </form>
             @else
-                <a href="{{ route('login') }}" class="flex h-10 items-center justify-center rounded-xl bg-primary px-6 text-sm font-bold text-white shadow-lg shadow-primary/20 hover:bg-primary/90 transition-all">
+                <a href="{{ route('go.login', ['intended' => url()->current()]) }}" class="flex h-10 items-center justify-center rounded-xl bg-primary px-6 text-sm font-bold text-white shadow-lg shadow-primary/20 hover:bg-primary/90 transition-all">
                     Sign In
                 </a>
             @endauth

@@ -65,7 +65,7 @@
         Dashboard
     </a>
 @else
-    <a href="{{ route('login') }}" class="flex items-center justify-center rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold hover:bg-primary/90 transition-colors">
+    <a href="{{ route('go.login', ['intended' => url()->current()]) }}" class="flex items-center justify-center rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold hover:bg-primary/90 transition-colors">
         Sign In
     </a>
 @endauth

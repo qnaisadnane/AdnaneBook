@@ -61,7 +61,7 @@
                     @auth
                         <a href="{{ url('/dashboard') }}" class="text-sm font-bold text-primary hover:text-primary/80">Dashboard</a>
                     @else
-                        <a href="{{ route('login') }}" class="flex h-9 items-center justify-center rounded-lg bg-primary px-5 text-sm font-bold text-white hover:bg-primary/90 transition-all">Sign In</a>
+                        <a href="{{ route('go.login', ['intended' => url()->current()]) }}" class="flex h-9 items-center justify-center rounded-lg bg-primary px-5 text-sm font-bold text-white hover:bg-primary/90 transition-all">Sign In</a>
                     @endauth
                 </div>
             </div>
