@@ -281,67 +281,53 @@
 </div>
 </div>
 </section>
-<!-- How It Works Section -->
-<section class="py-24" style="background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%)">
+<!-- Promo Section -->
+<section class="py-20 bg-white">
 <div class="mx-auto max-w-7xl px-6">
-    <div class="text-center mb-16">
-        <span class="inline-block px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-4" style="background:rgba(139,92,246,0.2);color:#a78bfa;border:1px solid rgba(139,92,246,0.3)">Simple Process</span>
-        <h2 class="text-4xl lg:text-5xl font-black tracking-tight text-white mb-4">How It <span style="color:#a78bfa">Works</span></h2>
-        <p class="text-slate-400 text-lg max-w-lg mx-auto">Get your favorite books delivered in 3 easy steps.</p>
-    </div>
-
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <!-- Step 1 -->
-        <div class="relative rounded-2xl p-8 flex flex-col gap-5 group transition-all duration-300 hover:-translate-y-1" style="background:rgba(255,255,255,0.04);border:1px solid rgba(139,92,246,0.25);backdrop-filter:blur(10px)">
-            <div class="flex items-center justify-between">
-                <div class="flex h-14 w-14 items-center justify-center rounded-xl" style="background:linear-gradient(135deg,#7c3aed,#4f46e5)">
-                    <span class="material-symbols-outlined text-white text-2xl">search</span>
-                </div>
-                <span class="text-6xl font-black" style="color:rgba(139,92,246,0.15)">01</span>
-            </div>
+
+        <!-- Card 1 -->
+        <div class="relative overflow-hidden rounded-2xl bg-amber-50 border border-amber-100 p-8 flex flex-col justify-between min-h-[220px]">
             <div>
-                <h3 class="text-xl font-bold text-white mb-2">Browse & Discover</h3>
-                <p class="text-slate-400 text-sm leading-relaxed">Explore thousands of titles by category, author, or ISBN. Smart filters help you find your perfect read instantly.</p>
+                <span class="inline-block bg-amber-400 text-white text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-4">Limited Time</span>
+                <h3 class="text-5xl font-black text-slate-900 leading-none mb-2">Up to<br><span class="text-amber-500">75% Off</span></h3>
+                <p class="text-slate-500 text-sm mt-3">On selected bestsellers and classic titles.</p>
             </div>
-            <div class="h-0.5 w-12 rounded-full" style="background:linear-gradient(90deg,#7c3aed,#4f46e5)"></div>
+            <a href="{{ route('catalog') }}" class="mt-6 inline-flex items-center gap-1 text-sm font-bold text-amber-600 hover:text-amber-700 transition-colors">
+                Shop Now <span class="material-symbols-outlined text-base">arrow_forward</span>
+            </a>
+            <div class="absolute -right-6 -bottom-6 h-32 w-32 rounded-full bg-amber-200/50"></div>
+            <div class="absolute -right-2 -bottom-10 h-20 w-20 rounded-full bg-amber-300/30"></div>
         </div>
 
-        <!-- Step 2 -->
-        <div class="relative rounded-2xl p-8 flex flex-col gap-5 group transition-all duration-300 hover:-translate-y-1" style="background:rgba(255,255,255,0.04);border:1px solid rgba(236,72,153,0.25);backdrop-filter:blur(10px)">
-            <div class="flex items-center justify-between">
-                <div class="flex h-14 w-14 items-center justify-center rounded-xl" style="background:linear-gradient(135deg,#db2777,#9333ea)">
-                    <span class="material-symbols-outlined text-white text-2xl">shopping_bag</span>
-                </div>
-                <span class="text-6xl font-black" style="color:rgba(236,72,153,0.15)">02</span>
-            </div>
+        <!-- Card 2 -->
+        <div class="relative overflow-hidden rounded-2xl bg-blue-50 border border-blue-100 p-8 flex flex-col justify-between min-h-[220px]">
             <div>
-                <h3 class="text-xl font-bold text-white mb-2">Place Your Order</h3>
-                <p class="text-slate-400 text-sm leading-relaxed">Add books to your order, choose quantities, and confirm in seconds. No hidden fees, no complications.</p>
+                <span class="inline-block bg-primary text-white text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-4">New Arrivals</span>
+                <h3 class="text-5xl font-black text-slate-900 leading-none mb-2">Fresh<br><span class="text-primary">Picks</span></h3>
+                <p class="text-slate-500 text-sm mt-3">Discover the latest titles added to our catalog this week.</p>
             </div>
-            <div class="h-0.5 w-12 rounded-full" style="background:linear-gradient(90deg,#db2777,#9333ea)"></div>
+            <a href="{{ route('catalog') }}" class="mt-6 inline-flex items-center gap-1 text-sm font-bold text-primary hover:text-primary/80 transition-colors">
+                Explore <span class="material-symbols-outlined text-base">arrow_forward</span>
+            </a>
+            <div class="absolute -right-6 -bottom-6 h-32 w-32 rounded-full bg-blue-200/50"></div>
+            <div class="absolute -right-2 -bottom-10 h-20 w-20 rounded-full bg-blue-300/30"></div>
         </div>
 
-        <!-- Step 3 -->
-        <div class="relative rounded-2xl p-8 flex flex-col gap-5 group transition-all duration-300 hover:-translate-y-1" style="background:rgba(255,255,255,0.04);border:1px solid rgba(20,184,166,0.25);backdrop-filter:blur(10px)">
-            <div class="flex items-center justify-between">
-                <div class="flex h-14 w-14 items-center justify-center rounded-xl" style="background:linear-gradient(135deg,#0d9488,#0891b2)">
-                    <span class="material-symbols-outlined text-white text-2xl">local_shipping</span>
-                </div>
-                <span class="text-6xl font-black" style="color:rgba(20,184,166,0.15)">03</span>
-            </div>
+        <!-- Card 3 -->
+        <div class="relative overflow-hidden rounded-2xl bg-emerald-50 border border-emerald-100 p-8 flex flex-col justify-between min-h-[220px]">
             <div>
-                <h3 class="text-xl font-bold text-white mb-2">Fast Delivery</h3>
-                <p class="text-slate-400 text-sm leading-relaxed">Pay securely and receive your books at your doorstep. Track every step of your delivery in real time.</p>
+                <span class="inline-block bg-emerald-500 text-white text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-4">Free Delivery</span>
+                <h3 class="text-5xl font-black text-slate-900 leading-none mb-2">Order<br><span class="text-emerald-500">Today</span></h3>
+                <p class="text-slate-500 text-sm mt-3">Free shipping on all orders. No minimum required.</p>
             </div>
-            <div class="h-0.5 w-12 rounded-full" style="background:linear-gradient(90deg,#0d9488,#0891b2)"></div>
+            <a href="{{ route('catalog') }}" class="mt-6 inline-flex items-center gap-1 text-sm font-bold text-emerald-600 hover:text-emerald-700 transition-colors">
+                Order Now <span class="material-symbols-outlined text-base">arrow_forward</span>
+            </a>
+            <div class="absolute -right-6 -bottom-6 h-32 w-32 rounded-full bg-emerald-200/50"></div>
+            <div class="absolute -right-2 -bottom-10 h-20 w-20 rounded-full bg-emerald-300/30"></div>
         </div>
-    </div>
 
-    <div class="mt-14 text-center">
-        <a href="{{ route('catalog') }}" class="inline-flex items-center gap-2 px-10 py-4 rounded-xl text-sm font-bold text-white transition-all duration-300 hover:scale-105 shadow-xl" style="background:linear-gradient(135deg,#7c3aed,#db2777);box-shadow:0 0 30px rgba(124,58,237,0.4)">
-            <span class="material-symbols-outlined text-lg">auto_stories</span>
-            Start Browsing Now
-        </a>
     </div>
 </div>
 </section>
