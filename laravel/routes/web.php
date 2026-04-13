@@ -16,6 +16,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/catalog', function () {
+    return view('catalog');
+})->name('catalog');
+
+Route::get('/book/details', function () {
+    return view('details');
+})->name('book.details');
+
+
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
