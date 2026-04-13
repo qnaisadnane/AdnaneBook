@@ -281,21 +281,49 @@
 </div>
 </div>
 </section>
-<!-- Newsletter Section -->
+<!-- How It Works Section -->
 <section class="bg-primary py-20 text-white">
-<div class="mx-auto max-w-7xl px-6 flex flex-col lg:flex-row items-center justify-between gap-12">
-<div class="lg:w-1/2">
-<h2 class="text-4xl font-black tracking-tight mb-4">Never Miss a Story</h2>
-<p class="text-primary-100 text-lg opacity-90">Subscribe to our newsletter for weekly curated lists, author exclusive content, and early notification of seasonal sales.</p>
+<div class="mx-auto max-w-7xl px-6">
+<div class="text-center mb-14">
+    <h2 class="text-4xl font-black tracking-tight mb-4">How It Works</h2>
+    <p class="text-lg opacity-80 max-w-xl mx-auto">Order your favorite books in 3 simple steps and get them delivered to your door.</p>
 </div>
-<div class="w-full lg:w-5/12">
-<form class="flex flex-col sm:flex-row gap-3">
-<input class="flex-1 rounded-xl border-none bg-white/10 px-6 py-4 text-white placeholder-white/60 backdrop-blur-md focus:ring-2 focus:ring-white/50" placeholder="Your best email address" required="" type="email"/>
-<button class="rounded-xl bg-white px-8 py-4 text-base font-bold text-primary hover:bg-slate-100 transition-colors shadow-lg" type="submit">
-                                Subscribe Now
-                            </button>
-</form>
-<p class="mt-4 text-xs text-white/60">We value your privacy. Unsubscribe at any time.</p>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+    <!-- Step connector line (desktop) -->
+    <div class="hidden md:block absolute top-10 left-1/4 right-1/4 h-0.5 bg-white/20"></div>
+    <!-- Step 1 -->
+    <div class="flex flex-col items-center text-center gap-4">
+        <div class="relative flex h-20 w-20 items-center justify-center rounded-full bg-white/15 border-2 border-white/30 shadow-lg">
+            <span class="material-symbols-outlined text-4xl">search</span>
+            <span class="absolute -top-2 -right-2 flex h-7 w-7 items-center justify-center rounded-full bg-white text-primary text-xs font-black">1</span>
+        </div>
+        <h3 class="text-xl font-bold">Browse & Discover</h3>
+        <p class="opacity-80 text-sm leading-relaxed">Explore our catalog by category, author, or title. Use filters to find exactly what you're looking for.</p>
+    </div>
+    <!-- Step 2 -->
+    <div class="flex flex-col items-center text-center gap-4">
+        <div class="relative flex h-20 w-20 items-center justify-center rounded-full bg-white/15 border-2 border-white/30 shadow-lg">
+            <span class="material-symbols-outlined text-4xl">shopping_cart</span>
+            <span class="absolute -top-2 -right-2 flex h-7 w-7 items-center justify-center rounded-full bg-white text-primary text-xs font-black">2</span>
+        </div>
+        <h3 class="text-xl font-bold">Place Your Order</h3>
+        <p class="opacity-80 text-sm leading-relaxed">Select your books, choose the quantity, and place your order in seconds. No hassle, no hidden fees.</p>
+    </div>
+    <!-- Step 3 -->
+    <div class="flex flex-col items-center text-center gap-4">
+        <div class="relative flex h-20 w-20 items-center justify-center rounded-full bg-white/15 border-2 border-white/30 shadow-lg">
+            <span class="material-symbols-outlined text-4xl">local_shipping</span>
+            <span class="absolute -top-2 -right-2 flex h-7 w-7 items-center justify-center rounded-full bg-white text-primary text-xs font-black">3</span>
+        </div>
+        <h3 class="text-xl font-bold">Fast Delivery</h3>
+        <p class="opacity-80 text-sm leading-relaxed">Pay securely and track your order. Your books will be delivered straight to your doorstep.</p>
+    </div>
+</div>
+<div class="mt-14 text-center">
+    <a href="{{ route('catalog') }}" class="inline-flex items-center gap-2 rounded-xl bg-white px-10 py-4 text-base font-bold text-primary hover:bg-slate-100 transition-colors shadow-lg">
+        <span class="material-symbols-outlined">menu_book</span>
+        Start Browsing
+    </a>
 </div>
 </div>
 </section>
