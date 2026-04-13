@@ -66,10 +66,12 @@
         <!-- INTEGRATION AUTH LARAVEL -->
         @if (Route::has('login'))
             @auth
-                <a href="{{ url('/dashboard') }}" class="flex h-10 items-center justify-center rounded-xl bg-primary px-6 text-sm font-bold text-white shadow-lg shadow-primary/20 hover:bg-primary/90 transition-all">
-                    Dashboard
-                </a>
-                <div class="h-10 w-10 ml-2 rounded-full bg-slate-200 dark:bg-slate-700 bg-cover bg-center border-2 border-white dark:border-slate-800" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCiN1ycVDhyKL01OlLtKAfv7Ve4X-AwHKS5PU0-Ij7vow_x_mBOQ0kd-TUc7WR2_IIjJUxfoPwZ3MIhb519-bQGKUAZoXgdLJImzO8hmOQUDk4JlE1cIstQ2Tv3XLU2ldFo2yWOzOEehEOF6KCbRQ4m9RqpMP0cFi5NlhisBRnY9Mper2EP1gWOP5Vgiw42YS9eyaEt4e2wT2-7USRG1Sy_ks6Q38mxavTP8cj74sCbVB1ZowcEW03eZUq5RqPNPMB84T8OoVyeOue4")'></div>
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit" class="flex h-10 items-center justify-center rounded-xl bg-primary px-6 text-sm font-bold text-white shadow-lg shadow-primary/20 hover:bg-primary/90 transition-all">
+                        Log Out
+                    </button>
+                </form>
             @else
                 <a href="{{ route('login') }}" class="flex h-10 items-center justify-center rounded-xl bg-primary px-6 text-sm font-bold text-white shadow-lg shadow-primary/20 hover:bg-primary/90 transition-all">
                     Sign In
