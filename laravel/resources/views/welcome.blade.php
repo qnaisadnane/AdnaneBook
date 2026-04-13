@@ -48,9 +48,9 @@
             <h2 class="text-xl font-extrabold tracking-tight">ADNANE BOOKS</h2>
         </div>
         <nav class="hidden md:flex items-center gap-6">
-            <a class="text-sm font-semibold hover:text-primary transition-colors" href="#">Home</a>
-            <a class="text-sm font-semibold hover:text-primary transition-colors" href="#">Categories</a>
-            <a class="text-sm font-semibold hover:text-primary transition-colors" href="#">Bestsellers</a>
+            <a class="text-sm font-semibold hover:text-primary transition-colors" href="{{ url('/') }}">Home</a>
+            <a class="text-sm font-semibold hover:text-primary transition-colors" href="{{ route('catalog') }}">Categories</a>
+            <a class="text-sm font-semibold hover:text-primary transition-colors" href="{{ route('catalog') }}">Bestsellers</a>
             <a class="text-sm font-semibold hover:text-primary transition-colors" href="#">New Arrivals</a>
         </nav>
     </div>
@@ -180,7 +180,9 @@
 <!-- Book Card 1 -->
 <div class="group relative flex flex-col gap-4">
 <div class="aspect-[3/4] overflow-hidden rounded-2xl bg-slate-200 dark:bg-slate-800 shadow-md transition-all group-hover:shadow-xl group-hover:-translate-y-1">
+<a href="{{ route('book.details') }}" class="block w-full h-full">
 <img alt="Modern novel book cover" class="h-full w-full object-cover" src="https://lh3.googleusercontent.com/aida/ADBb0ujzSn9IcOsyxTSookCz24B_ZOJnljV7qigZICqxVbKEHbi6ULiJsNaJZR7nDUsBaF50Qhhkk07mftu9qBXBWbKXJFstYnH9r6A1Hrv47oF2Ac9nFAiAVawQFpnASpQW40Wc28EL3Zl8nRwfNBvelx6lagzPvvUt_j_uorPbg3-pyTYGeMAmTBG5aqOM0OZVyz3f2OECtee6woENbZcIgriBgyqW4a4S1EjKhG4VWT7pOdwpZuO_24RM6On9ctpFTcWLEnzbQ7XjKw"/>
+</a>
 <div class="absolute right-4 top-4">
 <button class="flex h-10 w-10 items-center justify-center rounded-full bg-white/90 dark:bg-slate-800/90 text-slate-900 dark:text-white shadow-sm hover:text-red-500 transition-colors">
 <span class="material-symbols-outlined text-[20px]">favorite</span>
@@ -200,7 +202,9 @@
 <!-- Book Card 2 -->
 <div class="group relative flex flex-col gap-4">
 <div class="aspect-[3/4] overflow-hidden rounded-2xl bg-slate-200 dark:bg-slate-800 shadow-md transition-all group-hover:shadow-xl group-hover:-translate-y-1">
+<a href="{{ route('book.details') }}" class="block w-full h-full">
 <img alt="Dramatic book cover" class="h-full w-full object-cover" src="https://lh3.googleusercontent.com/aida/ADBb0uh6pyz9GQlBIhr0MxR769YLaUAC8z5HlHvJ5AuJKkJUfkfqDlS8P5YK00gfMEivKXFN5Ww0zMAHC3YzvUodUOqkyQxV6Y9PWa-4skzmz38ys3WmUJvpHDA31jkm_Fp_DwsYvO-FYYBj3PD9rOOIkKSUboNRMFUtgQ6MDWYc_kGzoq_iInl6torbigoWbEMhkyF7YzzswwRo3pJew6-6p-3_f-Qhrh6QYJ-6H-0rCibtAQCVASIoUikorVrfaix4y_1liYx_lFkZeA"/>
+</a>
 <div class="absolute right-4 top-4">
 <button class="flex h-10 w-10 items-center justify-center rounded-full bg-white/90 dark:bg-slate-800/90 text-slate-900 dark:text-white shadow-sm hover:text-red-500 transition-colors">
 <span class="material-symbols-outlined text-[20px]">favorite</span>
@@ -220,7 +224,9 @@
 <!-- Book Card 3 -->
 <div class="group relative flex flex-col gap-4">
 <div class="aspect-[3/4] overflow-hidden rounded-2xl bg-slate-200 dark:bg-slate-800 shadow-md transition-all group-hover:shadow-xl group-hover:-translate-y-1">
+<a href="{{ route('book.details') }}" class="block w-full h-full">
 <img alt="Minimalist book cover" class="h-full w-full object-cover" src="https://lh3.googleusercontent.com/aida/ADBb0ug7GKfWIOXkEHmsbBD3hKIPZYTI0BfoPz0L7cgBN5dtIif7LuPm2aM7AQdOFjDRj40nkL0yrVYdQIpaB5LuH3y4e16-fOQrN2kunJYenlW8TDvbHFX1WlipPLglKnNVORzfporm8C9TzuFieFnKkZSzovhaeOFtkTY_plU3bDjb9K-Wfy0CXFTYa3TiHtDw-IXFf6Jk65YaD23rxHXAzEAU1XKnq5fJQwjRdgDX2mGnJBEqQGEhOk3hJ10R6BqBDHvfmeFA43Cxsg"/>
+</a>
 <div class="absolute right-4 top-4">
 <button class="flex h-10 w-10 items-center justify-center rounded-full bg-white/90 dark:bg-slate-800/90 text-slate-900 dark:text-white shadow-sm hover:text-red-500 transition-colors">
 <span class="material-symbols-outlined text-[20px]">favorite</span>
@@ -240,7 +246,9 @@
 <!-- Book Card 4 -->
 <div class="group relative flex flex-col gap-4">
 <div class="aspect-[3/4] overflow-hidden rounded-2xl bg-slate-200 dark:bg-slate-800 shadow-md transition-all group-hover:shadow-xl group-hover:-translate-y-1">
+<a href="{{ route('book.details') }}" class="block w-full h-full">
 <img alt="Colorful book cover" class="h-full w-full object-cover" src="https://lh3.googleusercontent.com/aida/ADBb0ugAUDOwF_xDUGekt3Xk24nHtLZwGMfhDwqDFxaU3JMufsu_-RdfB-5LUrXGvcZKEQJm-oyDDZVkfSNEC-IMNdFEvlcqaDICe8LzYAL5RRgPyfJNx6c8Xyz5dsI9bp02D7ybjWBrPbSmuuySgJlImahnQgN_yY0A-G_weQpnaNB5bKZBCDX9CLUA1CSnLuNvJ1jptjEhR_mbDOXSkq2oDiRf3--0sF8TTp31K23itMdoKMXephzNPQk0B5vtLpPFz25IBQBbIiSa8w"/>
+</a>
 <div class="absolute right-4 top-4">
 <button class="flex h-10 w-10 items-center justify-center rounded-full bg-white/90 dark:bg-slate-800/90 text-slate-900 dark:text-white shadow-sm hover:text-red-500 transition-colors">
 <span class="material-symbols-outlined text-[20px]">favorite</span>
