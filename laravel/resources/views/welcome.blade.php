@@ -282,49 +282,67 @@
 </div>
 </section>
 <!-- How It Works Section -->
-<section class="bg-primary py-20 text-white">
+<section class="py-24" style="background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%)">
 <div class="mx-auto max-w-7xl px-6">
-<div class="text-center mb-14">
-    <h2 class="text-4xl font-black tracking-tight mb-4">How It Works</h2>
-    <p class="text-lg opacity-80 max-w-xl mx-auto">Order your favorite books in 3 simple steps and get them delivered to your door.</p>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
-    <!-- Step connector line (desktop) -->
-    <div class="hidden md:block absolute top-10 left-1/4 right-1/4 h-0.5 bg-white/20"></div>
-    <!-- Step 1 -->
-    <div class="flex flex-col items-center text-center gap-4">
-        <div class="relative flex h-20 w-20 items-center justify-center rounded-full bg-white/15 border-2 border-white/30 shadow-lg">
-            <span class="material-symbols-outlined text-4xl">search</span>
-            <span class="absolute -top-2 -right-2 flex h-7 w-7 items-center justify-center rounded-full bg-white text-primary text-xs font-black">1</span>
-        </div>
-        <h3 class="text-xl font-bold">Browse & Discover</h3>
-        <p class="opacity-80 text-sm leading-relaxed">Explore our catalog by category, author, or title. Use filters to find exactly what you're looking for.</p>
+    <div class="text-center mb-16">
+        <span class="inline-block px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-4" style="background:rgba(139,92,246,0.2);color:#a78bfa;border:1px solid rgba(139,92,246,0.3)">Simple Process</span>
+        <h2 class="text-4xl lg:text-5xl font-black tracking-tight text-white mb-4">How It <span style="color:#a78bfa">Works</span></h2>
+        <p class="text-slate-400 text-lg max-w-lg mx-auto">Get your favorite books delivered in 3 easy steps.</p>
     </div>
-    <!-- Step 2 -->
-    <div class="flex flex-col items-center text-center gap-4">
-        <div class="relative flex h-20 w-20 items-center justify-center rounded-full bg-white/15 border-2 border-white/30 shadow-lg">
-            <span class="material-symbols-outlined text-4xl">shopping_cart</span>
-            <span class="absolute -top-2 -right-2 flex h-7 w-7 items-center justify-center rounded-full bg-white text-primary text-xs font-black">2</span>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Step 1 -->
+        <div class="relative rounded-2xl p-8 flex flex-col gap-5 group transition-all duration-300 hover:-translate-y-1" style="background:rgba(255,255,255,0.04);border:1px solid rgba(139,92,246,0.25);backdrop-filter:blur(10px)">
+            <div class="flex items-center justify-between">
+                <div class="flex h-14 w-14 items-center justify-center rounded-xl" style="background:linear-gradient(135deg,#7c3aed,#4f46e5)">
+                    <span class="material-symbols-outlined text-white text-2xl">search</span>
+                </div>
+                <span class="text-6xl font-black" style="color:rgba(139,92,246,0.15)">01</span>
+            </div>
+            <div>
+                <h3 class="text-xl font-bold text-white mb-2">Browse & Discover</h3>
+                <p class="text-slate-400 text-sm leading-relaxed">Explore thousands of titles by category, author, or ISBN. Smart filters help you find your perfect read instantly.</p>
+            </div>
+            <div class="h-0.5 w-12 rounded-full" style="background:linear-gradient(90deg,#7c3aed,#4f46e5)"></div>
         </div>
-        <h3 class="text-xl font-bold">Place Your Order</h3>
-        <p class="opacity-80 text-sm leading-relaxed">Select your books, choose the quantity, and place your order in seconds. No hassle, no hidden fees.</p>
-    </div>
-    <!-- Step 3 -->
-    <div class="flex flex-col items-center text-center gap-4">
-        <div class="relative flex h-20 w-20 items-center justify-center rounded-full bg-white/15 border-2 border-white/30 shadow-lg">
-            <span class="material-symbols-outlined text-4xl">local_shipping</span>
-            <span class="absolute -top-2 -right-2 flex h-7 w-7 items-center justify-center rounded-full bg-white text-primary text-xs font-black">3</span>
+
+        <!-- Step 2 -->
+        <div class="relative rounded-2xl p-8 flex flex-col gap-5 group transition-all duration-300 hover:-translate-y-1" style="background:rgba(255,255,255,0.04);border:1px solid rgba(236,72,153,0.25);backdrop-filter:blur(10px)">
+            <div class="flex items-center justify-between">
+                <div class="flex h-14 w-14 items-center justify-center rounded-xl" style="background:linear-gradient(135deg,#db2777,#9333ea)">
+                    <span class="material-symbols-outlined text-white text-2xl">shopping_bag</span>
+                </div>
+                <span class="text-6xl font-black" style="color:rgba(236,72,153,0.15)">02</span>
+            </div>
+            <div>
+                <h3 class="text-xl font-bold text-white mb-2">Place Your Order</h3>
+                <p class="text-slate-400 text-sm leading-relaxed">Add books to your order, choose quantities, and confirm in seconds. No hidden fees, no complications.</p>
+            </div>
+            <div class="h-0.5 w-12 rounded-full" style="background:linear-gradient(90deg,#db2777,#9333ea)"></div>
         </div>
-        <h3 class="text-xl font-bold">Fast Delivery</h3>
-        <p class="opacity-80 text-sm leading-relaxed">Pay securely and track your order. Your books will be delivered straight to your doorstep.</p>
+
+        <!-- Step 3 -->
+        <div class="relative rounded-2xl p-8 flex flex-col gap-5 group transition-all duration-300 hover:-translate-y-1" style="background:rgba(255,255,255,0.04);border:1px solid rgba(20,184,166,0.25);backdrop-filter:blur(10px)">
+            <div class="flex items-center justify-between">
+                <div class="flex h-14 w-14 items-center justify-center rounded-xl" style="background:linear-gradient(135deg,#0d9488,#0891b2)">
+                    <span class="material-symbols-outlined text-white text-2xl">local_shipping</span>
+                </div>
+                <span class="text-6xl font-black" style="color:rgba(20,184,166,0.15)">03</span>
+            </div>
+            <div>
+                <h3 class="text-xl font-bold text-white mb-2">Fast Delivery</h3>
+                <p class="text-slate-400 text-sm leading-relaxed">Pay securely and receive your books at your doorstep. Track every step of your delivery in real time.</p>
+            </div>
+            <div class="h-0.5 w-12 rounded-full" style="background:linear-gradient(90deg,#0d9488,#0891b2)"></div>
+        </div>
     </div>
-</div>
-<div class="mt-14 text-center">
-    <a href="{{ route('catalog') }}" class="inline-flex items-center gap-2 rounded-xl bg-white px-10 py-4 text-base font-bold text-primary hover:bg-slate-100 transition-colors shadow-lg">
-        <span class="material-symbols-outlined">menu_book</span>
-        Start Browsing
-    </a>
-</div>
+
+    <div class="mt-14 text-center">
+        <a href="{{ route('catalog') }}" class="inline-flex items-center gap-2 px-10 py-4 rounded-xl text-sm font-bold text-white transition-all duration-300 hover:scale-105 shadow-xl" style="background:linear-gradient(135deg,#7c3aed,#db2777);box-shadow:0 0 30px rgba(124,58,237,0.4)">
+            <span class="material-symbols-outlined text-lg">auto_stories</span>
+            Start Browsing Now
+        </a>
+    </div>
 </div>
 </section>
 <!-- Best Sellers CTA -->
