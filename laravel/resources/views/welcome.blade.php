@@ -33,6 +33,7 @@
     <style>
         body { font-family: 'Inter', sans-serif; }
         .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .material-symbols-filled { font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
     </style>
 </head>
 <body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display">
@@ -100,15 +101,7 @@
                                 Search
                             </button>
 </div>
-<div class="flex items-center justify-center lg:justify-start gap-6">
-<div class="flex -space-x-3">
-<div class="h-10 w-10 rounded-full border-2 border-white dark:border-slate-900 bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCTu0ivVbSD7JXj3qCmE9JApGb7trkIbvsEXPYYCQlCOpIfAIvjut2iPosg9gkOUpyJlSNotHC2XtS0xH8x7dBK2Y4uXpGklERiBqzYIg594gEu2-QNiEPMWoIwHCaJuYW-J0d_f7yHMgTqWcnavyFPQSOQb4QrmRw0XTIiVCxcPP4wnuGbi_CbavGTwtNPvzNRiM7ZLi0eNCT2-QFGNzWH54a3uWkV6KlWcjGa8Q6P4LcBxMTw5SHrP2StHhHE7pBucHFQPGrM-4m2')"></div>
-<div class="h-10 w-10 rounded-full border-2 border-white dark:border-slate-900 bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDvo8am4dP2FPrSztGwhYPVeHFXed7cWK_wdMDG_o_g-tSkJgFtB1ijgHGhuQya__UzM2w-9u12UkV8ayZdV4YKjb0t2osbx1F-KvwZ7iJSUE-934fiOiwX8z_qjH_dfRPgoc85UNaeseb2MvTY6BSMy_9MUdJu2oL5D2QWvSkLQwxUQuqVJdWJv_EdCGZGNLj14-kTQ-sJlxAFj5zMh66KnpYXu8L89W-oVhr5kSbJ-KRXvBN4IcB2ZTTxwgUjb7pGqIH0tvlE9SWf')"></div>
-<div class="h-10 w-10 rounded-full border-2 border-white dark:border-slate-900 bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBV4WFS9X5gEa0HgmhRUCNwx6gWtkluiYm-IVuk1P1g5HGXNktnAPRo7drJxdYPPR5WadbRj7RIZKgJTQ-HPTvdCASHnwCh7A6k-pKRa7aPaEG6Sn0vWTt30oouEPutH2mvV9cQKkjawyXENkh5Vca_edKhz8DrktvPDYGC_jsvrSfEARUEgX3IsY5xB17c-dVZNQrwJ49osIknfzRuXrgmA3JlcXgnph8StSm4QDMBzQaVpUsBaSTF__8Lh2MoQf6Ahh7fINSzGNFT')"></div>
-<div class="flex h-10 w-10 items-center justify-center rounded-full border-2 border-white dark:border-slate-900 bg-slate-100 dark:bg-slate-800 text-[10px] font-bold">+12k</div>
-</div>
-<p class="text-xs text-slate-500 font-medium uppercase tracking-wide">Joined by 12,000+ readers</p>
-</div>
+
 </div>
 <div class="lg:w-1/2">
 <div class="relative h-[500px] w-full rounded-3xl bg-slate-200 dark:bg-slate-800 overflow-hidden shadow-2xl">
@@ -121,152 +114,70 @@
 <!-- Categories Section -->
 <section class="bg-white/50 dark:bg-slate-900/50 py-16">
 <div class="mx-auto max-w-7xl px-6">
-<div class="flex items-end justify-between mb-8">
-<div>
+<div class="flex flex-col items-center text-center mb-8">
 <h2 class="text-3xl font-bold tracking-tight">Browse by Category</h2>
 <p class="mt-2 text-slate-500">Find exactly what you're looking for</p>
-</div>
-<a class="text-sm font-bold text-primary hover:underline" href="#">View All Categories</a>
+<a class="mt-4 text-sm font-bold text-primary hover:underline" href="{{ route('catalog') }}">View All Categories</a>
 </div>
 <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-<div class="group flex cursor-pointer flex-col items-center justify-center gap-4 rounded-2xl bg-white dark:bg-slate-800 p-6 shadow-sm border border-slate-100 dark:border-slate-700 hover:border-primary/50 transition-all">
-<div class="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-colors">
-<span class="material-symbols-outlined">auto_stories</span>
-</div>
-<p class="text-sm font-bold">Fiction</p>
-</div>
-<div class="group flex cursor-pointer flex-col items-center justify-center gap-4 rounded-2xl bg-white dark:bg-slate-800 p-6 shadow-sm border border-slate-100 dark:border-slate-700 hover:border-primary/50 transition-all">
-<div class="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-colors">
-<span class="material-symbols-outlined">rocket_launch</span>
-</div>
-<p class="text-sm font-bold">Sci-Fi</p>
-</div>
-<div class="group flex cursor-pointer flex-col items-center justify-center gap-4 rounded-2xl bg-white dark:bg-slate-800 p-6 shadow-sm border border-slate-100 dark:border-slate-700 hover:border-primary/50 transition-all">
-<div class="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-colors">
-<span class="material-symbols-outlined">person</span>
-</div>
-<p class="text-sm font-bold">Biography</p>
-</div>
-<div class="group flex cursor-pointer flex-col items-center justify-center gap-4 rounded-2xl bg-white dark:bg-slate-800 p-6 shadow-sm border border-slate-100 dark:border-slate-700 hover:border-primary/50 transition-all">
-<div class="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-colors">
-<span class="material-symbols-outlined">history_edu</span>
-</div>
-<p class="text-sm font-bold">History</p>
-</div>
-<div class="group flex cursor-pointer flex-col items-center justify-center gap-4 rounded-2xl bg-white dark:bg-slate-800 p-6 shadow-sm border border-slate-100 dark:border-slate-700 hover:border-primary/50 transition-all">
-<div class="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-colors">
-<span class="material-symbols-outlined">psychology</span>
-</div>
-<p class="text-sm font-bold">Self-Help</p>
-</div>
-<div class="group flex cursor-pointer flex-col items-center justify-center gap-4 rounded-2xl bg-white dark:bg-slate-800 p-6 shadow-sm border border-slate-100 dark:border-slate-700 hover:border-primary/50 transition-all">
-<div class="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-colors">
-<span class="material-symbols-outlined">trending_up</span>
-</div>
-<p class="text-sm font-bold">Business</p>
-</div>
+@php
+    $icons = ['Fiction'=>'auto_stories','Sci-Fi'=>'rocket_launch','Biography'=>'person','History'=>'history_edu','Self-Help'=>'psychology','Business'=>'trending_up'];
+@endphp
+@forelse($categories as $cat)
+<a href="{{ route('catalog', ['category_id' => $cat->id]) }}" class="group flex cursor-pointer flex-col items-center justify-center gap-4 rounded-2xl bg-white dark:bg-slate-800 p-6 shadow-sm border border-slate-100 dark:border-slate-700 hover:border-primary/50 transition-all no-underline">
+    <div class="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+        <span class="material-symbols-outlined">{{ $icons[$cat->name] ?? 'menu_book' }}</span>
+    </div>
+    <p class="text-sm font-bold text-slate-800 dark:text-slate-100">{{ $cat->name }}</p>
+</a>
+@empty
+<p class="col-span-6 text-center text-slate-400">Aucune catégorie disponible.</p>
+@endforelse
 </div>
 </div>
 </section>
 <!-- Featured Books Grid -->
 <section class="mx-auto max-w-7xl px-6 py-16">
 <div class="flex items-end justify-between mb-8">
-<div>
+<div class="text-center w-full">
 <h2 class="text-3xl font-bold tracking-tight">Featured Books</h2>
 <p class="mt-2 text-slate-500">Curated picks from our editors</p>
 </div>
 </div>
 <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
-<!-- Book Card 1 -->
+@forelse($featuredBooks as $book)
 <div class="group relative flex flex-col gap-4">
-<div class="aspect-[3/4] overflow-hidden rounded-2xl bg-slate-200 dark:bg-slate-800 shadow-md transition-all group-hover:shadow-xl group-hover:-translate-y-1">
-<a href="{{ route('book.details') }}" class="block w-full h-full">
-<img alt="Modern novel book cover" class="h-full w-full object-cover" src="https://lh3.googleusercontent.com/aida/ADBb0ujzSn9IcOsyxTSookCz24B_ZOJnljV7qigZICqxVbKEHbi6ULiJsNaJZR7nDUsBaF50Qhhkk07mftu9qBXBWbKXJFstYnH9r6A1Hrv47oF2Ac9nFAiAVawQFpnASpQW40Wc28EL3Zl8nRwfNBvelx6lagzPvvUt_j_uorPbg3-pyTYGeMAmTBG5aqOM0OZVyz3f2OECtee6woENbZcIgriBgyqW4a4S1EjKhG4VWT7pOdwpZuO_24RM6On9ctpFTcWLEnzbQ7XjKw"/>
-</a>
-<div class="absolute right-4 top-4">
-<button class="flex h-10 w-10 items-center justify-center rounded-full bg-white/90 dark:bg-slate-800/90 text-slate-900 dark:text-white shadow-sm hover:text-red-500 transition-colors">
-<span class="material-symbols-outlined text-[20px]">favorite</span>
-</button>
+    <div class="aspect-[3/4] overflow-hidden rounded-2xl bg-slate-200 dark:bg-slate-800 shadow-md transition-all group-hover:shadow-xl group-hover:-translate-y-1">
+        <a href="{{ route('books.show', $book->id) }}" class="block w-full h-full">
+            @if($book->image)
+                <img alt="{{ $book->title }}" class="h-full w-full object-cover" src="{{ Storage::url($book->image) }}"/>
+            @else
+                <div class="h-full w-full flex flex-col items-center justify-center bg-gradient-to-br from-primary/20 to-slate-300 dark:from-primary/30 dark:to-slate-700 gap-3">
+                    <span class="material-symbols-outlined text-6xl text-primary/60">menu_book</span>
+                    <p class="text-xs text-slate-500 px-3 text-center font-medium">{{ $book->title }}</p>
+                </div>
+            @endif
+        </a>
+        <div class="absolute right-4 top-4">
+            <button class="flex h-10 w-10 items-center justify-center rounded-full bg-white/90 dark:bg-slate-800/90 text-slate-900 dark:text-white shadow-sm hover:text-red-500 transition-colors">
+                <span class="material-symbols-outlined text-[20px]">favorite</span>
+            </button>
+        </div>
+    </div>
+    <div class="flex flex-col gap-1">
+        <a href="{{ route('books.show', $book->id) }}" class="hover:text-primary transition-colors">
+            <h3 class="text-lg font-bold">{{ $book->title }}</h3>
+        </a>
+        <p class="text-sm text-slate-500">{{ $book->authors->pluck('name')->join(', ') ?: 'Auteur inconnu' }}</p>
+        <p class="mt-2 text-lg font-black text-primary">${{ number_format($book->price, 2) }}</p>
+    </div>
 </div>
-</div>
-<div class="flex flex-col gap-1">
-<div class="flex items-center gap-1 text-primary">
-<span class="material-symbols-outlined text-sm fill-current">star</span>
-<span class="text-xs font-bold">4.9</span>
-</div>
-<h3 class="text-lg font-bold">Damascus Station</h3>
-<p class="text-sm text-slate-500">David McCloskey</p>
-<p class="mt-2 text-lg font-black text-primary">$18.99</p>
-</div>
-</div>
-<!-- Book Card 2 -->
-<div class="group relative flex flex-col gap-4">
-<div class="aspect-[3/4] overflow-hidden rounded-2xl bg-slate-200 dark:bg-slate-800 shadow-md transition-all group-hover:shadow-xl group-hover:-translate-y-1">
-<a href="{{ route('book.details') }}" class="block w-full h-full">
-<img alt="Dramatic book cover" class="h-full w-full object-cover" src="https://lh3.googleusercontent.com/aida/ADBb0uh6pyz9GQlBIhr0MxR769YLaUAC8z5HlHvJ5AuJKkJUfkfqDlS8P5YK00gfMEivKXFN5Ww0zMAHC3YzvUodUOqkyQxV6Y9PWa-4skzmz38ys3WmUJvpHDA31jkm_Fp_DwsYvO-FYYBj3PD9rOOIkKSUboNRMFUtgQ6MDWYc_kGzoq_iInl6torbigoWbEMhkyF7YzzswwRo3pJew6-6p-3_f-Qhrh6QYJ-6H-0rCibtAQCVASIoUikorVrfaix4y_1liYx_lFkZeA"/>
-</a>
-<div class="absolute right-4 top-4">
-<button class="flex h-10 w-10 items-center justify-center rounded-full bg-white/90 dark:bg-slate-800/90 text-slate-900 dark:text-white shadow-sm hover:text-red-500 transition-colors">
-<span class="material-symbols-outlined text-[20px]">favorite</span>
-</button>
-</div>
-</div>
-<div class="flex flex-col gap-1">
-<div class="flex items-center gap-1 text-primary">
-<span class="material-symbols-outlined text-sm fill-current">star</span>
-<span class="text-xs font-bold">4.7</span>
-</div>
-<h3 class="text-lg font-bold">The AI Prompt Framework</h3>
-<p class="text-sm text-slate-500">Suzanne M. Birk</p>
-<p class="mt-2 text-lg font-black text-primary">$24.50</p>
-</div>
-</div>
-<!-- Book Card 3 -->
-<div class="group relative flex flex-col gap-4">
-<div class="aspect-[3/4] overflow-hidden rounded-2xl bg-slate-200 dark:bg-slate-800 shadow-md transition-all group-hover:shadow-xl group-hover:-translate-y-1">
-<a href="{{ route('book.details') }}" class="block w-full h-full">
-<img alt="Minimalist book cover" class="h-full w-full object-cover" src="https://lh3.googleusercontent.com/aida/ADBb0ug7GKfWIOXkEHmsbBD3hKIPZYTI0BfoPz0L7cgBN5dtIif7LuPm2aM7AQdOFjDRj40nkL0yrVYdQIpaB5LuH3y4e16-fOQrN2kunJYenlW8TDvbHFX1WlipPLglKnNVORzfporm8C9TzuFieFnKkZSzovhaeOFtkTY_plU3bDjb9K-Wfy0CXFTYa3TiHtDw-IXFf6Jk65YaD23rxHXAzEAU1XKnq5fJQwjRdgDX2mGnJBEqQGEhOk3hJ10R6BqBDHvfmeFA43Cxsg"/>
-</a>
-<div class="absolute right-4 top-4">
-<button class="flex h-10 w-10 items-center justify-center rounded-full bg-white/90 dark:bg-slate-800/90 text-slate-900 dark:text-white shadow-sm hover:text-red-500 transition-colors">
-<span class="material-symbols-outlined text-[20px]">favorite</span>
-</button>
-</div>
-</div>
-<div class="flex flex-col gap-1">
-<div class="flex items-center gap-1 text-primary">
-<span class="material-symbols-outlined text-sm fill-current">star</span>
-<span class="text-xs font-bold">4.8</span>
-</div>
-<h3 class="text-lg font-bold">How to Stop Overthinking</h3>
-<p class="text-sm text-slate-500">Lena Bennett</p>
-<p class="mt-2 text-lg font-black text-primary">$15.99</p>
-</div>
-</div>
-<!-- Book Card 4 -->
-<div class="group relative flex flex-col gap-4">
-<div class="aspect-[3/4] overflow-hidden rounded-2xl bg-slate-200 dark:bg-slate-800 shadow-md transition-all group-hover:shadow-xl group-hover:-translate-y-1">
-<a href="{{ route('book.details') }}" class="block w-full h-full">
-<img alt="Colorful book cover" class="h-full w-full object-cover" src="https://lh3.googleusercontent.com/aida/ADBb0ugAUDOwF_xDUGekt3Xk24nHtLZwGMfhDwqDFxaU3JMufsu_-RdfB-5LUrXGvcZKEQJm-oyDDZVkfSNEC-IMNdFEvlcqaDICe8LzYAL5RRgPyfJNx6c8Xyz5dsI9bp02D7ybjWBrPbSmuuySgJlImahnQgN_yY0A-G_weQpnaNB5bKZBCDX9CLUA1CSnLuNvJ1jptjEhR_mbDOXSkq2oDiRf3--0sF8TTp31K23itMdoKMXephzNPQk0B5vtLpPFz25IBQBbIiSa8w"/>
-</a>
-<div class="absolute right-4 top-4">
-<button class="flex h-10 w-10 items-center justify-center rounded-full bg-white/90 dark:bg-slate-800/90 text-slate-900 dark:text-white shadow-sm hover:text-red-500 transition-colors">
-<span class="material-symbols-outlined text-[20px]">favorite</span>
-</button>
-</div>
-</div>
-<div class="flex flex-col gap-1">
-<div class="flex items-center gap-1 text-primary">
-<span class="material-symbols-outlined text-sm fill-current">star</span>
-<span class="text-xs font-bold">5.0</span>
-</div>
-<h3 class="text-lg font-bold">How to Talk to People</h3>
-<p class="text-sm text-slate-500">Julie Dawson</p>
-<p class="mt-2 text-lg font-black text-primary">$29.00</p>
-</div>
-</div>
+@empty
+<p class="col-span-4 text-center text-slate-400 py-12">Aucun livre disponible pour le moment.</p>
+@endforelse
 </div>
 </section>
+
 <!-- Featured Authors Section -->
 <section class="bg-slate-50 dark:bg-slate-800/30 py-20">
 <div class="mx-auto max-w-7xl px-6">
@@ -313,17 +224,17 @@
 <!-- Testimonials Section -->
 <section class="mx-auto max-w-7xl px-6 py-20">
 <div class="mb-12 text-center">
-<h2 class="text-3xl font-bold tracking-tight">What our readers say</h2>
+<h2 class="text-3xl font-bold tracking-tight">Testimonials</h2>
 <p class="mt-2 text-slate-500">Join a community of book lovers from around the world</p>
 </div>
 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
 <div class="rounded-2xl bg-white dark:bg-slate-800 p-8 shadow-sm border border-slate-100 dark:border-slate-700 flex flex-col gap-4">
 <div class="flex text-primary">
-<span class="material-symbols-outlined fill-current">star</span>
-<span class="material-symbols-outlined fill-current">star</span>
-<span class="material-symbols-outlined fill-current">star</span>
-<span class="material-symbols-outlined fill-current">star</span>
-<span class="material-symbols-outlined">star</span>
+<span class="material-symbols-outlined material-symbols-filled fill-current">star</span>
+<span class="material-symbols-outlined material-symbols-filled fill-current">star</span>
+<span class="material-symbols-outlined material-symbols-filled fill-current">star</span>
+<span class="material-symbols-outlined material-symbols-filled fill-current">star</span>
+<span class="material-symbols-outlined material-symbols-filled fill-current">star_half</span>
 </div>
 <p class="text-slate-600 dark:text-slate-400 italic">"The curation at ADNANE BOOKS is exceptional. I've found so many hidden gems that I wouldn't have discovered elsewhere. The delivery is always prompt!"</p>
 <div class="mt-4 flex items-center gap-3">
@@ -336,11 +247,11 @@
 </div>
 <div class="rounded-2xl bg-white dark:bg-slate-800 p-8 shadow-sm border border-slate-100 dark:border-slate-700 flex flex-col gap-4">
 <div class="flex text-primary">
-<span class="material-symbols-outlined fill-current">star</span>
-<span class="material-symbols-outlined fill-current">star</span>
-<span class="material-symbols-outlined fill-current">star</span>
-<span class="material-symbols-outlined fill-current">star</span>
-<span class="material-symbols-outlined fill-current">star</span>
+<span class="material-symbols-outlined material-symbols-filled fill-current">star</span>
+<span class="material-symbols-outlined material-symbols-filled fill-current">star</span>
+<span class="material-symbols-outlined material-symbols-filled fill-current">star</span>
+<span class="material-symbols-outlined material-symbols-filled fill-current">star</span>
+<span class="material-symbols-outlined material-symbols-filled fill-current">star</span>
 </div>
 <p class="text-slate-600 dark:text-slate-400 italic">"I love the membership benefits. Getting early access to my favorite authors' new releases has been a game-changer for my weekend reading."</p>
 <div class="mt-4 flex items-center gap-3">
@@ -353,11 +264,11 @@
 </div>
 <div class="rounded-2xl bg-white dark:bg-slate-800 p-8 shadow-sm border border-slate-100 dark:border-slate-700 flex flex-col gap-4">
 <div class="flex text-primary">
-<span class="material-symbols-outlined fill-current">star</span>
-<span class="material-symbols-outlined fill-current">star</span>
-<span class="material-symbols-outlined fill-current">star</span>
-<span class="material-symbols-outlined fill-current">star</span>
-<span class="material-symbols-outlined">star</span>
+<span class="material-symbols-outlined material-symbols-filled fill-current">star</span>
+<span class="material-symbols-outlined material-symbols-filled fill-current">star</span>
+<span class="material-symbols-outlined material-symbols-filled fill-current">star</span>
+<span class="material-symbols-outlined material-symbols-filled fill-current">star</span>
+<span class="material-symbols-outlined material-symbols-filled fill-current">star_half</span>
 </div>
 <p class="text-slate-600 dark:text-slate-400 italic">"The user interface is so clean and easy to use. Searching for specific ISBNs works flawlessly every time. Highly recommended for students."</p>
 <div class="mt-4 flex items-center gap-3">

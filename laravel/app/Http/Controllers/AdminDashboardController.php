@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Models\User;
 use App\Models\OrderItem;
-use App\Http\Controllers\AdminDashboardController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -20,14 +19,19 @@ class AdminDashboardController extends Controller
 
         $commandesParStatut = Order::select('status', DB::raw('count(*) as total'))->groupBy('status')->get();
 
-        $meilleursLivres = OrderItem::select('book_id',DB::raw('SUM(quantity) as total_vendu'));
+        $meilleursLivres = OrderItem::select('book_id', DB::raw('SUM(quantity) as total_vendu'))
+            ->groupBy('book_id')
+            ->with('book')
+            ->orderByDesc('total_vendu')
+            ->limit(5)
+            ->get();
 
         return view('admin.dashboard', compact(
-        'totalCommands',
-        'totalClients', 
-        'totalRevenues', 
-        'commandesParStatut', 
-        'meilleursLivres'
+            'totalCommands',
+            'totalClients',
+            'totalRevenues',
+            'commandesParStatut',
+            'meilleursLivres'
         ));
     }
 }

@@ -30,17 +30,14 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $request = validate([
-            'name'=>'required |string|max:255|unique categories ,name',
-            'color'=>'required|string|max:50'
+        $validated = $request->validate([
+            'name'  => 'required|string|max:255|unique:categories,name',
+            'color' => 'required|string|max:50',
         ]);
 
-        Category::create([ 
-            'name'=>$request->$name,
-            'color'=>$request->$color,
-        ]);
+        Category::create($validated);
 
-        return redirect()->route('categories.index')->with('Success', 'category has been added with success');
+        return redirect()->route('categories.index')->with('success', 'Catégorie ajoutée avec succès !');
     }
 
     /**
