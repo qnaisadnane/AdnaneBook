@@ -196,7 +196,7 @@
                     </form>
                     @else
                     <div class="flex flex-col sm:flex-row gap-4 mb-6">
-                        <a href="{{ route('login') }}"
+                        <a href="{{ route('go.login', ['intended' => route('cart.index', ['book_id' => $book->id, 'quantity' => 1])]) }}"
                            class="flex-1 bg-primary text-white font-bold py-4 px-8 rounded-lg shadow-lg hover:bg-primary/90 transition-all flex items-center justify-center gap-2">
                             <span class="material-symbols-outlined">login</span>
                             Sign in to Buy
