@@ -29,16 +29,15 @@ class AuthenticatedSessionController extends Controller
 
         $role = Auth::user()->role;
 
-        if (session()->has('url.intended')) {
-            return redirect()->intended(route('home'));
+        if ($role !== 'client') {
+            return match($role) {
+                'admin'   => redirect()->route('admin.dashboard'),
+                'manager' => redirect()->route('categories.index'),
+                'agent'   => redirect()->route('orders.index'),
+            };
         }
 
-        return match($role) {
-            'admin'   => redirect()->route('admin.dashboard'),
-            'manager' => redirect()->route('categories.index'),
-            'agent'   => redirect()->route('orders.index'),
-            default   => redirect()->route('home'),
-        };
+        return redirect()->intended(route('home'));
     }
 
     /**
