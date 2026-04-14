@@ -53,15 +53,16 @@
                             <span class="material-symbols-outlined text-xl">search</span>
                         </span>
                         <input class="w-full rounded-lg border-none bg-slate-100 dark:bg-slate-800 py-2 pl-10 pr-4 text-sm focus:ring-2 focus:ring-primary focus:outline-none"
-                               placeholder="Search titles, authors..."
+                               placeholder="Search by title, author or ISBN..."
                                type="text" name="search" value="{{ request('search') }}"/>
                     </div>
                 </form>
                 <div class="flex items-center gap-4">
                     @auth
+                        <a href="{{ route('orders.my') }}" class="text-sm font-medium text-slate-600 hover:text-primary">My Orders</a>
                         <a href="{{ url('/dashboard') }}" class="text-sm font-bold text-primary hover:text-primary/80">Dashboard</a>
                     @else
-                        <a href="{{ route('login') }}" class="flex h-9 items-center justify-center rounded-lg bg-primary px-5 text-sm font-bold text-white hover:bg-primary/90 transition-all">Sign In</a>
+                        <a href="{{ route('go.login', ['intended' => url()->current()]) }}" class="flex h-9 items-center justify-center rounded-lg bg-primary px-5 text-sm font-bold text-white hover:bg-primary/90 transition-all">Sign In</a>
                     @endauth
                 </div>
             </div>
@@ -101,6 +102,41 @@
                             @endforeach
                         </div>
                     </div>
+
+                    <!-- Price Filter -->
+                    <div>
+                        <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">Price Range</h3>
+                        <form method="GET" action="{{ route('catalog') }}" class="space-y-3">
+                            @if(request('category_id'))
+                                <input type="hidden" name="category_id" value="{{ request('category_id') }}">
+                            @endif
+                            @if(request('search'))
+                                <input type="hidden" name="search" value="{{ request('search') }}">
+                            @endif
+                            <div class="flex items-center gap-2">
+                                <div class="flex-1">
+                                    <label class="text-xs text-slate-500 mb-1 block">Min ($)</label>
+                                    <input type="number" name="min_price" value="{{ request('min_price') }}" min="0" step="0.01"
+                                        placeholder="0"
+                                        class="w-full rounded-lg border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm py-1.5 focus:ring-primary focus:border-primary"/>
+                                </div>
+                                <div class="flex-1">
+                                    <label class="text-xs text-slate-500 mb-1 block">Max ($)</label>
+                                    <input type="number" name="max_price" value="{{ request('max_price') }}" min="0" step="0.01"
+                                        placeholder="∞"
+                                        class="w-full rounded-lg border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm py-1.5 focus:ring-primary focus:border-primary"/>
+                                </div>
+                            </div>
+                            <button type="submit" class="w-full bg-primary text-white text-xs font-bold py-2 rounded-lg hover:bg-primary/90 transition-colors">
+                                Apply
+                            </button>
+                            @if(request('min_price') || request('max_price'))
+                            <a href="{{ route('catalog', request()->except('min_price', 'max_price', 'page')) }}" class="block text-center text-xs text-slate-400 hover:text-red-500 transition-colors">
+                                Clear price filter
+                            </a>
+                            @endif
+                        </form>
+                    </div>
                 </aside>
 
                 <!-- Content -->
@@ -112,6 +148,11 @@
                                 {{ $books->total() }} book{{ $books->total() != 1 ? 's' : '' }} found
                                 @if(request('search')) for "<span class="font-semibold">{{ request('search') }}</span>"@endif
                                 @if(request('category_id')) in <span class="font-semibold">{{ $categories->firstWhere('id', request('category_id'))?->name }}</span>@endif
+                                @if(request('min_price') || request('max_price'))
+                                    — price
+                                    @if(request('min_price')) from <span class="font-semibold">${{ request('min_price') }}</span>@endif
+                                    @if(request('max_price')) to <span class="font-semibold">${{ request('max_price') }}</span>@endif
+                                @endif
                             </p>
                         </div>
                     </div>

@@ -56,22 +56,24 @@
         </nav>
     </div>
     <div class="flex items-center gap-4">
-        <div class="hidden lg:block relative group">
+        <form method="GET" action="{{ route('catalog') }}" class="hidden lg:block relative group">
             <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-slate-400">
                 <span class="material-symbols-outlined text-[20px]">search</span>
             </div>
-            <input class="h-10 w-64 rounded-xl border-none bg-slate-100 dark:bg-slate-800 pl-10 pr-4 text-sm focus:ring-2 focus:ring-primary/50" placeholder="Search books..." type="text"/>
-        </div>
+            <input name="search" class="h-10 w-64 rounded-xl border-none bg-slate-100 dark:bg-slate-800 pl-10 pr-4 text-sm focus:ring-2 focus:ring-primary/50" placeholder="Search books..." type="text"/>
+        </form>
         
         <!-- INTEGRATION AUTH LARAVEL -->
         @if (Route::has('login'))
             @auth
-                <a href="{{ url('/dashboard') }}" class="flex h-10 items-center justify-center rounded-xl bg-primary px-6 text-sm font-bold text-white shadow-lg shadow-primary/20 hover:bg-primary/90 transition-all">
-                    Dashboard
-                </a>
-                <div class="h-10 w-10 ml-2 rounded-full bg-slate-200 dark:bg-slate-700 bg-cover bg-center border-2 border-white dark:border-slate-800" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCiN1ycVDhyKL01OlLtKAfv7Ve4X-AwHKS5PU0-Ij7vow_x_mBOQ0kd-TUc7WR2_IIjJUxfoPwZ3MIhb519-bQGKUAZoXgdLJImzO8hmOQUDk4JlE1cIstQ2Tv3XLU2ldFo2yWOzOEehEOF6KCbRQ4m9RqpMP0cFi5NlhisBRnY9Mper2EP1gWOP5Vgiw42YS9eyaEt4e2wT2-7USRG1Sy_ks6Q38mxavTP8cj74sCbVB1ZowcEW03eZUq5RqPNPMB84T8OoVyeOue4")'></div>
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit" class="flex h-10 items-center justify-center rounded-xl bg-primary px-6 text-sm font-bold text-white shadow-lg shadow-primary/20 hover:bg-primary/90 transition-all">
+                        Log Out
+                    </button>
+                </form>
             @else
-                <a href="{{ route('login') }}" class="flex h-10 items-center justify-center rounded-xl bg-primary px-6 text-sm font-bold text-white shadow-lg shadow-primary/20 hover:bg-primary/90 transition-all">
+                <a href="{{ route('go.login', ['intended' => url()->current()]) }}" class="flex h-10 items-center justify-center rounded-xl bg-primary px-6 text-sm font-bold text-white shadow-lg shadow-primary/20 hover:bg-primary/90 transition-all">
                     Sign In
                 </a>
             @endauth
@@ -92,15 +94,13 @@
                                 Explore thousands of books across all genres at ADNANE BOOKS. From timeless classics to the latest bestsellers, find your perfect read today.
                             </p>
 </div>
-<div class="flex w-full max-w-lg mx-auto lg:mx-0 items-stretch rounded-2xl bg-white dark:bg-slate-800 p-2 shadow-xl shadow-slate-200/50 dark:shadow-none ring-1 ring-slate-200 dark:ring-slate-700">
+<form method="GET" action="{{ route('catalog') }}" class="flex w-full max-w-lg mx-auto lg:mx-0 items-stretch rounded-2xl bg-white dark:bg-slate-800 p-2 shadow-xl shadow-slate-200/50 dark:shadow-none ring-1 ring-slate-200 dark:ring-slate-700">
 <div class="flex items-center pl-4 text-slate-400">
 <span class="material-symbols-outlined">search</span>
 </div>
-<input class="flex-1 border-none bg-transparent px-4 text-sm focus:ring-0" placeholder="Search by title, author, or ISBN"/>
-<button class="rounded-xl bg-primary px-8 py-3 text-sm font-bold text-white hover:bg-primary/90 transition-colors">
-                                Search
-                            </button>
-</div>
+<input name="search" class="flex-1 border-none bg-transparent px-4 text-sm focus:ring-0" placeholder="Search by title, author, or ISBN"/>
+<button type="submit" class="rounded-xl bg-primary px-8 py-3 text-sm font-bold text-white hover:bg-primary/90 transition-colors">Search</button>
+</form>
 
 </div>
 <div class="lg:w-1/2">
@@ -281,22 +281,54 @@
 </div>
 </div>
 </section>
-<!-- Newsletter Section -->
-<section class="bg-primary py-20 text-white">
-<div class="mx-auto max-w-7xl px-6 flex flex-col lg:flex-row items-center justify-between gap-12">
-<div class="lg:w-1/2">
-<h2 class="text-4xl font-black tracking-tight mb-4">Never Miss a Story</h2>
-<p class="text-primary-100 text-lg opacity-90">Subscribe to our newsletter for weekly curated lists, author exclusive content, and early notification of seasonal sales.</p>
-</div>
-<div class="w-full lg:w-5/12">
-<form class="flex flex-col sm:flex-row gap-3">
-<input class="flex-1 rounded-xl border-none bg-white/10 px-6 py-4 text-white placeholder-white/60 backdrop-blur-md focus:ring-2 focus:ring-white/50" placeholder="Your best email address" required="" type="email"/>
-<button class="rounded-xl bg-white px-8 py-4 text-base font-bold text-primary hover:bg-slate-100 transition-colors shadow-lg" type="submit">
-                                Subscribe Now
-                            </button>
-</form>
-<p class="mt-4 text-xs text-white/60">We value your privacy. Unsubscribe at any time.</p>
-</div>
+<!-- Promo Section -->
+<section class="py-20 bg-white">
+<div class="mx-auto max-w-7xl px-6">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+        <!-- Card 1 -->
+        <div class="relative overflow-hidden rounded-2xl bg-amber-50 border border-amber-100 p-8 flex flex-col justify-between min-h-[220px]">
+            <div>
+                <span class="inline-block bg-amber-400 text-white text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-4">Limited Time</span>
+                <h3 class="text-5xl font-black text-slate-900 leading-none mb-2">Up to<br><span class="text-amber-500">75% Off</span></h3>
+                <p class="text-slate-500 text-sm mt-3">On selected bestsellers and classic titles.</p>
+            </div>
+            <a href="{{ route('catalog') }}" class="mt-6 inline-flex items-center gap-1 text-sm font-bold text-amber-600 hover:text-amber-700 transition-colors">
+                Shop Now <span class="material-symbols-outlined text-base">arrow_forward</span>
+            </a>
+            <div class="absolute -right-6 -bottom-6 h-32 w-32 rounded-full bg-amber-200/50"></div>
+            <div class="absolute -right-2 -bottom-10 h-20 w-20 rounded-full bg-amber-300/30"></div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="relative overflow-hidden rounded-2xl bg-blue-50 border border-blue-100 p-8 flex flex-col justify-between min-h-[220px]">
+            <div>
+                <span class="inline-block bg-primary text-white text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-4">New Arrivals</span>
+                <h3 class="text-5xl font-black text-slate-900 leading-none mb-2">Fresh<br><span class="text-primary">Picks</span></h3>
+                <p class="text-slate-500 text-sm mt-3">Discover the latest titles added to our catalog this week.</p>
+            </div>
+            <a href="{{ route('catalog') }}" class="mt-6 inline-flex items-center gap-1 text-sm font-bold text-primary hover:text-primary/80 transition-colors">
+                Explore <span class="material-symbols-outlined text-base">arrow_forward</span>
+            </a>
+            <div class="absolute -right-6 -bottom-6 h-32 w-32 rounded-full bg-blue-200/50"></div>
+            <div class="absolute -right-2 -bottom-10 h-20 w-20 rounded-full bg-blue-300/30"></div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="relative overflow-hidden rounded-2xl bg-emerald-50 border border-emerald-100 p-8 flex flex-col justify-between min-h-[220px]">
+            <div>
+                <span class="inline-block bg-emerald-500 text-white text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-4">Free Delivery</span>
+                <h3 class="text-5xl font-black text-slate-900 leading-none mb-2">Order<br><span class="text-emerald-500">Today</span></h3>
+                <p class="text-slate-500 text-sm mt-3">Free shipping on all orders. No minimum required.</p>
+            </div>
+            <a href="{{ route('catalog') }}" class="mt-6 inline-flex items-center gap-1 text-sm font-bold text-emerald-600 hover:text-emerald-700 transition-colors">
+                Order Now <span class="material-symbols-outlined text-base">arrow_forward</span>
+            </a>
+            <div class="absolute -right-6 -bottom-6 h-32 w-32 rounded-full bg-emerald-200/50"></div>
+            <div class="absolute -right-2 -bottom-10 h-20 w-20 rounded-full bg-emerald-300/30"></div>
+        </div>
+
+    </div>
 </div>
 </section>
 <!-- Best Sellers CTA -->
