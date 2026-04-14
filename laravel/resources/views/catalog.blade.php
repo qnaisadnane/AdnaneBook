@@ -59,6 +59,7 @@
                 </form>
                 <div class="flex items-center gap-4">
                     @auth
+                        <a href="{{ route('orders.my') }}" class="text-sm font-medium text-slate-600 hover:text-primary">My Orders</a>
                         <a href="{{ url('/dashboard') }}" class="text-sm font-bold text-primary hover:text-primary/80">Dashboard</a>
                     @else
                         <a href="{{ route('go.login', ['intended' => url()->current()]) }}" class="flex h-9 items-center justify-center rounded-lg bg-primary px-5 text-sm font-bold text-white hover:bg-primary/90 transition-all">Sign In</a>

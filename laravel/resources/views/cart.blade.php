@@ -47,6 +47,7 @@
             <span class="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-[10px] font-bold text-white">{{ $items->count() }}</span>
             @endif
         </a>
+        <a href="{{ route('orders.my') }}" class="text-sm font-medium text-slate-600 hover:text-primary">My Orders</a>
         <a href="{{ route('profile.edit') }}" class="flex h-10 w-10 items-center justify-center rounded-full bg-slate-200/50 dark:bg-slate-800 hover:bg-primary/20 transition-colors">
             <span class="material-symbols-outlined text-slate-700 dark:text-slate-300">person</span>
         </a>
@@ -168,10 +169,7 @@
                 <div class="mt-8 space-y-3">
                     <form method="POST" action="{{ route('orders.store') }}">
                         @csrf
-                        @foreach($items as $item)
-                            <input type="hidden" name="items[{{ $item['book']->id }}]" value="{{ $item['quantity'] }}">
-                        @endforeach
-                        <button type="submit" class="w-full rounded-lg bg-primary py-4 text-sm font-bold text-white shadow-lg shadow-primary/20 hover:bg-primary/90 transition-all active:scale-[0.98]">
+                            <button type="submit" class="w-full rounded-lg bg-primary py-4 text-sm font-bold text-white shadow-lg shadow-primary/20 hover:bg-primary/90 transition-all active:scale-[0.98]">
                             Proceed to Checkout
                         </button>
                     </form>

@@ -10,52 +10,90 @@ use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
-        public function store(Request $request){
-        $request->validate([
-            'book_id'=>'required|exists:books,id',
-            'quantity'=>'required|integer|min:1',
-        ]);
+    // Admin / Agent — toutes les commandes
+    public function index()
+    {
+        $orders = Order::with(['user', 'items.book'])->latest()->paginate(15);
+        return view('orders.index', compact('orders'));
+    }
 
-        $book = Book::findOrFail($request->book_id); 
+    // Client — ses commandes
+    public function myOrders()
+    {
+        $orders = Order::with(['items.book'])
+            ->where('user_id', Auth::id())
+            ->latest()->get();
+        return view('orders.my-orders', compact('orders'));
+    }
 
-        if($book->quantity < $request->quantity){
-            return response()->json(['erreur' => 'stock insuffisant'], 400); 
+    // Créer une commande depuis le panier (multi-items)
+    public function store(Request $request)
+    {
+        $cart = session('cart', []);
+
+        if (empty($cart)) {
+            return redirect()->route('cart.index')->with('error', 'Your cart is empty.');
         }
 
-        $prix_total = $book->price * $request->quantity; 
+        $total = 0;
+        $lines = [];
+
+        foreach ($cart as $bookId => $qty) {
+            $book = Book::find($bookId);
+            if (!$book || $book->quantity < $qty) {
+                return redirect()->route('cart.index')
+                    ->with('error', "Insufficient stock for: {$book?->title}");
+            }
+            $lines[] = ['book' => $book, 'qty' => $qty];
+            $total += $book->price * $qty;
+        }
 
         $order = Order::create([
-            'user_id' => Auth::id(),
-            'total_price' => $prix_total,
-            'status' => 'pending',
+            'user_id'     => Auth::id(),
+            'total_price' => $total,
+            'status'      => 'pending',
         ]);
 
-        OrderItem::create([
-            'order_id' => $order->id,
-            'book_id' => $book->id,
-            'quantity' => $request->quantity,
-            'price' => $book->price,
-        ]);
-        $book->quantity = $book->quantity - $request->quantity;
-        $book->save();
+        foreach ($lines as $line) {
+            OrderItem::create([
+                'order_id' => $order->id,
+                'book_id'  => $line['book']->id,
+                'quantity' => $line['qty'],
+                'price'    => $line['book']->price,
+            ]);
+            $line['book']->decrement('quantity', $line['qty']);
+        }
 
-        return response()->json(['message' => 'Commande passée !']);
+        session()->forget('cart');
+
+        return redirect()->route('orders.my')->with('success', 'Order placed successfully!');
     }
+
+    // Paiement simulé
     public function pay($id)
+    {
+        $order = Order::where('user_id', Auth::id())->findOrFail($id);
+
+        if ($order->status !== 'pending') {
+            return back()->with('error', 'This order cannot be paid.');
+        }
+
+        $order->update(['status' => 'paid']);
+        return back()->with('success', 'Payment successful!');
+    }
+
+    // Admin/Agent — changer le statut
+    public function updateStatus(Request $request, $id)
     {
         $order = Order::findOrFail($id);
 
         if ($order->status === 'paid') {
-            return response()->json(['erreur' => 'Attention, cette commande a déjà été payée !'], 400);
+            return back()->with('error', 'A paid order cannot be modified.');
         }
-        
-        $order->status = 'paid';
-        $order->save();
-        return response()->json([
-            'message' => 'Paiement simulé avec succès !',
-            'order_id' => $order->id,
-            'nouveau_statut' => $order->status
-        ]);
-    }
 
+        $request->validate(['status' => 'required|in:pending,paid,shipped,delivered']);
+        $order->update(['status' => $request->status]);
+
+        return back()->with('success', 'Status updated.');
+    }
 }
