@@ -61,9 +61,15 @@
 </label>
 <div class="flex gap-2 items-center">
 @auth
-    <a href="{{ url('/dashboard') }}" class="flex items-center justify-center rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold hover:bg-primary/90 transition-colors">
-        Dashboard
-    </a>
+    @if(in_array(Auth::user()->role, ['admin','manager','agent']))
+        <a href="{{ Auth::user()->role === 'admin' ? route('admin.dashboard') : (Auth::user()->role === 'manager' ? route('categories.index') : route('orders.index')) }}" class="flex items-center justify-center rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold hover:bg-primary/90 transition-colors">
+            Dashboard
+        </a>
+    @else
+        <a href="{{ route('orders.my') }}" class="flex items-center justify-center rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold hover:bg-primary/90 transition-colors">
+            My Orders
+        </a>
+    @endif
 @else
     <a href="{{ route('go.login', ['intended' => url()->current()]) }}" class="flex items-center justify-center rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold hover:bg-primary/90 transition-colors">
         Sign In
@@ -178,7 +184,7 @@
                         <input type="hidden" name="book_id" value="{{ $book->id }}">
                         <div class="flex items-center gap-3">
                             <label class="text-sm font-semibold text-slate-700 dark:text-slate-300">Quantity:</label>
-                            <input type="number" name="quantity" value="1" min="1" max="{{ $book->quantity }}"
+                            <input type="number" id="qty_input" name="quantity" value="1" min="1" max="{{ $book->quantity }}"
                                    class="w-20 rounded-lg border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm focus:ring-primary text-center font-bold"/>
                         </div>
                         <div class="flex flex-col sm:flex-row gap-4">
@@ -187,19 +193,28 @@
                                 <span class="material-symbols-outlined">bolt</span>
                                 Buy Now
                             </button>
-                            <button type="button"
-                                    class="flex-1 bg-white dark:bg-slate-800 border-2 border-primary text-primary font-bold py-4 px-8 rounded-lg hover:bg-primary/5 transition-all flex items-center justify-center gap-2">
-                                <span class="material-symbols-outlined">shopping_bag</span>
-                                Add to Cart
-                            </button>
                         </div>
                     </form>
+                    <form method="GET" action="{{ route('cart.index') }}" class="mb-6">
+                        <input type="hidden" name="book_id" value="{{ $book->id }}">
+                        <input type="hidden" name="quantity" id="cart_qty" value="1">
+                        <button type="submit"
+                                class="w-full bg-white dark:bg-slate-800 border-2 border-primary text-primary font-bold py-4 px-8 rounded-lg hover:bg-primary/5 transition-all flex items-center justify-center gap-2">
+                            <span class="material-symbols-outlined">shopping_bag</span>
+                            Add to Cart
+                        </button>
+                    </form>
+                    <script>
+                        document.getElementById('qty_input').addEventListener('input', function() {
+                            document.getElementById('cart_qty').value = this.value;
+                        });
+                    </script>
                     @else
                     <div class="flex flex-col sm:flex-row gap-4 mb-6">
                         <a href="{{ route('go.login', ['intended' => route('cart.index', ['book_id' => $book->id, 'quantity' => 1])]) }}"
                            class="flex-1 bg-primary text-white font-bold py-4 px-8 rounded-lg shadow-lg hover:bg-primary/90 transition-all flex items-center justify-center gap-2">
                             <span class="material-symbols-outlined">login</span>
-                            Sign in to Buy
+                             Buy Now
                         </a>
                     </div>
                     @endauth
