@@ -61,9 +61,15 @@
 </label>
 <div class="flex gap-2 items-center">
 @auth
-    <a href="{{ url('/dashboard') }}" class="flex items-center justify-center rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold hover:bg-primary/90 transition-colors">
-        Dashboard
-    </a>
+    @if(in_array(Auth::user()->role, ['admin','manager','agent']))
+        <a href="{{ Auth::user()->role === 'admin' ? route('admin.dashboard') : (Auth::user()->role === 'manager' ? route('categories.index') : route('orders.index')) }}" class="flex items-center justify-center rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold hover:bg-primary/90 transition-colors">
+            Dashboard
+        </a>
+    @else
+        <a href="{{ route('orders.my') }}" class="flex items-center justify-center rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold hover:bg-primary/90 transition-colors">
+            My Orders
+        </a>
+    @endif
 @else
     <a href="{{ route('go.login', ['intended' => url()->current()]) }}" class="flex items-center justify-center rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold hover:bg-primary/90 transition-colors">
         Sign In
@@ -208,7 +214,7 @@
                         <a href="{{ route('go.login', ['intended' => route('cart.index', ['book_id' => $book->id, 'quantity' => 1])]) }}"
                            class="flex-1 bg-primary text-white font-bold py-4 px-8 rounded-lg shadow-lg hover:bg-primary/90 transition-all flex items-center justify-center gap-2">
                             <span class="material-symbols-outlined">login</span>
-                            Sign in to Buy
+                             Buy Now
                         </a>
                     </div>
                     @endauth
