@@ -21,7 +21,7 @@ class AdminDashboardController extends Controller
 
         $meilleursLivres = OrderItem::select('book_id', DB::raw('SUM(quantity) as total_vendu'))
             ->groupBy('book_id')
-            ->with('book')
+            ->with('book.category')
             ->orderByDesc('total_vendu')
             ->limit(5)
             ->get();
