@@ -18,8 +18,8 @@
             <tr class="hover:bg-slate-50">
                 <td class="px-6 py-4 font-mono text-sm">#{{ $order->id }}</td>
                 <td class="px-6 py-4">
-                    <p class="font-medium">{{ $order->user->name }}</p>
-                    <p class="text-xs text-slate-400">{{ $order->user->email }}</p>
+                    <p class="font-medium">{{ $order->user?->name ?? 'Deleted user' }}</p>
+                    <p class="text-xs text-slate-400">{{ $order->user?->email ?? '—' }}</p>
                 </td>
                 <td class="px-6 py-4 font-bold">${{ number_format($order->total_price, 2) }}</td>
                 <td class="px-6 py-4">
