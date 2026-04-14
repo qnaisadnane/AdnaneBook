@@ -31,6 +31,14 @@ class BookController extends Controller
             });
         }
 
+        if ($request->filled('min_price')) {
+            $query->where('price', '>=', $request->min_price);
+        }
+
+        if ($request->filled('max_price')) {
+            $query->where('price', '<=', $request->max_price);
+        }
+
         $books = $query->latest()->paginate(9)->withQueryString();
 
         return view('catalog', compact('books', 'categories'));
