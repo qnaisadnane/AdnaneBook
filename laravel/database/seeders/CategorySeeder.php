@@ -18,6 +18,9 @@ class CategorySeeder extends Seeder
             ['name' => 'Business',    'color' => '#14b8a6'],
         ];
 
+        \DB::statement('SET FOREIGN_KEY_CHECKS=0');
+        Category::truncate();
+        \DB::statement('SET FOREIGN_KEY_CHECKS=1');
         foreach ($categories as $cat) {
             Category::create($cat);
         }

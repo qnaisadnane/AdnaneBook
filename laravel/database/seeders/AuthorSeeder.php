@@ -18,6 +18,9 @@ class AuthorSeeder extends Seeder
             ['name' => 'Lena Bennett',         'nationality' => 'Canadian'],
         ];
 
+        \DB::statement('SET FOREIGN_KEY_CHECKS=0');
+        Author::truncate();
+        \DB::statement('SET FOREIGN_KEY_CHECKS=1');
         foreach ($authors as $a) {
             Author::create($a);
         }

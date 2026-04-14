@@ -124,6 +124,10 @@ class BookSeeder extends Seeder
             ],
         ];
 
+        \DB::statement('SET FOREIGN_KEY_CHECKS=0');
+        \DB::table('author_book')->truncate();
+        Book::truncate();
+        \DB::statement('SET FOREIGN_KEY_CHECKS=1');
         foreach ($books as $data) {
             $authorIds = array_filter($data['authors'] ?? []);
             unset($data['authors']);
