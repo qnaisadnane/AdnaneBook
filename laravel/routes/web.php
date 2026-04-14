@@ -33,7 +33,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 Route::middleware(['auth', 'role:admin,manager'])->group(function () {
     Route::resource('categories', CategoryController::class);
     Route::resource('authors', AuthorController::class);
-    Route::resource('books', BookController::class)->except(['show', 'index']);
+    Route::resource('books', BookController::class)->except(['show']);
 });
 
 // ─── Admin + Agent ─────────────────────────────────────────────────

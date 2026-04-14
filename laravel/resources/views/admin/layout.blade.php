@@ -36,7 +36,7 @@ body { font-family: 'Inter', sans-serif; }
             @endif
 
             @if(in_array($role, ['admin','manager']))
-            <a href="{{ route('books.create') }}" class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium {{ request()->routeIs('books.*') ? 'bg-primary text-white' : 'text-slate-300 hover:bg-slate-800' }}">
+            <a href="{{ route('books.index') }}" class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium {{ request()->routeIs('books.*') ? 'bg-primary text-white' : 'text-slate-300 hover:bg-slate-800' }}">
                 <span class="material-symbols-outlined text-lg">menu_book</span> Books
             </a>
             <a href="{{ route('categories.index') }}" class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium {{ request()->routeIs('categories.*') ? 'bg-primary text-white' : 'text-slate-300 hover:bg-slate-800' }}">

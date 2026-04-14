@@ -15,6 +15,13 @@ class BookController extends Controller
      */
     public function index(Request $request)
     {
+        // Admin/Manager — liste admin
+        if (auth()->check() && in_array(auth()->user()->role, ['admin', 'manager'])) {
+            $books = Book::with(['category', 'authors'])->latest()->paginate(15);
+            return view('books.index', compact('books'));
+        }
+
+        // Public — catalogue
         $categories = Category::withCount('books')->get();
         $query = Book::with(['category', 'authors']);
 
