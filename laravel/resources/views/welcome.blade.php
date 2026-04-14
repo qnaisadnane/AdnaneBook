@@ -56,12 +56,12 @@
         </nav>
     </div>
     <div class="flex items-center gap-4">
-        <div class="hidden lg:block relative group">
+        <form method="GET" action="{{ route('catalog') }}" class="hidden lg:block relative group">
             <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-slate-400">
                 <span class="material-symbols-outlined text-[20px]">search</span>
             </div>
-            <input class="h-10 w-64 rounded-xl border-none bg-slate-100 dark:bg-slate-800 pl-10 pr-4 text-sm focus:ring-2 focus:ring-primary/50" placeholder="Search books..." type="text"/>
-        </div>
+            <input name="search" class="h-10 w-64 rounded-xl border-none bg-slate-100 dark:bg-slate-800 pl-10 pr-4 text-sm focus:ring-2 focus:ring-primary/50" placeholder="Search books..." type="text"/>
+        </form>
         
         <!-- INTEGRATION AUTH LARAVEL -->
         @if (Route::has('login'))
@@ -94,15 +94,13 @@
                                 Explore thousands of books across all genres at ADNANE BOOKS. From timeless classics to the latest bestsellers, find your perfect read today.
                             </p>
 </div>
-<div class="flex w-full max-w-lg mx-auto lg:mx-0 items-stretch rounded-2xl bg-white dark:bg-slate-800 p-2 shadow-xl shadow-slate-200/50 dark:shadow-none ring-1 ring-slate-200 dark:ring-slate-700">
+<form method="GET" action="{{ route('catalog') }}" class="flex w-full max-w-lg mx-auto lg:mx-0 items-stretch rounded-2xl bg-white dark:bg-slate-800 p-2 shadow-xl shadow-slate-200/50 dark:shadow-none ring-1 ring-slate-200 dark:ring-slate-700">
 <div class="flex items-center pl-4 text-slate-400">
 <span class="material-symbols-outlined">search</span>
 </div>
-<input class="flex-1 border-none bg-transparent px-4 text-sm focus:ring-0" placeholder="Search by title, author, or ISBN"/>
-<button class="rounded-xl bg-primary px-8 py-3 text-sm font-bold text-white hover:bg-primary/90 transition-colors">
-                                Search
-                            </button>
-</div>
+<input name="search" class="flex-1 border-none bg-transparent px-4 text-sm focus:ring-0" placeholder="Search by title, author, or ISBN"/>
+<button type="submit" class="rounded-xl bg-primary px-8 py-3 text-sm font-bold text-white hover:bg-primary/90 transition-colors">Search</button>
+</form>
 
 </div>
 <div class="lg:w-1/2">
