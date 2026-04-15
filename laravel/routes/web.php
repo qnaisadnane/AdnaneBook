@@ -9,12 +9,16 @@ use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\WelcomeController;
 
 // ─── Public ───────────────────────────────────────────────────────
 Route::get('/', [WelcomeController::class, 'index'])->name('home');
 Route::get('/catalog', [BookController::class, 'index'])->name('catalog');
 Route::get('/books/{id}', [BookController::class, 'show'])->name('books.show');
+
+// Panier accessible sans auth
+Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 
 // Stocke l'URL intended avant de rediriger vers login
 Route::get('/go-login', function (\Illuminate\Http\Request $request) {
@@ -48,10 +52,13 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    // Panier
-    Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+    // Panier (update/remove nécessitent auth)
     Route::patch('/cart/{bookId}', [CartController::class, 'update'])->name('cart.update');
     Route::delete('/cart/{bookId}', [CartController::class, 'remove'])->name('cart.remove');
+
+    // Checkout
+    Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
+    Route::post('/checkout', [CheckoutController::class, 'store'])->name('checkout.store');
 
     // Commandes client
     Route::post('/orders', [OrderController::class, 'store'])->name('orders.store');

@@ -178,46 +178,27 @@
 
                 <!-- Order form -->
                 @if($book->quantity > 0)
-                    @auth
-                    <form method="POST" action="{{ route('orders.store') }}" class="flex flex-col gap-4 mb-6">
-                        @csrf
-                        <input type="hidden" name="book_id" value="{{ $book->id }}">
-                        <div class="flex items-center gap-3">
-                            <label class="text-sm font-semibold text-slate-700 dark:text-slate-300">Quantity:</label>
-                            <input type="number" id="qty_input" name="quantity" value="1" min="1" max="{{ $book->quantity }}"
-                                   class="w-20 rounded-lg border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm focus:ring-primary text-center font-bold"/>
-                        </div>
-                        <div class="flex flex-col sm:flex-row gap-4">
-                            <button type="submit"
-                                    class="flex-1 bg-primary text-white font-bold py-4 px-8 rounded-lg shadow-lg hover:bg-primary/90 transition-all flex items-center justify-center gap-2">
-                                <span class="material-symbols-outlined">bolt</span>
-                                Buy Now
-                            </button>
-                        </div>
-                    </form>
-                    <form method="GET" action="{{ route('cart.index') }}" class="mb-6">
-                        <input type="hidden" name="book_id" value="{{ $book->id }}">
-                        <input type="hidden" name="quantity" id="cart_qty" value="1">
-                        <button type="submit"
-                                class="w-full bg-white dark:bg-slate-800 border-2 border-primary text-primary font-bold py-4 px-8 rounded-lg hover:bg-primary/5 transition-all flex items-center justify-center gap-2">
-                            <span class="material-symbols-outlined">shopping_bag</span>
-                            Add to Cart
-                        </button>
-                    </form>
-                    <script>
-                        document.getElementById('qty_input').addEventListener('input', function() {
-                            document.getElementById('cart_qty').value = this.value;
-                        });
-                    </script>
-                    @else
-                    <div class="flex flex-col sm:flex-row gap-4 mb-6">
-                        <a href="{{ route('go.login', ['intended' => route('cart.index', ['book_id' => $book->id, 'quantity' => 1])]) }}"
-                           class="flex-1 bg-primary text-white font-bold py-4 px-8 rounded-lg shadow-lg hover:bg-primary/90 transition-all flex items-center justify-center gap-2">
-                            <span class="material-symbols-outlined">login</span>
-                             Buy Now
-                        </a>
+                <div class="flex flex-col gap-4 mb-6">
+                    <div class="flex items-center gap-3">
+                        <label class="text-sm font-semibold text-slate-700 dark:text-slate-300">Quantity:</label>
+                        <input type="number" id="qty_input" value="1" min="1" max="{{ $book->quantity }}"
+                               class="w-20 rounded-lg border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm focus:ring-primary text-center font-bold"/>
                     </div>
-                    @endauth
+                    <a id="buy_now_btn"
+                       href="{{ route('cart.index', ['book_id' => $book->id, 'quantity' => 1]) }}"
+                       class="flex-1 bg-primary text-white font-bold py-4 px-8 rounded-lg shadow-lg hover:bg-primary/90 transition-all flex items-center justify-center gap-2">
+                        <span class="material-symbols-outlined">shopping_cart</span>
+                        Buy Now
+                    </a>
+                </div>
+                <script>
+                    document.getElementById('qty_input').addEventListener('input', function() {
+                        var btn = document.getElementById('buy_now_btn');
+                        var url = new URL(btn.href);
+                        url.searchParams.set('quantity', this.value || 1);
+                        btn.href = url.toString();
+                    });
+                </script>
                 @else
                     <div class="flex items-center gap-3 py-4 px-6 rounded-lg bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 mb-6">
                         <span class="material-symbols-outlined text-red-500">inventory_2</span>
