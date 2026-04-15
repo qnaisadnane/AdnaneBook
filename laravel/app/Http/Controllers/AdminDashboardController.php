@@ -26,12 +26,15 @@ class AdminDashboardController extends Controller
             ->limit(5)
             ->get();
 
+        $recentOrders = Order::with(['user', 'items.book'])->latest()->limit(5)->get();
+
         return view('admin.dashboard', compact(
             'totalCommands',
             'totalClients',
             'totalRevenues',
             'commandesParStatut',
-            'meilleursLivres'
+            'meilleursLivres',
+            'recentOrders'
         ));
     }
 }
