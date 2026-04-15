@@ -24,11 +24,15 @@
                 <td class="px-6 py-4 text-slate-500">{{ $author->nationality ?: '—' }}</td>
                 <td class="px-6 py-4 text-slate-500">{{ $author->books_count }}</td>
                 <td class="px-6 py-4 text-right">
-                    <div class="flex items-center justify-end gap-2">
-                        <a href="{{ route('authors.edit', $author->id) }}" class="text-primary hover:underline text-sm font-medium">Edit</a>
+                    <div class="flex items-center justify-end gap-1">
+                        <a href="{{ route('authors.edit', $author->id) }}" class="p-1.5 rounded-lg text-slate-400 hover:text-primary hover:bg-primary/10 transition-colors" title="Edit">
+                            <span class="material-symbols-outlined" style="font-size:18px">edit</span>
+                        </a>
                         <form method="POST" action="{{ route('authors.destroy', $author->id) }}" onsubmit="return confirm('Delete this author?')">
                             @csrf @method('DELETE')
-                            <button class="text-red-500 hover:underline text-sm font-medium">Delete</button>
+                            <button class="p-1.5 rounded-lg text-slate-400 hover:text-red-500 hover:bg-red-50 transition-colors" title="Delete">
+                                <span class="material-symbols-outlined" style="font-size:18px">delete</span>
+                            </button>
                         </form>
                     </div>
                 </td>
