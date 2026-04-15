@@ -11,16 +11,14 @@ class CartController extends Controller
     {
         $cart = session('cart', []);
 
-        // Si on arrive avec book_id (depuis details page), on ajoute/met à jour
         if ($request->filled('book_id')) {
-            $bookId  = $request->book_id;
-            $qty     = max(1, (int) $request->get('quantity', 1));
+            $bookId = $request->book_id;
+            $qty    = max(1, (int) $request->get('quantity', 1));
             $cart[$bookId] = ($cart[$bookId] ?? 0) + $qty;
             session(['cart' => $cart]);
         }
 
-        $books = Book::whereIn('id', array_keys($cart))->with('authors')->get()
-            ->keyBy('id');
+        $books = Book::whereIn('id', array_keys($cart))->with('authors')->get()->keyBy('id');
 
         $items = collect($cart)->map(fn($qty, $id) => [
             'book'     => $books[$id] ?? null,

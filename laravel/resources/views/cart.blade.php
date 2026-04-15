@@ -167,12 +167,19 @@
                     </div>
                 </div>
                 <div class="mt-8 space-y-3">
-                    <form method="POST" action="{{ route('orders.store') }}">
-                        @csrf
-                            <button type="submit" class="w-full rounded-lg bg-primary py-4 text-sm font-bold text-white shadow-lg shadow-primary/20 hover:bg-primary/90 transition-all active:scale-[0.98]">
-                            Proceed to Checkout
-                        </button>
-                    </form>
+                    @auth
+                        <a href="{{ route('checkout.index') }}"
+                           class="w-full rounded-lg bg-primary py-4 text-sm font-bold text-white shadow-lg shadow-primary/20 hover:bg-primary/90 transition-all active:scale-[0.98] flex items-center justify-center gap-2">
+                            <span class="material-symbols-outlined text-base">shopping_bag</span>
+                            Commander
+                        </a>
+                    @else
+                        <a href="{{ route('go.login', ['intended' => route('checkout.index')]) }}"
+                           class="w-full rounded-lg bg-primary py-4 text-sm font-bold text-white shadow-lg shadow-primary/20 hover:bg-primary/90 transition-all active:scale-[0.98] flex items-center justify-center gap-2">
+                            <span class="material-symbols-outlined text-base">login</span>
+                            Se connecter pour commander
+                        </a>
+                    @endauth
                     <div class="flex items-center justify-center gap-2 text-xs text-slate-400">
                         <span class="material-symbols-outlined text-sm">lock</span>
                         Secure encrypted payment
