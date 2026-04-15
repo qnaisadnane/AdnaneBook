@@ -26,7 +26,9 @@
                     @if($user->id !== Auth::id())
                     <form method="POST" action="{{ route('admin.users.destroy', $user->id) }}" onsubmit="return confirm('Delete this user?')">
                         @csrf @method('DELETE')
-                        <button class="text-red-500 hover:underline text-sm font-medium">Delete</button>
+                        <button class="p-1.5 rounded-lg text-slate-400 hover:text-red-500 hover:bg-red-50 transition-colors" title="Delete">
+                            <span class="material-symbols-outlined" style="font-size:18px">delete</span>
+                        </button>
                     </form>
                     @endif
                 </td>
