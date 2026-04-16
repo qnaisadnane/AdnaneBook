@@ -40,8 +40,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::resource('books', BookController::class)->except(['show']);
 });
 
-// ─── Admin + Agent ─────────────────────────────────────────────────
-Route::middleware(['auth', 'role:admin,agent'])->group(function () {
+// ─── Admin  ─────────────────────────────────────────────────
+Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
     Route::patch('/orders/{id}/status', [OrderController::class, 'updateStatus'])->name('orders.updateStatus');
 });

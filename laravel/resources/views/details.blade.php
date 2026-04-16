@@ -61,8 +61,8 @@
 </label>
 <div class="flex gap-2 items-center">
 @auth
-    @if(in_array(Auth::user()->role, ['admin','agent']))
-        <a href="{{ Auth::user()->role === 'admin' ? route('admin.dashboard') : route('orders.index') }}" class="flex items-center justify-center rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold hover:bg-primary/90 transition-colors">
+    @if(in_array(Auth::user()->role, ['admin']))
+        <a href="{{ route('admin.dashboard') }}" class="flex items-center justify-center rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold hover:bg-primary/90 transition-colors">
             Dashboard
         </a>
     @else
