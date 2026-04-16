@@ -18,7 +18,7 @@
                 <td class="px-6 py-4 font-medium">{{ $user->name }}</td>
                 <td class="px-6 py-4 text-slate-500">{{ $user->email }}</td>
                 <td class="px-6 py-4">
-                    @php $rc=['admin'=>'red','agent'=>'yellow','client'=>'green']; $rc2=$rc[$user->role]??'slate'; @endphp
+                    @php $rc=['admin'=>'red','client'=>'green']; $rc2=$rc[$user->role]??'slate'; @endphp
                     <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-{{ $rc2 }}-100 text-{{ $rc2 }}-700 capitalize">{{ $user->role }}</span>
                 </td>
                 <td class="px-6 py-4 text-sm text-slate-500">{{ $user->created_at->format('d M Y') }}</td>

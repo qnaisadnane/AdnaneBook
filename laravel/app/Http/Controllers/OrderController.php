@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
-    // Admin / Agent — toutes les commandes
+    // Admin  — toutes les commandes
     public function index()
     {
         $orders = Order::with(['user', 'items.book'])->latest()->paginate(15);
@@ -82,7 +82,7 @@ class OrderController extends Controller
         return back()->with('success', 'Payment successful!');
     }
 
-    // Admin/Agent — changer le statut
+    // Admin — changer le statut
     public function updateStatus(Request $request, $id)
     {
         $order = Order::findOrFail($id);
