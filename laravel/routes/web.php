@@ -33,8 +33,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::delete('/admin/users/{id}', [AdminUserController::class, 'destroy'])->name('admin.users.destroy');
 });
 
-// ─── Admin + Manager ───────────────────────────────────────────────
-Route::middleware(['auth', 'role:admin,manager'])->group(function () {
+// ─── Admin ───────────────────────────────────────────────
+Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::resource('categories', CategoryController::class);
     Route::resource('authors', AuthorController::class);
     Route::resource('books', BookController::class)->except(['show']);
