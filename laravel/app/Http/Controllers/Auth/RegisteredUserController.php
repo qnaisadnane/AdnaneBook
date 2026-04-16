@@ -40,8 +40,7 @@ class RegisteredUserController extends Controller
 
         $role = match(true) {
             $count === 0 => 'admin',
-            $count === 1 => 'manager',
-            $count === 2 => 'agent',
+            $count === 1 => 'agent',
             default      => 'client',
         };
 

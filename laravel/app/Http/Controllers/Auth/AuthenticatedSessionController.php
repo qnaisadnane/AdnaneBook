@@ -32,7 +32,6 @@ class AuthenticatedSessionController extends Controller
         if ($role !== 'client') {
             return match($role) {
                 'admin'   => redirect()->route('admin.dashboard'),
-                'manager' => redirect()->route('categories.index'),
                 'agent'   => redirect()->route('orders.index'),
             };
         }

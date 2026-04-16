@@ -15,8 +15,8 @@ class BookController extends Controller
      */
     public function index(Request $request)
     {
-        // Admin/Manager — liste admin
-        if (auth()->check() && in_array(auth()->user()->role, ['admin', 'manager'])) {
+        // Admin — liste admin
+        if (auth()->check() && in_array(auth()->user()->role, ['admin'])) {
             $books = Book::with(['category', 'authors'])->latest()->paginate(15);
             return view('books.index', compact('books'));
         }
