@@ -33,7 +33,6 @@
                 </td>
                 <td class="px-6 py-4 text-sm text-slate-500">{{ $order->created_at->format('d M Y') }}</td>
                 <td class="px-6 py-4 text-right">
-                    @if($order->status !== 'delivered' && $order->status !== 'paid')
                     <form method="POST" action="{{ route('orders.updateStatus', $order->id) }}">
                         @csrf @method('PATCH')
                         <select name="status" onchange="this.form.submit()"
@@ -43,9 +42,6 @@
                             @endforeach
                         </select>
                     </form>
-                    @else
-                        <span class="text-xs text-slate-400">—</span>
-                    @endif
                 </td>
             </tr>
             @empty
