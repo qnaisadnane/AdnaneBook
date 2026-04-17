@@ -87,10 +87,6 @@ class OrderController extends Controller
     {
         $order = Order::findOrFail($id);
 
-        if ($order->status === 'paid') {
-            return back()->with('error', 'A paid order cannot be modified.');
-        }
-
         $request->validate(['status' => 'required|in:pending,paid,shipped,delivered']);
         $order->update(['status' => $request->status]);
 
