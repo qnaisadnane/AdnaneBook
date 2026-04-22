@@ -19,6 +19,7 @@ Route::get('/books/{id}', [BookController::class, 'show'])->name('books.show');
 
 // Panier accessible sans auth
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+Route::post('/cart/add/{bookId}', [CartController::class, 'add'])->name('cart.add');
 
 // Stocke l'URL intended avant de rediriger vers login
 Route::get('/go-login', function (\Illuminate\Http\Request $request) {
@@ -65,5 +66,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/orders/{id}/pay', [OrderController::class, 'pay'])->name('orders.pay');
     Route::get('/my-orders', [OrderController::class, 'myOrders'])->name('orders.my');
 });
+
+Route::get('/details/{id}', [BookController::class, 'show'])->name('details');
 
 require __DIR__.'/auth.php';

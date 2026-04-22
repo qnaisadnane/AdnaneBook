@@ -7,16 +7,9 @@ use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
         $cart = session('cart', []);
-
-        if ($request->filled('book_id')) {
-            $bookId = $request->book_id;
-            $qty    = max(1, (int) $request->get('quantity', 1));
-            $cart[$bookId] = ($cart[$bookId] ?? 0) + $qty;
-            session(['cart' => $cart]);
-        }
 
         $books = Book::whereIn('id', array_keys($cart))->with('authors')->get()->keyBy('id');
 
@@ -29,6 +22,18 @@ class CartController extends Controller
         $total = $items->sum('subtotal');
 
         return view('cart', compact('items', 'total'));
+    }
+
+    public function add(Request $request, $bookId)
+    {
+        $book = Book::findOrFail($bookId);
+        $cart = session('cart', []);
+        $qty  = (int) $request->get('quantity', 1);
+
+        $cart[$bookId] = ($cart[$bookId] ?? 0) + $qty;
+        session(['cart' => $cart]);
+
+        return redirect()->back()->with('success', "Le livre '{$book->title}' a été ajouté au panier.");
     }
 
     public function update(Request $request, $bookId)
