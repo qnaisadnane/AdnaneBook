@@ -126,10 +126,20 @@
                             <span class="text-xl font-bold text-slate-900 dark:text-slate-100">${{ number_format($book->price, 2) }}</span>
                             <div class="flex gap-2">
                                 <a href="{{ route('books.show', $book->id) }}"
-                                   class="flex items-center gap-1 bg-primary hover:bg-primary/90 text-white px-3 py-2 rounded-lg text-sm font-bold transition-colors">
+                                   class="flex items-center gap-1 bg-white dark:bg-slate-700 text-slate-900 dark:text-white border border-slate-200 dark:border-slate-600 px-3 py-2 rounded-lg text-sm font-bold hover:bg-slate-50 transition-colors">
                                     <span class="material-symbols-outlined text-lg">visibility</span>
                                     Details
                                 </a>
+                                @if($book->quantity > 0)
+                                <form method="POST" action="{{ route('cart.add', $book->id) }}">
+                                    @csrf
+                                    <input type="hidden" name="quantity" value="1">
+                                    <button type="submit" class="flex items-center gap-1 bg-primary hover:bg-primary/90 text-white px-3 py-2 rounded-lg text-sm font-bold transition-colors">
+                                        <span class="material-symbols-outlined text-lg">add_shopping_cart</span>
+                                        Add
+                                    </button>
+                                </form>
+                                @endif
                             </div>
                         </div>
                     </div>
