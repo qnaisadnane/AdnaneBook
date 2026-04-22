@@ -1,89 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8"/>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>ADNANE BOOKS - Discover Your Next Adventure</title>
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-    <script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "primary": "#2563eb",
-                        "background-light": "#f6f6f8",
-                        "background-dark": "#111621",
-                    },
-                    fontFamily: {
-                        "display": ["Inter", "sans-serif"]
-                    },
-                    borderRadius: {
-                        "DEFAULT": "0.25rem",
-                        "lg": "0.5rem",
-                        "xl": "0.75rem",
-                        "full": "9999px"
-                    },
-                },
-            },
-        }
-    </script>
-    <style>
-        body { font-family: 'Inter', sans-serif; }
-        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
-        .material-symbols-filled { font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
-    </style>
-</head>
-<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display">
-<div class="relative flex min-h-screen flex-col overflow-x-hidden">
-<!-- Navigation -->
-<header class="sticky top-0 z-50 w-full border-b border-slate-200 dark:border-slate-800 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md">
-<div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-    <div class="flex items-center gap-8">
-        <div class="flex items-center gap-3">
-            <div class="flex h-10 w-10 items-center justify-center overflow-hidden rounded-lg">
-                <img alt="ADNANE BOOKS Logo" class="h-full w-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjoHBDtvQbhZZYBnJp5T-QCPGx2NwzDgisgnQfKvkfxLNzS7-PFqR28px8MxWFyFXTsM7nBQryX5Wq5X-eNPlImUWfSpP014oEUdJGAzXN3ppCprSiRJTyQQFjq5_kWsWopkbbAalATtbXkhpNLhGVx4BJpTQc_OZk2Kr8fsxvYmKzGz8FNPy58gSRyDV_JrF80pVih8STE9krBnpJR1oa3WVYV7Qbo-zaAc8Mu6gnqPEwr4YWDE-ESZ--zicZ3qgOEIgiig97iG7J"/>
-            </div>
-            <h2 class="text-xl font-extrabold tracking-tight">ADNANE BOOKS</h2>
-        </div>
-        <nav class="hidden md:flex items-center gap-6">
-            <a class="text-sm font-semibold hover:text-primary transition-colors" href="{{ url('/') }}">Home</a>
-            <a class="text-sm font-semibold hover:text-primary transition-colors" href="{{ route('catalog') }}">Categories</a>
-            <a class="text-sm font-semibold hover:text-primary transition-colors" href="{{ route('catalog') }}">Bestsellers</a>
-            <a class="text-sm font-semibold hover:text-primary transition-colors" href="#">New Arrivals</a>
-        </nav>
-    </div>
-    <div class="flex items-center gap-4">
-        <form method="GET" action="{{ route('catalog') }}" class="hidden lg:block relative group">
-            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-slate-400">
-                <span class="material-symbols-outlined text-[20px]">search</span>
-            </div>
-            <input name="search" class="h-10 w-64 rounded-xl border-none bg-slate-100 dark:bg-slate-800 pl-10 pr-4 text-sm focus:ring-2 focus:ring-primary/50" placeholder="Search books..." type="text"/>
-        </form>
-        
-        <!-- INTEGRATION AUTH LARAVEL -->
-        @if (Route::has('login'))
-            @auth
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-                    <button type="submit" class="flex h-10 items-center justify-center rounded-xl bg-primary px-6 text-sm font-bold text-white shadow-lg shadow-primary/20 hover:bg-primary/90 transition-all">
-                        Log Out
-                    </button>
-                </form>
-            @else
-                <a href="{{ route('go.login', ['intended' => url()->current()]) }}" class="flex h-10 items-center justify-center rounded-xl bg-primary px-6 text-sm font-bold text-white shadow-lg shadow-primary/20 hover:bg-primary/90 transition-all">
-                    Sign In
-                </a>
-            @endauth
-        @endif
-        
-    </div>
-</div>
-</header>
+@extends('layouts.customer')
 
-<main class="flex-1">
+@section('title', 'ADNANE BOOKS - Discover Your Next Adventure')
+
+@section('content')
 <!-- Hero Section -->
 <section class="mx-auto max-w-7xl px-6 py-12 @container">
 <div class="flex flex-col gap-10 lg:flex-row lg:items-center">
@@ -111,6 +30,7 @@
 </div>
 </div>
 </section>
+
 <!-- Categories Section -->
 <section class="bg-white/50 dark:bg-slate-900/50 py-16">
 <div class="mx-auto max-w-7xl px-6">
@@ -136,6 +56,7 @@
 </div>
 </div>
 </section>
+
 <!-- Featured Books Grid -->
 <section class="mx-auto max-w-7xl px-6 py-16">
 <div class="flex items-end justify-between mb-8">
@@ -221,6 +142,7 @@
 </div>
 </div>
 </section>
+
 <!-- Testimonials Section -->
 <section class="mx-auto max-w-7xl px-6 py-20">
 <div class="mb-12 text-center">
@@ -281,6 +203,7 @@
 </div>
 </div>
 </section>
+
 <!-- Promo Section -->
 <section class="py-20 bg-white">
 <div class="mx-auto max-w-7xl px-6">
@@ -331,6 +254,7 @@
     </div>
 </div>
 </section>
+
 <!-- Best Sellers CTA -->
 <section class="mx-auto max-w-7xl px-6 py-16">
 <div class="relative overflow-hidden rounded-[2rem] bg-slate-900 px-8 py-16 md:px-20 lg:py-24">
@@ -354,72 +278,5 @@
 </div>
 </div>
 </section>
-</main>
-<!-- Footer -->
-<footer class="border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 pt-16 pb-8">
-<div class="mx-auto max-w-7xl px-6">
-<div class="grid grid-cols-2 gap-12 lg:grid-cols-4 lg:gap-8">
-<div class="col-span-2 lg:col-span-1">
-<div class="flex items-center gap-3 mb-6">
-<div class="flex h-10 w-10 items-center justify-center overflow-hidden rounded-lg">
-<img alt="ADNANE BOOKS Logo" class="h-full w-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjoHBDtvQbhZZYBnJp5T-QCPGx2NwzDgisgnQfKvkfxLNzS7-PFqR28px8MxWFyFXTsM7nBQryX5Wq5X-eNPlImUWfSpP014oEUdJGAzXN3ppCprSiRJTyQQFjq5_kWsWopkbbAalATtbXkhpNLhGVx4BJpTQc_OZk2Kr8fsxvYmKzGz8FNPy58gSRyDV_JrF80pVih8STE9krBnpJR1oa3WVYV7Qbo-zaAc8Mu6gnqPEwr4YWDE-ESZ--zicZ3qgOEIgiig97iG7J"/>
-</div>
-<h2 class="text-xl font-extrabold tracking-tight">ADNANE BOOKS</h2>
-</div>
-<p class="text-sm text-slate-500 leading-relaxed">
-                            Your premier destination for physical and digital books. We believe every page is a new beginning.
-                        </p>
-<div class="mt-6 flex gap-4">
-<a aria-label="Facebook" class="text-slate-400 hover:text-primary transition-colors" href="#">
-<svg class="h-5 w-5 fill-current" viewbox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path></svg>
-</a>
-<a aria-label="Instagram" class="text-slate-400 hover:text-primary transition-colors" href="#">
-<svg class="h-5 w-5 fill-current" viewbox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c.796 0 1.441.645 1.441 1.44s-.645 1.44-1.441 1.44c-.795 0-1.439-.645-1.439-1.44s.644-1.44 1.439-1.44z"></path></svg>
-</a>
-<a aria-label="LinkedIn" class="text-slate-400 hover:text-primary transition-colors" href="#">
-<svg class="h-5 w-5 fill-current" viewbox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg>
-</a>
-<a aria-label="YouTube" class="text-slate-400 hover:text-primary transition-colors" href="#">
-<svg class="h-5 w-5 fill-current" viewbox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"></path></svg>
-</a>
-</div>
-</div>
-<div>
-<h4 class="mb-6 text-sm font-bold uppercase tracking-wider">Company</h4>
-<ul class="space-y-4 text-sm text-slate-500">
-<li><a class="hover:text-primary transition-colors" href="#">About Us</a></li>
-<li><a class="hover:text-primary transition-colors" href="#">Careers</a></li>
-<li><a class="hover:text-primary transition-colors" href="#">Affiliates</a></li>
-<li><a class="hover:text-primary transition-colors" href="#">Store Locator</a></li>
-</ul>
-</div>
-<div>
-<h4 class="mb-6 text-sm font-bold uppercase tracking-wider">Support</h4>
-<ul class="space-y-4 text-sm text-slate-500">
-<li><a class="hover:text-primary transition-colors" href="#">Help Center</a></li>
-<li><a class="hover:text-primary transition-colors" href="#">Track Order</a></li>
-<li><a class="hover:text-primary transition-colors" href="#">Shipping Info</a></li>
-<li><a class="hover:text-primary transition-colors" href="#">Returns</a></li>
-</ul>
-</div>
-<div>
-<h4 class="mb-6 text-sm font-bold uppercase tracking-wider">Newsletter</h4>
-<p class="mb-4 text-sm text-slate-500">Subscribe to get the latest book news and exclusive offers.</p>
-<form class="flex flex-col gap-2">
-<input class="rounded-lg border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-sm focus:ring-primary" placeholder="Enter your email" type="email"/>
-<button class="w-full rounded-lg bg-primary py-2.5 text-sm font-bold text-white hover:bg-primary/90 transition-all">Subscribe</button>
-</form>
-</div>
-</div>
-<div class="mt-16 border-t border-slate-100 dark:border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-<p class="text-xs text-slate-400">© 2026 ADNANE BOOKS. All rights reserved.</p>
-<div class="flex gap-6 text-xs text-slate-400">
-<a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
-<a class="hover:text-primary transition-colors" href="#">Terms of Service</a>
-<a class="hover:text-primary transition-colors" href="#">Cookie Policy</a>
-</div>
-</div>
-</div>
-</footer>
-</div>
-</body></html>
+@endsection
+l>
