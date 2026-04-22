@@ -1,85 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>{{ $book->title }} - ADNANE BOOKS</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
-    tailwind.config = {
-        darkMode: "class",
-        theme: {
-            extend: {
-                colors: {
-                    "primary": "#2463eb",
-                    "background-light": "#f6f6f8",
-                    "background-dark": "#111621",
-                },
-                fontFamily: { "display": ["Inter"] },
-                borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
-            },
-        },
-    }
-</script>
-<style>
-    body { font-family: 'Inter', sans-serif; }
-    .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
-</style>
-</head>
-<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100">
-<div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
-<div class="layout-container flex h-full grow flex-col">
+@extends('layouts.customer')
 
-<!-- Header -->
-<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-slate-800 px-4 md:px-10 lg:px-40 py-3 bg-white dark:bg-slate-900">
-<div class="flex items-center gap-8">
-<a href="{{ route('home') }}" class="flex items-center gap-4 text-primary">
-    <img alt="ADNANE BOOKS" class="h-10 w-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHaSfcSQzACpzRaM85jtiSCRc2YZlQQ9OyjG88BCQ5ZRkXGmMJ6p5sgW7qOfOSbNxOXlaN02z5vQUaNsva1DLs7kg8MgMhovhkKJQJcQRpKttceHtfdVsCU2spvQq58vpCHc4yf1rpvDePLbftu4871vWwSCUPgH38ziV8x27TpG0c3Cb_alPk9XYlJ0qI-qKLfmL-DyXCKCGXTDyr9snZhwNdFVPOIrXKkeppV89fFzJptxN652VAAHik8EXINBDVxoJIpWYlQ7_G"/>
-    <span class="font-extrabold text-slate-900 dark:text-white">ADNANE BOOKS</span>
-</a>
-<nav class="hidden md:flex items-center gap-9">
-    <a class="text-slate-600 dark:text-slate-400 text-sm font-medium hover:text-primary transition-colors" href="{{ route('home') }}">Home</a>
-    <a class="text-slate-600 dark:text-slate-400 text-sm font-medium hover:text-primary transition-colors" href="{{ route('catalog') }}">Catalog</a>
-    @if($book->category)
-    <a class="text-slate-600 dark:text-slate-400 text-sm font-medium hover:text-primary transition-colors"
-       href="{{ route('catalog', ['category_id' => $book->category_id]) }}">{{ $book->category->name }}</a>
-    @endif
-</nav>
-</div>
-<div class="flex flex-1 justify-end gap-4 md:gap-8">
-<label class="hidden sm:flex flex-col min-w-40 !h-10 max-w-64">
-<form method="GET" action="{{ route('catalog') }}">
-<div class="flex w-full flex-1 items-stretch rounded-lg h-full">
-<div class="text-slate-400 flex border-none bg-slate-100 dark:bg-slate-800 items-center justify-center pl-4 rounded-l-lg">
-<span class="material-symbols-outlined text-[20px]">search</span>
-</div>
-<input class="form-input flex w-full min-w-0 flex-1 border-none bg-slate-100 dark:bg-slate-800 focus:ring-0 text-slate-900 dark:text-slate-100 placeholder:text-slate-400 px-4 rounded-r-lg text-sm font-normal" name="search" placeholder="Search books..."/>
-</div>
-</form>
-</label>
-<div class="flex gap-2 items-center">
-@auth
-    @if(in_array(Auth::user()->role, ['admin']))
-        <a href="{{ route('admin.dashboard') }}" class="flex items-center justify-center rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold hover:bg-primary/90 transition-colors">
-            Dashboard
-        </a>
-    @else
-        <a href="{{ route('orders.my') }}" class="flex items-center justify-center rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold hover:bg-primary/90 transition-colors">
-            My Orders
-        </a>
-    @endif
-@else
-    <a href="{{ route('go.login', ['intended' => url()->current()]) }}" class="flex items-center justify-center rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold hover:bg-primary/90 transition-colors">
-        Sign In
-    </a>
-@endauth
-</div>
-</div>
-</header>
+@section('title', $book->title . ' - ADNANE BOOKS')
 
-<main class="px-4 md:px-10 lg:px-40 py-8">
+@section('content')
+<main class="mx-auto max-w-7xl px-4 md:px-10 py-8 lg:px-8">
 
     <!-- Alerts -->
     @if(session('success'))
@@ -178,41 +102,19 @@
 
                 <!-- Order form -->
                 @if($book->quantity > 0)
-                <div class="flex flex-col gap-4 mb-6">
+                <form method="POST" action="{{ route('cart.add', $book->id) }}" class="flex flex-col gap-4 mb-6">
+                    @csrf
                     <div class="flex items-center gap-3">
-                        <label class="text-sm font-semibold text-slate-700 dark:text-slate-300">Quantity:</label>
-                        <input type="number" id="qty_input" value="1" min="1" max="{{ $book->quantity }}"
+                        <label for="qty_input" class="text-sm font-semibold text-slate-700 dark:text-slate-300">Quantity:</label>
+                        <input type="number" id="qty_input" name="quantity" value="1" min="1" max="{{ $book->quantity }}"
                                class="w-20 rounded-lg border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm focus:ring-primary text-center font-bold"/>
                     </div>
-                <a id="buy_now_btn"
-                       data-auth="{{ Auth::check() ? '1' : '0' }}"
-                       data-cart-url="{{ route('cart.index', ['book_id' => $book->id]) }}"
-                       data-login-url="{{ route('go.login') }}"
-                       href="{{ Auth::check() ? route('cart.index', ['book_id' => $book->id, 'quantity' => 1]) : route('go.login', ['intended' => route('cart.index', ['book_id' => $book->id, 'quantity' => 1])]) }}"
+                    <button type="submit"
                        class="flex-1 bg-primary text-white font-bold py-4 px-8 rounded-lg shadow-lg hover:bg-primary/90 transition-all flex items-center justify-center gap-2">
                         <span class="material-symbols-outlined">shopping_cart</span>
-                        Buy Now
-                    </a>
-                </div>
-                <script>
-                    document.getElementById('qty_input').addEventListener('input', function() {
-                        var btn = document.getElementById('buy_now_btn');
-                        var qty = this.value || 1;
-                        var isAuth = btn.getAttribute('data-auth') === '1';
-                        
-                        // Base cart URL with book_id
-                        var cartUrl = new URL(btn.getAttribute('data-cart-url'), window.location.origin);
-                        cartUrl.searchParams.set('quantity', qty);
-                        
-                        if (isAuth) {
-                            btn.href = cartUrl.toString();
-                        } else {
-                            var loginUrl = new URL(btn.getAttribute('data-login-url'), window.location.origin);
-                            loginUrl.searchParams.set('intended', cartUrl.toString());
-                            btn.href = loginUrl.toString();
-                        }
-                    });
-                </script>
+                        Add to Cart
+                    </button>
+                </form>
                 @else
                     <div class="flex items-center gap-3 py-4 px-6 rounded-lg bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 mb-6">
                         <span class="material-symbols-outlined text-red-500">inventory_2</span>
@@ -271,21 +173,5 @@
     @endif
 
 </main>
+@endsection
 
-<!-- Footer -->
-<footer class="mt-20 py-10 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-4 md:px-10 lg:px-40">
-<div class="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-slate-500">
-    <span class="font-extrabold text-slate-900 dark:text-white text-base">ADNANE BOOKS</span>
-    <p>© 2026 ADNANE BOOKS. All rights reserved.</p>
-    <div class="flex gap-6">
-        <a class="hover:text-primary" href="#">Shipping Policy</a>
-        <a class="hover:text-primary" href="#">Returns</a>
-        <a class="hover:text-primary" href="#">Contact Us</a>
-    </div>
-</div>
-</footer>
-
-</div>
-</div>
-</body>
-</html>

@@ -1,425 +1,218 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8"/>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>ADNANE BOOKS - Discover Your Next Adventure</title>
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-    <script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "primary": "#2563eb",
-                        "background-light": "#f6f6f8",
-                        "background-dark": "#111621",
-                    },
-                    fontFamily: {
-                        "display": ["Inter", "sans-serif"]
-                    },
-                    borderRadius: {
-                        "DEFAULT": "0.25rem",
-                        "lg": "0.5rem",
-                        "xl": "0.75rem",
-                        "full": "9999px"
-                    },
-                },
-            },
-        }
-    </script>
-    <style>
-        body { font-family: 'Inter', sans-serif; }
-        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
-        .material-symbols-filled { font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
-    </style>
-</head>
-<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display">
-<div class="relative flex min-h-screen flex-col overflow-x-hidden">
-<!-- Navigation -->
-<header class="sticky top-0 z-50 w-full border-b border-slate-200 dark:border-slate-800 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md">
-<div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-    <div class="flex items-center gap-8">
-        <div class="flex items-center gap-3">
-            <div class="flex h-10 w-10 items-center justify-center overflow-hidden rounded-lg">
-                <img alt="ADNANE BOOKS Logo" class="h-full w-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjoHBDtvQbhZZYBnJp5T-QCPGx2NwzDgisgnQfKvkfxLNzS7-PFqR28px8MxWFyFXTsM7nBQryX5Wq5X-eNPlImUWfSpP014oEUdJGAzXN3ppCprSiRJTyQQFjq5_kWsWopkbbAalATtbXkhpNLhGVx4BJpTQc_OZk2Kr8fsxvYmKzGz8FNPy58gSRyDV_JrF80pVih8STE9krBnpJR1oa3WVYV7Qbo-zaAc8Mu6gnqPEwr4YWDE-ESZ--zicZ3qgOEIgiig97iG7J"/>
+@extends('layouts.customer')
+
+@section('title', 'Welcome — ADNANE BOOKS')
+
+@section('content')
+<!-- Hero Section -->
+<section class="relative min-h-[85vh] flex items-center overflow-hidden bg-background-light dark:bg-background-dark">
+    <!-- Abstract background decorations -->
+    <div class="absolute top-0 right-0 w-1/2 h-full bg-primary/5 -skew-x-12 translate-x-1/4"></div>
+    <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-primary/10 rounded-full blur-3xl"></div>
+
+    <div class="relative mx-auto max-w-7xl px-6 py-24 lg:flex lg:items-center lg:gap-12">
+        <div class="lg:w-1/2 space-y-8">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold tracking-wider uppercase">
+                <span class="relative flex h-2 w-2">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+                </span>
+                New Arrivals Available Now
             </div>
-            <h2 class="text-xl font-extrabold tracking-tight">ADNANE BOOKS</h2>
+            
+            <h1 class="text-5xl lg:text-7xl font-black text-slate-900 dark:text-white leading-[1.1] tracking-tight">
+                Your Next Great <span class="text-primary">Adventure</span> Starts Here.
+            </h1>
+            
+            <p class="text-lg text-slate-600 dark:text-slate-400 max-w-xl leading-relaxed">
+                Discover a curated collection of literature, from timeless classics to modern masterpieces. Adnane Books is where stories come to life.
+            </p>
+
+            <div class="flex flex-wrap items-center gap-4">
+                <a href="{{ route('catalog') }}" class="inline-flex items-center gap-2 bg-primary text-white px-8 py-4 rounded-2xl font-bold text-lg shadow-xl shadow-primary/25 hover:bg-primary/90 hover:-translate-y-1 transition-all">
+                    Explore Catalog
+                    <span class="material-symbols-outlined">arrow_forward</span>
+                </a>
+                <a href="#featured" class="inline-flex items-center gap-2 bg-white dark:bg-slate-800 text-slate-900 dark:text-white px-8 py-4 rounded-2xl font-bold text-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700 transition-all">
+                    Featured Books
+                </a>
+            </div>
+
+            <div class="flex items-center gap-8 pt-4">
+                <div>
+                    <p class="text-2xl font-black text-slate-900 dark:text-white">10k+</p>
+                    <p class="text-xs font-bold text-slate-500 uppercase tracking-widest">Books</p>
+                </div>
+                <div class="w-px h-10 bg-slate-200 dark:bg-slate-800"></div>
+                <div>
+                    <p class="text-2xl font-black text-slate-900 dark:text-white">5k+</p>
+                    <p class="text-xs font-bold text-slate-500 uppercase tracking-widest">Authors</p>
+                </div>
+                <div class="w-px h-10 bg-slate-200 dark:bg-slate-800"></div>
+                <div>
+                    <p class="text-2xl font-black text-slate-900 dark:text-white">2k+</p>
+                    <p class="text-xs font-bold text-slate-500 uppercase tracking-widest">Readers</p>
+                </div>
+            </div>
         </div>
-        <nav class="hidden md:flex items-center gap-6">
-            <a class="text-sm font-semibold hover:text-primary transition-colors" href="{{ url('/') }}">Home</a>
-            <a class="text-sm font-semibold hover:text-primary transition-colors" href="{{ route('catalog') }}">Categories</a>
-            <a class="text-sm font-semibold hover:text-primary transition-colors" href="{{ route('catalog') }}">Bestsellers</a>
-            <a class="text-sm font-semibold hover:text-primary transition-colors" href="#">New Arrivals</a>
-        </nav>
-    </div>
-    <div class="flex items-center gap-4">
-        <form method="GET" action="{{ route('catalog') }}" class="hidden lg:block relative group">
-            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-slate-400">
-                <span class="material-symbols-outlined text-[20px]">search</span>
+
+        <!-- Visual element/Book mockup -->
+        <div class="hidden lg:block lg:w-1/2 relative">
+            <div class="relative z-10 w-full aspect-square bg-gradient-to-br from-primary/20 to-transparent rounded-3xl overflow-hidden border border-white/20 backdrop-blur-sm shadow-2xl">
+                <div class="absolute inset-0 flex items-center justify-center p-12">
+                    <!-- Placeholder for a featured book image -->
+                    <div class="w-2/3 aspect-[2/3] bg-white dark:bg-slate-800 rounded-lg shadow-2xl rotate-3 transform transition-transform hover:rotate-0 duration-500 overflow-hidden border-4 border-white">
+                        <div class="w-full h-full bg-slate-100 dark:bg-slate-700 flex items-center justify-center">
+                            <span class="material-symbols-outlined text-6xl text-slate-300">import_contacts</span>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <input name="search" class="h-10 w-64 rounded-xl border-none bg-slate-100 dark:bg-slate-800 pl-10 pr-4 text-sm focus:ring-2 focus:ring-primary/50" placeholder="Search books..." type="text"/>
-        </form>
-        
-        <!-- INTEGRATION AUTH LARAVEL -->
-        @if (Route::has('login'))
-            @auth
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-                    <button type="submit" class="flex h-10 items-center justify-center rounded-xl bg-primary px-6 text-sm font-bold text-white shadow-lg shadow-primary/20 hover:bg-primary/90 transition-all">
-                        Log Out
+            <!-- Decorative circles -->
+            <div class="absolute -top-12 -right-12 w-48 h-48 bg-primary/20 rounded-full blur-3xl"></div>
+            <div class="absolute -bottom-12 -left-12 w-64 h-64 bg-primary/10 rounded-full blur-2xl"></div>
+        </div>
+    </div>
+</section>
+
+<!-- Stats/Features -->
+<section class="py-12 bg-white dark:bg-slate-900 border-y border-slate-100 dark:border-slate-800">
+    <div class="mx-auto max-w-7xl px-6">
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="flex items-center gap-4">
+                <div class="h-12 w-12 rounded-xl bg-orange-100 dark:bg-orange-900/30 text-orange-600 flex items-center justify-center shrink-0">
+                    <span class="material-symbols-outlined">local_shipping</span>
+                </div>
+                <div>
+                    <p class="font-bold text-sm">Free Delivery</p>
+                    <p class="text-xs text-slate-500">Orders over $50</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-4">
+                <div class="h-12 w-12 rounded-xl bg-blue-100 dark:bg-blue-900/30 text-blue-600 flex items-center justify-center shrink-0">
+                    <span class="material-symbols-outlined">verified_user</span>
+                </div>
+                <div>
+                    <p class="font-bold text-sm">Secure Payment</p>
+                    <p class="text-xs text-slate-500">100% encryption</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-4">
+                <div class="h-12 w-12 rounded-xl bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 flex items-center justify-center shrink-0">
+                    <span class="material-symbols-outlined">auto_stories</span>
+                </div>
+                <div>
+                    <p class="font-bold text-sm">Quality Books</p>
+                    <p class="text-xs text-slate-500">Original editions</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-4">
+                <div class="h-12 w-12 rounded-xl bg-purple-100 dark:bg-purple-900/30 text-purple-600 flex items-center justify-center shrink-0">
+                    <span class="material-symbols-outlined">support_agent</span>
+                </div>
+                <div>
+                    <p class="font-bold text-sm">Expert Support</p>
+                    <p class="text-xs text-slate-500">24/7 assistance</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Books Section -->
+<section id="featured" class="py-24 bg-background-light dark:bg-background-dark">
+    <div class="mx-auto max-w-7xl px-6">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+            <div class="space-y-4">
+                <h2 class="text-3xl lg:text-4xl font-black text-slate-900 dark:text-white">Featured Selections</h2>
+                <p class="text-slate-600 dark:text-slate-400 max-w-xl leading-relaxed">
+                    Hand-picked by our experts, these are the stories you shouldn't miss this month.
+                </p>
+            </div>
+            <a href="{{ route('catalog') }}" class="inline-flex items-center gap-2 text-primary font-bold hover:underline">
+                View all books
+                <span class="material-symbols-outlined sm-filled">arrow_right_alt</span>
+            </a>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 lg:gap-8">
+            @foreach($featuredBooks as $book)
+            <div class="group bg-white dark:bg-slate-800 rounded-3xl p-4 border border-slate-100 dark:border-slate-700/50 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
+                <div class="relative aspect-[3/4] rounded-2xl overflow-hidden bg-slate-100 dark:bg-slate-700 mb-6 shadow-md">
+                    @if($book->image)
+                        <img src="{{ Storage::url($book->image) }}" alt="{{ $book->title }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"/>
+                    @else
+                        <div class="w-full h-full flex items-center justify-center">
+                            <span class="material-symbols-outlined text-4xl text-slate-300">menu_book</span>
+                        </div>
+                    @endif
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                        <a href="{{ route('details', $book->id) }}" class="w-full bg-white text-slate-900 py-3 rounded-xl font-bold text-center text-sm">
+                            View Details
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="space-y-2">
+                    <div class="flex items-center justify-between gap-2">
+                        <span class="text-[10px] font-bold uppercase tracking-widest text-primary bg-primary/10 px-2 py-0.5 rounded-full">
+                            {{ $book->category->name }}
+                        </span>
+                        <div class="flex items-center text-amber-400">
+                            <span class="material-symbols-outlined text-xs material-symbols-filled">star</span>
+                            <span class="text-[10px] font-bold ml-1 text-slate-600 dark:text-slate-400">4.9</span>
+                        </div>
+                    </div>
+                    <h3 class="font-bold text-slate-900 dark:text-white group-hover:text-primary transition-colors line-clamp-1">
+                        {{ $book->title }}
+                    </h3>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 line-clamp-1">
+                        By {{ $book->authors->pluck('name')->join(', ') }}
+                    </p>
+                    <div class="flex items-center justify-between pt-2">
+                        <p class="text-lg font-black text-primary">${{ number_format($book->price, 2) }}</p>
+                        <form method="POST" action="{{ route('cart.add', $book->id) }}">
+                            @csrf
+                            <input type="hidden" name="quantity" value="1">
+                            <button type="submit" class="h-10 w-10 bg-slate-100 dark:bg-slate-700 rounded-xl flex items-center justify-center hover:bg-primary hover:text-white transition-colors">
+                                <span class="material-symbols-outlined text-sm">add_shopping_cart</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            @endforeach
+        </div>
+    </div>
+</section>
+
+<!-- Newsletter Section -->
+<section class="py-24 overflow-hidden relative">
+    <div class="absolute inset-0 bg-primary/5"></div>
+    <div class="mx-auto max-w-5xl px-6 relative">
+        <div class="bg-primary rounded-[3rem] p-12 lg:p-20 shadow-2xl shadow-primary/20 overflow-hidden relative">
+            <!-- Decorative circle -->
+            <div class="absolute -top-24 -right-24 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
+            
+            <div class="relative max-w-2xl mx-auto text-center space-y-8">
+                <h2 class="text-4xl lg:text-5xl font-black text-white leading-tight">
+                    Join Our Community of Book Lovers
+                </h2>
+                <p class="text-primary-fixed-dim text-lg opacity-90">
+                    Get weekly recommendations, exclusive interview, and early access to new releases directly in your inbox.
+                </p>
+                
+                <form class="flex flex-col sm:flex-row gap-4">
+                    <input type="email" placeholder="Your email address" class="flex-1 px-8 py-5 rounded-2xl border-none text-slate-900 font-medium focus:ring-4 focus:ring-white/20 outline-none" required/>
+                    <button type="submit" class="bg-slate-900 text-white px-10 py-5 rounded-2xl font-bold hover:bg-slate-800 transition-all shadow-xl">
+                        Subscribe
                     </button>
                 </form>
-            @else
-                <a href="{{ route('go.login', ['intended' => url()->current()]) }}" class="flex h-10 items-center justify-center rounded-xl bg-primary px-6 text-sm font-bold text-white shadow-lg shadow-primary/20 hover:bg-primary/90 transition-all">
-                    Sign In
-                </a>
-            @endauth
-        @endif
-        
-    </div>
-</div>
-</header>
-
-<main class="flex-1">
-<!-- Hero Section -->
-<section class="mx-auto max-w-7xl px-6 py-12 @container">
-<div class="flex flex-col gap-10 lg:flex-row lg:items-center">
-<div class="flex flex-col gap-8 lg:w-1/2">
-<div class="space-y-4 text-center lg:text-left">
-<h1 class="text-5xl font-black leading-tight tracking-tight lg:text-6xl">Welcome to <span class="text-primary">Adnane Books</span> Online Book Store</h1>
-<p class="text-lg text-slate-600 dark:text-slate-400">
-                                Explore thousands of books across all genres at ADNANE BOOKS. From timeless classics to the latest bestsellers, find your perfect read today.
-                            </p>
-</div>
-<form method="GET" action="{{ route('catalog') }}" class="flex w-full max-w-lg mx-auto lg:mx-0 items-stretch rounded-2xl bg-white dark:bg-slate-800 p-2 shadow-xl shadow-slate-200/50 dark:shadow-none ring-1 ring-slate-200 dark:ring-slate-700">
-<div class="flex items-center pl-4 text-slate-400">
-<span class="material-symbols-outlined">search</span>
-</div>
-<input name="search" class="flex-1 border-none bg-transparent px-4 text-sm focus:ring-0" placeholder="Search by title, author, or ISBN"/>
-<button type="submit" class="rounded-xl bg-primary px-8 py-3 text-sm font-bold text-white hover:bg-primary/90 transition-colors">Search</button>
-</form>
-
-</div>
-<div class="lg:w-1/2">
-<div class="relative h-[500px] w-full rounded-3xl bg-slate-200 dark:bg-slate-800 overflow-hidden shadow-2xl">
-<div class="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent"></div>
-<img alt="Collection of beautiful books on a shelf" class="h-full w-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAWuEglqnYu_VGJsncKCQ7ysb2Q3uNEXloJcDnc3_fabsYzB_s3JyCjfgQweCyQBInCcJe19OwHR3kvkaVY6vNMA1z0iNELTpKX8lMlDPCFyFYEIiJRECIuU2ilY6ssIsTtrYg6AYCUFJuwzvT3aHhXitw1Rtvr_wV_UQN_XDxOdxRFKrDfBQTpSFndBG-42Rt_Yl5lbz8yveXyjMDboMZtHBSzTm9Houkpu6TrcZ0wi20YtNxHn_a857rDNIZ4gqE8nkvGqRaCcROe"/>
-</div>
-</div>
-</div>
-</section>
-<!-- Categories Section -->
-<section class="bg-white/50 dark:bg-slate-900/50 py-16">
-<div class="mx-auto max-w-7xl px-6">
-<div class="flex flex-col items-center text-center mb-8">
-<h2 class="text-3xl font-bold tracking-tight">Browse by Category</h2>
-<p class="mt-2 text-slate-500">Find exactly what you're looking for</p>
-<a class="mt-4 text-sm font-bold text-primary hover:underline" href="{{ route('catalog') }}">View All Categories</a>
-</div>
-<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-@php
-    $icons = ['Fiction'=>'auto_stories','Sci-Fi'=>'rocket_launch','Biography'=>'person','History'=>'history_edu','Self-Help'=>'psychology','Business'=>'trending_up'];
-@endphp
-@forelse($categories as $cat)
-<a href="{{ route('catalog', ['category_id' => $cat->id]) }}" class="group flex cursor-pointer flex-col items-center justify-center gap-4 rounded-2xl bg-white dark:bg-slate-800 p-6 shadow-sm border border-slate-100 dark:border-slate-700 hover:border-primary/50 transition-all no-underline">
-    <div class="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-colors">
-        <span class="material-symbols-outlined">{{ $icons[$cat->name] ?? 'menu_book' }}</span>
-    </div>
-    <p class="text-sm font-bold text-slate-800 dark:text-slate-100">{{ $cat->name }}</p>
-</a>
-@empty
-<p class="col-span-6 text-center text-slate-400">Aucune catégorie disponible.</p>
-@endforelse
-</div>
-</div>
-</section>
-<!-- Featured Books Grid -->
-<section class="mx-auto max-w-7xl px-6 py-16">
-<div class="flex items-end justify-between mb-8">
-<div class="text-center w-full">
-<h2 class="text-3xl font-bold tracking-tight">Featured Books</h2>
-<p class="mt-2 text-slate-500">Curated picks from our editors</p>
-</div>
-</div>
-<div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
-@forelse($featuredBooks as $book)
-<div class="group relative flex flex-col gap-4">
-    <div class="aspect-[3/4] overflow-hidden rounded-2xl bg-slate-200 dark:bg-slate-800 shadow-md transition-all group-hover:shadow-xl group-hover:-translate-y-1">
-        <a href="{{ route('books.show', $book->id) }}" class="block w-full h-full">
-            @if($book->image)
-                <img alt="{{ $book->title }}" class="h-full w-full object-cover" src="{{ Storage::url($book->image) }}"/>
-            @else
-                <div class="h-full w-full flex flex-col items-center justify-center bg-gradient-to-br from-primary/20 to-slate-300 dark:from-primary/30 dark:to-slate-700 gap-3">
-                    <span class="material-symbols-outlined text-6xl text-primary/60">menu_book</span>
-                    <p class="text-xs text-slate-500 px-3 text-center font-medium">{{ $book->title }}</p>
-                </div>
-            @endif
-        </a>
-        <div class="absolute right-4 top-4">
-            <button class="flex h-10 w-10 items-center justify-center rounded-full bg-white/90 dark:bg-slate-800/90 text-slate-900 dark:text-white shadow-sm hover:text-red-500 transition-colors">
-                <span class="material-symbols-outlined text-[20px]">favorite</span>
-            </button>
-        </div>
-    </div>
-    <div class="flex flex-col gap-1">
-        <a href="{{ route('books.show', $book->id) }}" class="hover:text-primary transition-colors">
-            <h3 class="text-lg font-bold">{{ $book->title }}</h3>
-        </a>
-        <p class="text-sm text-slate-500">{{ $book->authors->pluck('name')->join(', ') ?: 'Auteur inconnu' }}</p>
-        <p class="mt-2 text-lg font-black text-primary">${{ number_format($book->price, 2) }}</p>
-    </div>
-</div>
-@empty
-<p class="col-span-4 text-center text-slate-400 py-12">Aucun livre disponible pour le moment.</p>
-@endforelse
-</div>
-</section>
-
-<!-- Featured Authors Section -->
-<section class="bg-slate-50 dark:bg-slate-800/30 py-20">
-<div class="mx-auto max-w-7xl px-6">
-<div class="mb-12 text-center">
-<h2 class="text-3xl font-bold tracking-tight">Meet the Authors</h2>
-<p class="mt-2 text-slate-500">Discover the brilliant minds behind our favorite books</p>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-<div class="flex flex-col items-center text-center group">
-<div class="mb-4 h-32 w-32 overflow-hidden rounded-full border-4 border-white dark:border-slate-800 shadow-lg transition-transform group-hover:scale-105">
-<img alt="Author" class="h-full w-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCTu0ivVbSD7JXj3qCmE9JApGb7trkIbvsEXPYYCQlCOpIfAIvjut2iPosg9gkOUpyJlSNotHC2XtS0xH8x7dBK2Y4uXpGklERiBqzYIg594gEu2-QNiEPMWoIwHCaJuYW-J0d_f7yHMgTqWcnavyFPQSOQb4QrmRw0XTIiVCxcPP4wnuGbi_CbavGTwtNPvzNRiM7ZLi0eNCT2-QFGNzWH54a3uWkV6KlWcjGa8Q6P4LcBxMTw5SHrP2StHhHE7pBucHFQPGrM-4m2"/>
-</div>
-<h3 class="text-lg font-bold">Elena Rodriguez</h3>
-<p class="text-xs text-primary font-bold uppercase mb-2">Mystery Fiction</p>
-<p class="text-sm text-slate-500">Award-winning author known for intricate plots and psychological depth.</p>
-</div>
-<div class="flex flex-col items-center text-center group">
-<div class="mb-4 h-32 w-32 overflow-hidden rounded-full border-4 border-white dark:border-slate-800 shadow-lg transition-transform group-hover:scale-105">
-<img alt="Author" class="h-full w-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCiN1ycVDhyKL01OlLtKAfv7Ve4X-AwHKS5PU0-Ij7vow_x_mBOQ0kd-TUc7WR2_IIjJUxfoPwZ3MIhb519-bQGKUAZoXgdLJImzO8hmOQUDk4JlE1cIstQ2Tv3XLU2ldFo2yWOzOEehEOF6KCbRQ4m9RqpMP0cFi5NlhisBRnY9Mper2EP1gWOP5Vgiw42YS9eyaEt4e2wT2-7USRG1Sy_ks6Q38mxavTP8cj74sCbVB1ZowcEW03eZUq5RqPNPMB84T8OoVyeOue4"/>
-</div>
-<h3 class="text-lg font-bold">Samuel Chen</h3>
-<p class="text-xs text-primary font-bold uppercase mb-2">Science &amp; Tech</p>
-<p class="text-sm text-slate-500">Futurist and researcher exploring the intersection of AI and human creativity.</p>
-</div>
-<div class="flex flex-col items-center text-center group">
-<div class="mb-4 h-32 w-32 overflow-hidden rounded-full border-4 border-white dark:border-slate-800 shadow-lg transition-transform group-hover:scale-105">
-<img alt="Author" class="h-full w-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBV4WFS9X5gEa0HgmhRUCNwx6gWtkluiYm-IVuk1P1g5HGXNktnAPRo7drJxdYPPR5WadbRj7RIZKgJTQ-HPTvdCASHnwCh7A6k-pKRa7aPaEG6Sn0vWTt30oouEPutH2mvV9cQKkjawyXENkh5Vca_edKhz8DrktvPDYGC_jsvrSfEARUEgX3IsY5xB17c-dVZNQrwJ49osIknfzRuXrgmA3JlcXgnph8StSm4QDMBzQaVpUsBaSTF__8Lh2MoQf6Ahh7fINSzGNFT"/>
-</div>
-<h3 class="text-lg font-bold">Dr. Maya Patel</h3>
-<p class="text-xs text-primary font-bold uppercase mb-2">History</p>
-<p class="text-sm text-slate-500">Renowned historian uncovering hidden narratives of global civilizations.</p>
-</div>
-<div class="flex flex-col items-center text-center group">
-<div class="mb-4 h-32 w-32 overflow-hidden rounded-full border-4 border-white dark:border-slate-800 shadow-lg transition-transform group-hover:scale-105">
-<img alt="Author" class="h-full w-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvo8am4dP2FPrSztGwhYPVeHFXed7cWK_wdMDG_o_g-tSkJgFtB1ijgHGhuQya__UzM2w-9u12UkV8ayZdV4YKjb0t2osbx1F-KvwZ7iJSUE-934fiOiwX8z_qjH_dfRPgoc85UNaeseb2MvTY6BSMy_9MUdJu2oL5D2QWvSkLQwxUQuqVJdWJv_EdCGZGNLj14-kTQ-sJlxAFj5zMh66KnpYXu8L89W-oVhr5kSbJ-KRXvBN4IcB2ZTTxwgUjb7pGqIH0tvlE9SWf"/>
-</div>
-<h3 class="text-lg font-bold">Liam O'Connor</h3>
-<p class="text-xs text-primary font-bold uppercase mb-2">Poetry &amp; Essays</p>
-<p class="text-sm text-slate-500">Modern poet whose lyrical prose captures the essence of the human experience.</p>
-</div>
-</div>
-</div>
-</section>
-<!-- Testimonials Section -->
-<section class="mx-auto max-w-7xl px-6 py-20">
-<div class="mb-12 text-center">
-<h2 class="text-3xl font-bold tracking-tight">Testimonials</h2>
-<p class="mt-2 text-slate-500">Join a community of book lovers from around the world</p>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-<div class="rounded-2xl bg-white dark:bg-slate-800 p-8 shadow-sm border border-slate-100 dark:border-slate-700 flex flex-col gap-4">
-<div class="flex text-primary">
-<span class="material-symbols-outlined material-symbols-filled fill-current">star</span>
-<span class="material-symbols-outlined material-symbols-filled fill-current">star</span>
-<span class="material-symbols-outlined material-symbols-filled fill-current">star</span>
-<span class="material-symbols-outlined material-symbols-filled fill-current">star</span>
-<span class="material-symbols-outlined material-symbols-filled fill-current">star_half</span>
-</div>
-<p class="text-slate-600 dark:text-slate-400 italic">"The curation at ADNANE BOOKS is exceptional. I've found so many hidden gems that I wouldn't have discovered elsewhere. The delivery is always prompt!"</p>
-<div class="mt-4 flex items-center gap-3">
-<div class="h-10 w-10 rounded-full bg-slate-200 bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCTu0ivVbSD7JXj3qCmE9JApGb7trkIbvsEXPYYCQlCOpIfAIvjut2iPosg9gkOUpyJlSNotHC2XtS0xH8x7dBK2Y4uXpGklERiBqzYIg594gEu2-QNiEPMWoIwHCaJuYW-J0d_f7yHMgTqWcnavyFPQSOQb4QrmRw0XTIiVCxcPP4wnuGbi_CbavGTwtNPvzNRiM7ZLi0eNCT2-QFGNzWH54a3uWkV6KlWcjGa8Q6P4LcBxMTw5SHrP2StHhHE7pBucHFQPGrM-4m2')"></div>
-<div>
-<p class="text-sm font-bold">Sarah Jenkins</p>
-<p class="text-xs text-slate-500">Avid Reader</p>
-</div>
-</div>
-</div>
-<div class="rounded-2xl bg-white dark:bg-slate-800 p-8 shadow-sm border border-slate-100 dark:border-slate-700 flex flex-col gap-4">
-<div class="flex text-primary">
-<span class="material-symbols-outlined material-symbols-filled fill-current">star</span>
-<span class="material-symbols-outlined material-symbols-filled fill-current">star</span>
-<span class="material-symbols-outlined material-symbols-filled fill-current">star</span>
-<span class="material-symbols-outlined material-symbols-filled fill-current">star</span>
-<span class="material-symbols-outlined material-symbols-filled fill-current">star</span>
-</div>
-<p class="text-slate-600 dark:text-slate-400 italic">"I love the membership benefits. Getting early access to my favorite authors' new releases has been a game-changer for my weekend reading."</p>
-<div class="mt-4 flex items-center gap-3">
-<div class="h-10 w-10 rounded-full bg-slate-200 bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDvo8am4dP2FPrSztGwhYPVeHFXed7cWK_wdMDG_o_g-tSkJgFtB1ijgHGhuQya__UzM2w-9u12UkV8ayZdV4YKjb0t2osbx1F-KvwZ7iJSUE-934fiOiwX8z_qjH_dfRPgoc85UNaeseb2MvTY6BSMy_9MUdJu2oL5D2QWvSkLQwxUQuqVJdWJv_EdCGZGNLj14-kTQ-sJlxAFj5zMh66KnpYXu8L89W-oVhr5kSbJ-KRXvBN4IcB2ZTTxwgUjb7pGqIH0tvlE9SWf')"></div>
-<div>
-<p class="text-sm font-bold">David Thompson</p>
-<p class="text-xs text-slate-500">Premium Member</p>
-</div>
-</div>
-</div>
-<div class="rounded-2xl bg-white dark:bg-slate-800 p-8 shadow-sm border border-slate-100 dark:border-slate-700 flex flex-col gap-4">
-<div class="flex text-primary">
-<span class="material-symbols-outlined material-symbols-filled fill-current">star</span>
-<span class="material-symbols-outlined material-symbols-filled fill-current">star</span>
-<span class="material-symbols-outlined material-symbols-filled fill-current">star</span>
-<span class="material-symbols-outlined material-symbols-filled fill-current">star</span>
-<span class="material-symbols-outlined material-symbols-filled fill-current">star_half</span>
-</div>
-<p class="text-slate-600 dark:text-slate-400 italic">"The user interface is so clean and easy to use. Searching for specific ISBNs works flawlessly every time. Highly recommended for students."</p>
-<div class="mt-4 flex items-center gap-3">
-<div class="h-10 w-10 rounded-full bg-slate-200 bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBV4WFS9X5gEa0HgmhRUCNwx6gWtkluiYm-IVuk1P1g5HGXNktnAPRo7drJxdYPPR5WadbRj7RIZKgJTQ-HPTvdCASHnwCh7A6k-pKRa7aPaEG6Sn0vWTt30oouEPutH2mvV9cQKkjawyXENkh5Vca_edKhz8DrktvPDYGC_jsvrSfEARUEgX3IsY5xB17c-dVZNQrwJ49osIknfzRuXrgmA3JlcXgnph8StSm4QDMBzQaVpUsBaSTF__8Lh2MoQf6Ahh7fINSzGNFT')"></div>
-<div>
-<p class="text-sm font-bold">Michael Chen</p>
-<p class="text-xs text-slate-500">University Student</p>
-</div>
-</div>
-</div>
-</div>
-</section>
-<!-- Promo Section -->
-<section class="py-20 bg-white">
-<div class="mx-auto max-w-7xl px-6">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-
-        <!-- Card 1 -->
-        <div class="relative overflow-hidden rounded-2xl bg-amber-50 border border-amber-100 p-8 flex flex-col justify-between min-h-[220px]">
-            <div>
-                <span class="inline-block bg-amber-400 text-white text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-4">Limited Time</span>
-                <h3 class="text-5xl font-black text-slate-900 leading-none mb-2">Up to<br><span class="text-amber-500">75% Off</span></h3>
-                <p class="text-slate-500 text-sm mt-3">On selected bestsellers and classic titles.</p>
+                
+                <p class="text-xs text-primary-fixed-dim opacity-75">
+                    We respect your privacy. Unsubscribe at any time.
+                </p>
             </div>
-            <a href="{{ route('catalog') }}" class="mt-6 inline-flex items-center gap-1 text-sm font-bold text-amber-600 hover:text-amber-700 transition-colors">
-                Shop Now <span class="material-symbols-outlined text-base">arrow_forward</span>
-            </a>
-            <div class="absolute -right-6 -bottom-6 h-32 w-32 rounded-full bg-amber-200/50"></div>
-            <div class="absolute -right-2 -bottom-10 h-20 w-20 rounded-full bg-amber-300/30"></div>
         </div>
-
-        <!-- Card 2 -->
-        <div class="relative overflow-hidden rounded-2xl bg-blue-50 border border-blue-100 p-8 flex flex-col justify-between min-h-[220px]">
-            <div>
-                <span class="inline-block bg-primary text-white text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-4">New Arrivals</span>
-                <h3 class="text-5xl font-black text-slate-900 leading-none mb-2">Fresh<br><span class="text-primary">Picks</span></h3>
-                <p class="text-slate-500 text-sm mt-3">Discover the latest titles added to our catalog this week.</p>
-            </div>
-            <a href="{{ route('catalog') }}" class="mt-6 inline-flex items-center gap-1 text-sm font-bold text-primary hover:text-primary/80 transition-colors">
-                Explore <span class="material-symbols-outlined text-base">arrow_forward</span>
-            </a>
-            <div class="absolute -right-6 -bottom-6 h-32 w-32 rounded-full bg-blue-200/50"></div>
-            <div class="absolute -right-2 -bottom-10 h-20 w-20 rounded-full bg-blue-300/30"></div>
-        </div>
-
-        <!-- Card 3 -->
-        <div class="relative overflow-hidden rounded-2xl bg-emerald-50 border border-emerald-100 p-8 flex flex-col justify-between min-h-[220px]">
-            <div>
-                <span class="inline-block bg-emerald-500 text-white text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-4">Free Delivery</span>
-                <h3 class="text-5xl font-black text-slate-900 leading-none mb-2">Order<br><span class="text-emerald-500">Today</span></h3>
-                <p class="text-slate-500 text-sm mt-3">Free shipping on all orders. No minimum required.</p>
-            </div>
-            <a href="{{ route('catalog') }}" class="mt-6 inline-flex items-center gap-1 text-sm font-bold text-emerald-600 hover:text-emerald-700 transition-colors">
-                Order Now <span class="material-symbols-outlined text-base">arrow_forward</span>
-            </a>
-            <div class="absolute -right-6 -bottom-6 h-32 w-32 rounded-full bg-emerald-200/50"></div>
-            <div class="absolute -right-2 -bottom-10 h-20 w-20 rounded-full bg-emerald-300/30"></div>
-        </div>
-
     </div>
-</div>
 </section>
-<!-- Best Sellers CTA -->
-<section class="mx-auto max-w-7xl px-6 py-16">
-<div class="relative overflow-hidden rounded-[2rem] bg-slate-900 px-8 py-16 md:px-20 lg:py-24">
-<div class="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-primary/20 blur-3xl"></div>
-<div class="absolute -bottom-20 -left-20 h-64 w-64 rounded-full bg-primary/30 blur-3xl"></div>
-<div class="relative z-10 flex flex-col items-center gap-8 text-center">
-<h2 class="max-w-2xl text-4xl font-black tracking-tight text-white lg:text-5xl">
-                            Unlock a World of Stories with Our Membership
-                        </h2>
-<p class="max-w-lg text-lg text-slate-400">
-                            Get early access to bestsellers, exclusive author interviews, and monthly credits for any book in our collection.
-                        </p>
-<div class="flex flex-col sm:flex-row gap-4">
-<button class="rounded-xl bg-primary px-10 py-4 text-base font-bold text-white shadow-lg shadow-primary/20 hover:bg-primary/90 transition-all">
-                                Get Started Now
-                            </button>
-<button class="rounded-xl bg-white/10 px-10 py-4 text-base font-bold text-white backdrop-blur-md hover:bg-white/20 transition-all">
-                                Learn More
-                            </button>
-</div>
-</div>
-</div>
-</section>
-</main>
-<!-- Footer -->
-<footer class="border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 pt-16 pb-8">
-<div class="mx-auto max-w-7xl px-6">
-<div class="grid grid-cols-2 gap-12 lg:grid-cols-4 lg:gap-8">
-<div class="col-span-2 lg:col-span-1">
-<div class="flex items-center gap-3 mb-6">
-<div class="flex h-10 w-10 items-center justify-center overflow-hidden rounded-lg">
-<img alt="ADNANE BOOKS Logo" class="h-full w-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjoHBDtvQbhZZYBnJp5T-QCPGx2NwzDgisgnQfKvkfxLNzS7-PFqR28px8MxWFyFXTsM7nBQryX5Wq5X-eNPlImUWfSpP014oEUdJGAzXN3ppCprSiRJTyQQFjq5_kWsWopkbbAalATtbXkhpNLhGVx4BJpTQc_OZk2Kr8fsxvYmKzGz8FNPy58gSRyDV_JrF80pVih8STE9krBnpJR1oa3WVYV7Qbo-zaAc8Mu6gnqPEwr4YWDE-ESZ--zicZ3qgOEIgiig97iG7J"/>
-</div>
-<h2 class="text-xl font-extrabold tracking-tight">ADNANE BOOKS</h2>
-</div>
-<p class="text-sm text-slate-500 leading-relaxed">
-                            Your premier destination for physical and digital books. We believe every page is a new beginning.
-                        </p>
-<div class="mt-6 flex gap-4">
-<a aria-label="Facebook" class="text-slate-400 hover:text-primary transition-colors" href="#">
-<svg class="h-5 w-5 fill-current" viewbox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path></svg>
-</a>
-<a aria-label="Instagram" class="text-slate-400 hover:text-primary transition-colors" href="#">
-<svg class="h-5 w-5 fill-current" viewbox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c.796 0 1.441.645 1.441 1.44s-.645 1.44-1.441 1.44c-.795 0-1.439-.645-1.439-1.44s.644-1.44 1.439-1.44z"></path></svg>
-</a>
-<a aria-label="LinkedIn" class="text-slate-400 hover:text-primary transition-colors" href="#">
-<svg class="h-5 w-5 fill-current" viewbox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg>
-</a>
-<a aria-label="YouTube" class="text-slate-400 hover:text-primary transition-colors" href="#">
-<svg class="h-5 w-5 fill-current" viewbox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"></path></svg>
-</a>
-</div>
-</div>
-<div>
-<h4 class="mb-6 text-sm font-bold uppercase tracking-wider">Company</h4>
-<ul class="space-y-4 text-sm text-slate-500">
-<li><a class="hover:text-primary transition-colors" href="#">About Us</a></li>
-<li><a class="hover:text-primary transition-colors" href="#">Careers</a></li>
-<li><a class="hover:text-primary transition-colors" href="#">Affiliates</a></li>
-<li><a class="hover:text-primary transition-colors" href="#">Store Locator</a></li>
-</ul>
-</div>
-<div>
-<h4 class="mb-6 text-sm font-bold uppercase tracking-wider">Support</h4>
-<ul class="space-y-4 text-sm text-slate-500">
-<li><a class="hover:text-primary transition-colors" href="#">Help Center</a></li>
-<li><a class="hover:text-primary transition-colors" href="#">Track Order</a></li>
-<li><a class="hover:text-primary transition-colors" href="#">Shipping Info</a></li>
-<li><a class="hover:text-primary transition-colors" href="#">Returns</a></li>
-</ul>
-</div>
-<div>
-<h4 class="mb-6 text-sm font-bold uppercase tracking-wider">Newsletter</h4>
-<p class="mb-4 text-sm text-slate-500">Subscribe to get the latest book news and exclusive offers.</p>
-<form class="flex flex-col gap-2">
-<input class="rounded-lg border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-sm focus:ring-primary" placeholder="Enter your email" type="email"/>
-<button class="w-full rounded-lg bg-primary py-2.5 text-sm font-bold text-white hover:bg-primary/90 transition-all">Subscribe</button>
-</form>
-</div>
-</div>
-<div class="mt-16 border-t border-slate-100 dark:border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-<p class="text-xs text-slate-400">© 2026 ADNANE BOOKS. All rights reserved.</p>
-<div class="flex gap-6 text-xs text-slate-400">
-<a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
-<a class="hover:text-primary transition-colors" href="#">Terms of Service</a>
-<a class="hover:text-primary transition-colors" href="#">Cookie Policy</a>
-</div>
-</div>
-</div>
-</footer>
-</div>
-</body></html>
+@endsection

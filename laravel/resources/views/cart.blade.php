@@ -1,60 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
-    tailwind.config = {
-        darkMode: "class",
-        theme: {
-            extend: {
-                colors: {
-                    "primary": "#2463eb",
-                    "background-light": "#f6f6f8",
-                    "background-dark": "#111621",
-                },
-                fontFamily: { "display": ["Inter"] },
-                borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
-            },
-        },
-    }
-</script>
-<style>
-    body { font-family: 'Inter', sans-serif; }
-    .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
-</style>
-<title>ADNANE BOOKS - Your Cart</title>
-</head>
-<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased">
-<div class="relative flex min-h-screen flex-col overflow-x-hidden">
+@extends('layouts.customer')
 
-<!-- Header -->
-<header class="sticky top-0 z-50 w-full border-b border-slate-200 dark:border-slate-800 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md">
-<div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
-    <a href="{{ route('home') }}" class="flex items-center gap-3">
-        <div class="flex h-12 w-12 items-center justify-center overflow-hidden rounded-lg">
-            <img alt="ADNANE BOOKS Logo" class="h-full w-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHaSfcSQzACpzRaM85jtiSCRc2YZlQQ9OyjG88BCQ5ZRkXGmMJ6p5sgW7qOfOSbNxOXlaN02z5vQUaNsva1DLs7kg8MgMhovhkKJQJcQRpKttceHtfdVsCU2spvQq58vpCHc4yf1rpvDePLbftu4871vWwSCUPgH38ziV8x27TpG0c3Cb_alPk9XYlJ0qI-qKLfmL-DyXCKCGXTDyr9snZhwNdFVPOIrXKkeppV89fFzJptxN652VAAHik8EXINBDVxoJIpWYlQ7_G"/>
-        </div>
-        <h2 class="text-xl font-extrabold tracking-tight uppercase">ADNANE BOOKS</h2>
-    </a>
-    <div class="flex items-center gap-4">
-        <a href="{{ route('cart.index') }}" class="relative flex h-10 w-10 items-center justify-center rounded-full bg-slate-200/50 dark:bg-slate-800 hover:bg-primary/20 transition-colors">
-            <span class="material-symbols-outlined text-slate-700 dark:text-slate-300">shopping_cart</span>
-            @if($items->count())
-            <span class="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-[10px] font-bold text-white">{{ $items->count() }}</span>
-            @endif
-        </a>
-        <a href="{{ route('orders.my') }}" class="text-sm font-medium text-slate-600 hover:text-primary">My Orders</a>
-        <a href="{{ route('profile.edit') }}" class="flex h-10 w-10 items-center justify-center rounded-full bg-slate-200/50 dark:bg-slate-800 hover:bg-primary/20 transition-colors">
-            <span class="material-symbols-outlined text-slate-700 dark:text-slate-300">person</span>
-        </a>
-    </div>
-</div>
-</header>
+@section('title', 'ADNANE BOOKS - Your Cart')
 
+@section('content')
 <main class="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
     <div class="mb-8">
         <h1 class="text-3xl font-black tracking-tight sm:text-4xl">Your Cart</h1>
@@ -191,11 +139,5 @@
     </div>
     @endif
 </main>
+@endsection
 
-<footer class="mt-auto border-t border-slate-200 dark:border-slate-800 py-8 text-center text-sm text-slate-500">
-    <p>© 2026 ADNANE BOOKS. All rights reserved.</p>
-</footer>
-
-</div>
-</body>
-</html>
