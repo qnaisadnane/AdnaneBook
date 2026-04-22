@@ -184,8 +184,11 @@
                         <input type="number" id="qty_input" value="1" min="1" max="{{ $book->quantity }}"
                                class="w-20 rounded-lg border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm focus:ring-primary text-center font-bold"/>
                     </div>
-                    <a id="buy_now_btn"
-                       href="{{ route('cart.index', ['book_id' => $book->id, 'quantity' => 1]) }}"
+                <a id="buy_now_btn"
+                       data-auth="{{ Auth::check() ? '1' : '0' }}"
+                       data-cart-url="{{ route('cart.index', ['book_id' => $book->id]) }}"
+                       data-login-url="{{ route('go.login') }}"
+                       href="{{ Auth::check() ? route('cart.index', ['book_id' => $book->id, 'quantity' => 1]) : route('go.login', ['intended' => route('cart.index', ['book_id' => $book->id, 'quantity' => 1])]) }}"
                        class="flex-1 bg-primary text-white font-bold py-4 px-8 rounded-lg shadow-lg hover:bg-primary/90 transition-all flex items-center justify-center gap-2">
                         <span class="material-symbols-outlined">shopping_cart</span>
                         Buy Now
@@ -194,9 +197,20 @@
                 <script>
                     document.getElementById('qty_input').addEventListener('input', function() {
                         var btn = document.getElementById('buy_now_btn');
-                        var url = new URL(btn.href);
-                        url.searchParams.set('quantity', this.value || 1);
-                        btn.href = url.toString();
+                        var qty = this.value || 1;
+                        var isAuth = btn.getAttribute('data-auth') === '1';
+                        
+                        // Base cart URL with book_id
+                        var cartUrl = new URL(btn.getAttribute('data-cart-url'), window.location.origin);
+                        cartUrl.searchParams.set('quantity', qty);
+                        
+                        if (isAuth) {
+                            btn.href = cartUrl.toString();
+                        } else {
+                            var loginUrl = new URL(btn.getAttribute('data-login-url'), window.location.origin);
+                            loginUrl.searchParams.set('intended', cartUrl.toString());
+                            btn.href = loginUrl.toString();
+                        }
                     });
                 </script>
                 @else

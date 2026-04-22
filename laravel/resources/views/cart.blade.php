@@ -176,8 +176,8 @@
                     @else
                         <a href="{{ route('go.login', ['intended' => route('checkout.index')]) }}"
                            class="w-full rounded-lg bg-primary py-4 text-sm font-bold text-white shadow-lg shadow-primary/20 hover:bg-primary/90 transition-all active:scale-[0.98] flex items-center justify-center gap-2">
-                            <span class="material-symbols-outlined text-base">login</span>
-                            Se connecter pour commander
+                            <span class="material-symbols-outlined text-base">shopping_bag</span>
+                            Commander
                         </a>
                     @endauth
                     <div class="flex items-center justify-center gap-2 text-xs text-slate-400">
