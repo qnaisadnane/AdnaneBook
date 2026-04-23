@@ -14,12 +14,14 @@ use App\Http\Controllers\WelcomeController;
 
 // ─── Public ───────────────────────────────────────────────────────
 Route::get('/', [WelcomeController::class, 'index'])->name('home');
+Route::get('/about', fn() => view('about'))->name('about');
 Route::get('/catalog', [BookController::class, 'index'])->name('catalog');
 Route::get('/books/{id}', [BookController::class, 'show'])->name('books.show');
 
 // Panier accessible sans auth
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
-Route::post('/cart/add/{bookId}', [CartController::class, 'add'])->name('cart.add');
+Route::post('/cart/add/{bookId}', [CartController::class, 'add'])->name('cart.add')->middleware('auth');
+Route::delete('/cart/clear', [CartController::class, 'clear'])->name('cart.clear');
 
 // Stocke l'URL intended avant de rediriger vers login
 Route::get('/go-login', function (\Illuminate\Http\Request $request) {
@@ -65,6 +67,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/orders', [OrderController::class, 'store'])->name('orders.store');
     Route::post('/orders/{id}/pay', [OrderController::class, 'pay'])->name('orders.pay');
     Route::get('/my-orders', [OrderController::class, 'myOrders'])->name('orders.my');
+    Route::get('/orders/{id}/download-invoice', [OrderController::class, 'downloadInvoice'])->name('orders.download-invoice');
 });
 
 Route::get('/details/{id}', [BookController::class, 'show'])->name('details');

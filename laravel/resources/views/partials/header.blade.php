@@ -3,13 +3,16 @@
         <div class="flex items-center gap-8">
             <a href="{{ route('home') }}" class="flex items-center gap-3">
                 <div class="flex h-10 w-10 items-center justify-center overflow-hidden rounded-lg">
-                    <img alt="ADNANE BOOKS Logo" class="h-full w-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHaSfcSQzACpzRaM85jtiSCRc2YZlQQ9OyjG88BCQ5ZRkXGmMJ6p5sgW7qOfOSbNxOXlaN02z5vQUaNsva1DLs7kg8MgMhovhkKJQJcQRpKttceHtfdVsCU2spvQq58vpCHc4yf1rpvDePLbftu4871vWwSCUPgH38ziV8x27TpG0c3Cb_alPk9XYlJ0qI-qKLfmL-DyXCKCGXTDyr9snZhwNdFVPOIrXKkeppV89fFzJptxN652VAAHik8EXINBDVxoJIpWYlQ7_G"/>
+                    <img alt="ADNANE BOOKS Logo" class="h-full w-full object-cover" src="{{ asset('images/logo.png') }}"/>
                 </div>
                 <h2 class="text-xl font-extrabold tracking-tight uppercase">ADNANE BOOKS</h2>
             </a>
             <nav class="hidden md:flex items-center gap-6">
                 <a class="text-sm font-semibold hover:text-primary transition-colors {{ request()->routeIs('home') ? 'text-primary' : '' }}" href="{{ route('home') }}">Home</a>
-                <a class="text-sm font-semibold hover:text-primary transition-colors {{ request()->routeIs('catalog') ? 'text-primary' : '' }}" href="{{ route('catalog') }}">Catalog</a>
+                <a class="text-sm font-semibold hover:text-primary transition-colors {{ request()->routeIs('catalog') ? 'text-primary' : '' }}" href="{{ route('catalog') }}">Books</a>
+                <a class="text-sm font-semibold hover:text-primary transition-colors {{ request()->routeIs('about') ? 'text-primary' : '' }}" href="{{ route('about') }}">About Us</a>
+                <a class="text-sm font-semibold hover:text-primary transition-colors" href="#">Contact Us</a>
+                <a class="text-sm font-semibold hover:text-primary transition-colors" href="#">New Release</a>
             </nav>
         </div>
 

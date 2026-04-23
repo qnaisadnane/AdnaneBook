@@ -4,7 +4,7 @@
             <div class="col-span-2 lg:col-span-1">
                 <div class="flex items-center gap-3 mb-6">
                     <div class="flex h-10 w-10 items-center justify-center overflow-hidden rounded-lg">
-                        <img alt="ADNANE BOOKS Logo" class="h-full w-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHaSfcSQzACpzRaM85jtiSCRc2YZlQQ9OyjG88BCQ5ZRkXGmMJ6p5sgW7qOfOSbNxOXlaN02z5vQUaNsva1DLs7kg8MgMhovhkKJQJcQRpKttceHtfdVsCU2spvQq58vpCHc4yf1rpvDePLbftu4871vWwSCUPgH38ziV8x27TpG0c3Cb_alPk9XYlJ0qI-qKLfmL-DyXCKCGXTDyr9snZhwNdFVPOIrXKkeppV89fFzJptxN652VAAHik8EXINBDVxoJIpWYlQ7_G"/>
+                        <img alt="ADNANE BOOKS Logo" class="h-full w-full object-cover" src="{{ asset('images/logo.png') }}"/>
                     </div>
                     <h2 class="text-xl font-extrabold tracking-tight uppercase">ADNANE BOOKS</h2>
                 </div>
@@ -29,7 +29,7 @@
             <div>
                 <h4 class="mb-6 text-sm font-bold uppercase tracking-wider">Company</h4>
                 <ul class="space-y-4 text-sm text-slate-500">
-                    <li><a class="hover:text-primary transition-colors" href="#">About Us</a></li>
+                    <li><a class="hover:text-primary transition-colors" href="{{ route('about') }}">About Us</a></li>
                     <li><a class="hover:text-primary transition-colors" href="#">Careers</a></li>
                     <li><a class="hover:text-primary transition-colors" href="#">Affiliates</a></li>
                     <li><a class="hover:text-primary transition-colors" href="#">Store Locator</a></li>
@@ -45,21 +45,25 @@
                 </ul>
             </div>
             <div>
-                <h4 class="mb-6 text-sm font-bold uppercase tracking-wider">Newsletter</h4>
-                <p class="mb-4 text-sm text-slate-500">Subscribe to get the latest book news and exclusive offers.</p>
-                <form class="flex flex-col gap-2">
-                    <input class="rounded-lg border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-sm focus:ring-primary" placeholder="Enter your email" type="email"/>
-                    <button class="w-full rounded-lg bg-primary py-2.5 text-sm font-bold text-white hover:bg-primary/90 transition-all">Subscribe</button>
-                </form>
+                <h4 class="mb-6 text-sm font-bold uppercase tracking-wider">Contact Us</h4>
+                <ul class="space-y-4 text-sm text-slate-500">
+                    <li class="flex items-start gap-3 group cursor-pointer">
+                        <span class="material-symbols-outlined text-slate-400 group-hover:text-primary transition-colors text-lg">call</span>
+                        <a href="tel:+212713650472" class="hover:text-primary transition-colors">+212 713-650472</a>
+                    </li>
+                    <li class="flex items-start gap-3 group cursor-pointer">
+                        <span class="material-symbols-outlined text-slate-400 group-hover:text-primary transition-colors text-lg">mail</span>
+                        <a href="mailto:contact@adnanebook.com" class="hover:text-primary transition-colors">contact@adnanebook.com</a>
+                    </li>
+                    <li class="flex items-start gap-3 group cursor-pointer">
+                        <span class="material-symbols-outlined text-slate-400 group-hover:text-primary transition-colors text-lg">location_on</span>
+                        <span class="hover:text-primary transition-colors">BLOC 46 Qu Saida II ,SAFI , Morocco</span>
+                    </li>
+                </ul>
             </div>
         </div>
-        <div class="mt-16 border-t border-slate-100 dark:border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-            <p class="text-xs text-slate-400">© 2026 ADNANE BOOKS. All rights reserved.</p>
-            <div class="flex gap-6 text-xs text-slate-400">
-                <a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
-                <a class="hover:text-primary transition-colors" href="#">Terms of Service</a>
-                <a class="hover:text-primary transition-colors" href="#">Cookie Policy</a>
-            </div>
+        <div class="mt-16 border-t border-slate-100 dark:border-slate-800 pt-8 flex justify-center items-center">
+            <p class="text-xs text-slate-400 text-center">© 2026 ADNANE BOOKS. All rights reserved.</p>
         </div>
     </div>
 </footer>
