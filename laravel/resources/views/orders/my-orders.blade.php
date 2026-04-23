@@ -35,6 +35,11 @@
                     <button class="bg-primary text-white px-4 py-1.5 rounded-lg text-xs font-bold hover:bg-primary/90">Pay Now</button>
                 </form>
                 @endif
+                <a href="{{ route('orders.download-invoice', $order->id) }}" 
+                   class="flex items-center gap-1.5 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 px-3 py-1.5 rounded-lg text-xs font-bold hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+                    <span class="material-symbols-outlined text-sm">picture_as_pdf</span>
+                    Invoice
+                </a>
             </div>
         </div>
         <div class="px-6 py-4 space-y-3">
