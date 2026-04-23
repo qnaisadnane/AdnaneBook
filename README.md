@@ -36,12 +36,7 @@
 ### 🔴 Administrateur — *Super Admin*
 Accès complet : gérer utilisateurs, livres, catégories, auteurs, stocks, commandes, statistiques.
 
-### 🟠 Gestionnaire de Stock — *Gestion du catalogue*
-Ajouter / modifier des livres, gérer les stocks, associer des auteurs aux livres.
 
-### 🟡 Agent Commercial — *Gestion des commandes*
-Voir, créer et modifier le statut des commandes. Consulter les livres.
-> ⚠️ L'agent ne gère pas les clients.
 
 ### 🟢 Client — *Acheteur*
 Consulter et rechercher des livres, ajouter au panier, passer une commande, voir ses commandes.
@@ -50,17 +45,17 @@ Consulter et rechercher des livres, ajouter au panier, passer une commande, voir
 
 ## 🔐 Matrice des Permissions
 
-| Action | Client | Agent | Gestionnaire | Admin |
-|--------|:------:|:-----:|:------------:|:-----:|
-| Voir livres | ✅ | ✅ | ✅ | ✅ |
-| Ajouter livre | ❌ | ❌ | ✅ | ✅ |
-| Modifier livre | ❌ | ❌ | ✅ | ✅ |
-| Gérer stock | ❌ | ❌ | ✅ | ✅ |
-| Créer commande | ✅ | ✅ | ❌ | ✅ |
-| Voir commandes | Ses commandes | ✅ | ❌ | ✅ |
-| Gérer clients | ❌ | ❌ | ❌ | ✅ |
-| Gérer utilisateurs | ❌ | ❌ | ❌ | ✅ |
-| Voir statistiques | ❌ | ❌ | ❌ | ✅ |
+| Action | Client | Admin |
+|--------|:------:|:-----:|
+| Voir livres | ✅ | ✅ |
+| Ajouter livre | ❌ | ✅ |
+| Modifier livre | ❌ | ✅ |
+| Gérer stock | ❌ | ✅ |
+| Créer commande | ✅ | ✅ |
+| Voir commandes | Ses commandes | ✅ |
+| Gérer clients | ❌ | ✅ |
+| Gérer utilisateurs | ❌ | ✅ |
+| Voir statistiques | ❌ | ✅ |
 
 ---
 
@@ -128,7 +123,7 @@ CRUD complet — chaque catégorie possède un nom et une couleur d'affichage
 ### Schéma des tables
 
 ```
-users         — id, name, email, password, role (admin|manager|agent|client)
+users         — id, name, email, password, role (admin|client)
 categories    — id, name, color
 authors       — id, name, nationality
 books         — id, title, isbn, price, stock, category_id, description, image
