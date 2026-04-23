@@ -5,7 +5,17 @@
 @push('styles')
 <style>
 .step-hidden{display:none;}
+#card-element {
+    padding: 12px;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    background: white;
+}
 </style>
+@endpush
+
+@push('scripts')
+<script src="https://js.stripe.com/v3/"></script>
 @endpush
 
 @section('content')
@@ -147,13 +157,20 @@
                             </div>
                         </label>
                         <label class="flex items-center gap-4 p-4 rounded-xl border-2 border-slate-200 hover:border-slate-300 cursor-pointer" id="label-card">
-                            <input type="radio" name="payment_method" value="card" class="text-primary focus:ring-primary"/>
+                            <input type="radio" name="payment_method" value="card" class="text-primary focus:ring-primary" id="payment-card-radio"/>
                             <span class="material-symbols-outlined text-slate-500">credit_card</span>
                             <div class="flex-1">
                                 <p class="font-semibold text-sm">Credit / Debit Card</p>
-                                <p class="text-xs text-slate-500">Simulated — instant payment</p>
+                                <p class="text-xs text-slate-500">Secure payment via Stripe</p>
                             </div>
                         </label>
+
+                        <!-- Stripe Card Element Container -->
+                        <div id="stripe-card-section" class="hidden mt-4 p-4 rounded-xl border border-slate-200 bg-slate-50">
+                            <label class="block text-xs font-semibold text-slate-600 mb-2">Card Details</label>
+                            <div id="card-element"></div>
+                            <div id="card-errors" class="text-red-500 text-xs mt-2" role="alert"></div>
+                        </div>
                     </div>
                 </div>
 
@@ -294,12 +311,84 @@ function updateTotal(radio) {
         : 'flex items-center gap-4 p-4 rounded-xl border-2 border-slate-200 hover:border-slate-300 cursor-pointer transition-colors';
 }
 
+// --- Stripe Integration ---
+const stripe = Stripe('{{ env('STRIPE_KEY') }}');
+const elements = stripe.elements();
+const card = elements.create('card', {
+    style: {
+        base: {
+            fontSize: '16px',
+            color: '#32325d',
+            fontFamily: '"Inter", sans-serif',
+            '::placeholder': { color: '#aab7c4' },
+        },
+        invalid: { color: '#fa755a', iconColor: '#fa755a' }
+    }
+});
+card.mount('#card-element');
+
+// Listen for radio changes
+document.querySelectorAll('input[name="payment_method"]').forEach(radio => {
+    radio.addEventListener('change', function() {
+        const stripeSection = document.getElementById('stripe-card-section');
+        if (this.value === 'card') {
+            stripeSection.classList.remove('hidden');
+            document.getElementById('label-card').classList.add('border-primary', 'bg-primary/5');
+            document.getElementById('label-card').classList.remove('border-slate-200');
+            document.getElementById('label-cash').classList.remove('border-primary', 'bg-primary/5');
+            document.getElementById('label-cash').classList.add('border-slate-200');
+        } else {
+            stripeSection.classList.add('hidden');
+            document.getElementById('label-cash').classList.add('border-primary', 'bg-primary/5');
+            document.getElementById('label-cash').classList.remove('border-slate-200');
+            document.getElementById('label-card').classList.remove('border-primary', 'bg-primary/5');
+            document.getElementById('label-card').classList.add('border-slate-200');
+        }
+    });
+});
+
+// Handle form submission
+const form = document.getElementById('checkout-form');
+form.addEventListener('submit', async (event) => {
+    const paymentMethod = document.querySelector('input[name="payment_method"]:checked').value;
+    
+    if (paymentMethod === 'card') {
+        event.preventDefault();
+        
+        // Disable button to prevent double-click
+        document.getElementById('place-order-btn').disabled = true;
+        document.getElementById('place-order-btn').innerHTML = '<span class="material-symbols-outlined animate-spin">progress_activity</span> Processing...';
+
+        const {token, error} = await stripe.createToken(card);
+
+        if (error) {
+            const errorElement = document.getElementById('card-errors');
+            errorElement.textContent = error.message;
+            document.getElementById('place-order-btn').disabled = false;
+            document.getElementById('place-order-btn').innerHTML = '<span class="material-symbols-outlined">check_circle</span> Place Order';
+        } else {
+            // Append token to form and submit
+            const hiddenInput = document.createElement('input');
+            hiddenInput.setAttribute('type', 'hidden');
+            hiddenInput.setAttribute('name', 'stripeToken');
+            hiddenInput.setAttribute('value', token.id);
+            form.appendChild(hiddenInput);
+            form.submit();
+        }
+    }
+});
+
 // If validation failed (server-side), show all steps
 @if($errors->any())
     document.getElementById('step-delivery').classList.remove('step-hidden');
     document.getElementById('step-payment').classList.remove('step-hidden');
     document.getElementById('place-order-btn').disabled = false;
     document.getElementById('place-order-hint').classList.add('hidden');
+    
+    // Maintain stripe section if card was selected
+    if (document.querySelector('input[name="payment_method"]:checked').value === 'card') {
+        document.getElementById('stripe-card-section').classList.remove('hidden');
+    }
 @endif
 </script>
 @endpush

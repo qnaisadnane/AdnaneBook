@@ -6,10 +6,23 @@ use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Book;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
+    // Télécharger la facture PDF
+    public function downloadInvoice($id)
+    {
+        $order = Order::with(['user', 'items.book', 'items.book.authors'])
+            ->where('user_id', Auth::id())
+            ->findOrFail($id);
+
+        $pdf = Pdf::loadView('pdf.invoice', compact('order'));
+
+        return $pdf->download("invoice-order-{$order->id}.pdf");
+    }
+
     // Admin  — toutes les commandes
     public function index()
     {

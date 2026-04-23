@@ -52,4 +52,9 @@ class CartController extends Controller
         session(['cart' => $cart]);
         return redirect()->route('cart.index');
     }
+    public function clear()
+    {
+        session()->forget('cart');
+        return redirect()->route('cart.index')->with('success', 'Votre panier a été vidé.');
+    }
 }

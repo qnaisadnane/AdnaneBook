@@ -39,12 +39,13 @@ class CheckoutController extends Controller
             'additional_info' => 'nullable|string|max:500',
             'delivery_mode'   => 'required|in:standard,express',
             'payment_method'  => 'required|in:cash,card',
+            'stripeToken'     => 'required_if:payment_method,card',
         ]);
 
         $cart = session('cart', []);
         if (empty($cart)) return redirect()->route('cart.index');
 
-        $total = 0;
+        $totalValue = 0;
         $lines = [];
 
         foreach ($cart as $bookId => $qty) {
@@ -54,16 +55,33 @@ class CheckoutController extends Controller
                     ->with('error', "Stock insuffisant pour : {$book?->title}");
             }
             $lines[] = ['book' => $book, 'qty' => $qty];
-            $total += $book->price * $qty;
+            $totalValue += $book->price * $qty;
         }
 
         // Frais de livraison
         $deliveryFee = $request->delivery_mode === 'express' ? 9.99 : 0;
-        $total += $deliveryFee;
+        $totalValue += $deliveryFee;
+
+        // --- Logic de Payement Stripe ---
+        if ($request->payment_method === 'card') {
+            try {
+                \Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+                
+                \Stripe\Charge::create([
+                    "amount" => $totalValue * 100, // En cents
+                    "currency" => "usd",
+                    "source" => $request->stripeToken,
+                    "description" => "Payment for Order on Adnane Books"
+                ]);
+
+            } catch (\Exception $e) {
+                return redirect()->back()->withErrors(['error' => 'Payment failed: ' . $e->getMessage()]);
+            }
+        }
 
         $order = Order::create([
             'user_id'     => Auth::id(),
-            'total_price' => $total,
+            'total_price' => $totalValue,
             'status'      => $request->payment_method === 'card' ? 'paid' : 'pending',
         ]);
 
@@ -80,6 +98,6 @@ class CheckoutController extends Controller
         session()->forget('cart');
 
         return redirect()->route('orders.my')
-            ->with('success', 'Commande passée avec succès ! 🎉');
+            ->with('success', 'Commande passée avec succès ! 🎉' . ($request->payment_method === 'card' ? ' (Payée par Carte)' : ''));
     }
 }
