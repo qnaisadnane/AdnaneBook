@@ -86,11 +86,18 @@
                     </table>
                 </div>
             </div>
-            <div class="mt-6">
+            <div class="mt-6 flex items-center justify-between">
                 <a class="inline-flex items-center gap-2 text-sm font-bold text-primary hover:underline" href="{{ route('catalog') }}">
                     <span class="material-symbols-outlined text-base">arrow_back</span>
                     Continue Shopping
                 </a>
+                <form method="POST" action="{{ route('cart.clear') }}" onsubmit="return confirm('Êtes-vous sûr de vouloir vider votre panier ?')">
+                    @csrf @method('DELETE')
+                    <button type="submit" class="inline-flex items-center gap-2 text-sm font-bold text-red-500 hover:underline">
+                        <span class="material-symbols-outlined text-base">delete_sweep</span>
+                        Vider le panier
+                    </button>
+                </form>
             </div>
         </div>
 
