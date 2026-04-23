@@ -131,6 +131,7 @@
                                     Details
                                 </a>
                                 @if($book->quantity > 0)
+                                @auth
                                 <form method="POST" action="{{ route('cart.add', $book->id) }}">
                                     @csrf
                                     <input type="hidden" name="quantity" value="1">
@@ -139,6 +140,12 @@
                                         Add
                                     </button>
                                 </form>
+                                @else
+                                <a href="{{ route('go.login', ['intended' => url()->current()]) }}" class="flex items-center gap-1 bg-primary hover:bg-primary/90 text-white px-3 py-2 rounded-lg text-sm font-bold transition-colors">
+                                    <span class="material-symbols-outlined text-lg">add_shopping_cart</span>
+                                    Add
+                                </a>
+                                @endauth
                                 @endif
                             </div>
                         </div>
