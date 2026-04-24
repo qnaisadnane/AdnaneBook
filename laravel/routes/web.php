@@ -15,6 +15,16 @@ use App\Http\Controllers\WelcomeController;
 // ─── Public ───────────────────────────────────────────────────────
 Route::get('/', [WelcomeController::class, 'index'])->name('home');
 Route::get('/about', fn() => view('about'))->name('about');
+Route::get('/contact', fn() => view('contact'))->name('contact');
+Route::post('/contact', function (\Illuminate\Http\Request $request) {
+    $request->validate([
+        'name'    => 'required|string|max:100',
+        'email'   => 'required|email',
+        'subject' => 'required|string|max:150',
+        'message' => 'required|string|max:2000',
+    ]);
+    return redirect()->route('contact')->with('success', 'Your message has been sent! We\'ll get back to you soon.');
+})->name('contact.send');
 Route::get('/catalog', [BookController::class, 'index'])->name('catalog');
 Route::get('/books/{id}', [BookController::class, 'show'])->name('books.show');
 
