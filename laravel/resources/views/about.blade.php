@@ -26,16 +26,19 @@
             </p>
         </div>
         <div class="grid grid-cols-2 gap-4">
-            @foreach([
-                ['menu_book', 'Rich Catalogue', 'Thousands of books across all categories'],
-                ['local_shipping', 'Fast Delivery', 'Free shipping on every order'],
-                ['verified_user', 'Secure Payment', 'Simulated checkout, fully safe'],
-                ['support_agent', '24/7 Support', 'We're always here to help'],
-            ] as [$icon, $title, $desc])
+            @php
+            $features = [
+                ['icon' => 'menu_book',      'title' => 'Rich Catalogue', 'desc' => 'Thousands of books across all categories'],
+                ['icon' => 'local_shipping', 'title' => 'Fast Delivery',  'desc' => 'Free shipping on every order'],
+                ['icon' => 'verified_user',  'title' => 'Secure Payment', 'desc' => 'Simulated checkout, fully safe'],
+                ['icon' => 'support_agent',  'title' => '24/7 Support',   'desc' => 'We\'re always here to help'],
+            ];
+            @endphp
+            @foreach($features as $f)
             <div class="p-5 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800">
-                <span class="material-symbols-outlined text-primary text-3xl mb-3 block">{{ $icon }}</span>
-                <h3 class="font-bold text-slate-900 dark:text-slate-100 text-sm mb-1">{{ $title }}</h3>
-                <p class="text-xs text-slate-500 dark:text-slate-400">{{ $desc }}</p>
+                <span class="material-symbols-outlined text-primary text-3xl mb-3 block">{{ $f['icon'] }}</span>
+                <h3 class="font-bold text-slate-900 dark:text-slate-100 text-sm mb-1">{{ $f['title'] }}</h3>
+                <p class="text-xs text-slate-500 dark:text-slate-400">{{ $f['desc'] }}</p>
             </div>
             @endforeach
         </div>
@@ -44,15 +47,18 @@
     {{-- Stats --}}
     <div class="bg-primary rounded-2xl p-12 mb-24">
         <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center text-white">
-            @foreach([
-                ['10K+', 'Books Available'],
-                ['5K+', 'Happy Customers'],
-                ['200+', 'Authors'],
-                ['50+', 'Categories'],
-            ] as [$num, $label])
+            @php
+            $stats = [
+                ['num' => '10K+', 'label' => 'Books Available'],
+                ['num' => '5K+',  'label' => 'Happy Customers'],
+                ['num' => '200+', 'label' => 'Authors'],
+                ['num' => '50+',  'label' => 'Categories'],
+            ];
+            @endphp
+            @foreach($stats as $s)
             <div>
-                <p class="text-4xl font-black mb-1">{{ $num }}</p>
-                <p class="text-sm font-medium text-white/70">{{ $label }}</p>
+                <p class="text-4xl font-black mb-1">{{ $s['num'] }}</p>
+                <p class="text-sm font-medium text-white/70">{{ $s['label'] }}</p>
             </div>
             @endforeach
         </div>
@@ -62,17 +68,20 @@
     <div class="mb-24">
         <h2 class="text-3xl font-bold text-slate-900 dark:text-slate-100 text-center mb-12">What We Offer</h2>
         <div class="grid md:grid-cols-3 gap-6">
-            @foreach([
-                ['auto_stories', 'Book Catalogue', 'Browse and search books by title, category, price, or availability.'],
-                ['shopping_cart', 'Easy Ordering', 'Add to cart, checkout, and track your orders in a few clicks.'],
-                ['bar_chart', 'Admin Dashboard', 'Full management of books, authors, categories, orders and statistics.'],
-            ] as [$icon, $title, $desc])
+            @php
+            $offers = [
+                ['icon' => 'auto_stories',  'title' => 'Book Catalogue',  'desc' => 'Browse and search books by title, category, price, or availability.'],
+                ['icon' => 'shopping_cart', 'title' => 'Easy Ordering',   'desc' => 'Add to cart, checkout, and track your orders in a few clicks.'],
+                ['icon' => 'bar_chart',     'title' => 'Admin Dashboard', 'desc' => 'Full management of books, authors, categories, orders and statistics.'],
+            ];
+            @endphp
+            @foreach($offers as $o)
             <div class="p-8 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 text-center">
                 <div class="flex h-14 w-14 items-center justify-center rounded-full bg-primary/10 mx-auto mb-4">
-                    <span class="material-symbols-outlined text-primary text-2xl">{{ $icon }}</span>
+                    <span class="material-symbols-outlined text-primary text-2xl">{{ $o['icon'] }}</span>
                 </div>
-                <h3 class="font-bold text-slate-900 dark:text-slate-100 mb-2">{{ $title }}</h3>
-                <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">{{ $desc }}</p>
+                <h3 class="font-bold text-slate-900 dark:text-slate-100 mb-2">{{ $o['title'] }}</h3>
+                <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">{{ $o['desc'] }}</p>
             </div>
             @endforeach
         </div>
