@@ -68,7 +68,7 @@
     <a href="{{ route('details', $book->id) }}" class="block">
         <div class="aspect-[3/4] mb-4 overflow-hidden rounded-xl bg-slate-100 dark:bg-slate-700 relative">
             @if($book->image)
-                <img class="h-full w-full object-cover group-hover:scale-105 transition-transform duration-300" src="{{ Storage::url($book->image) }}" alt="{{ $book->title }}"/>
+                <img class="h-full w-full object-cover group-hover:scale-105 transition-transform duration-300" src="{{ asset($book->image) }}" alt="{{ $book->title }}"/>
             @else
                 <div class="h-full w-full flex items-center justify-center">
                     <span class="material-symbols-outlined text-4xl text-slate-300">menu_book</span>

@@ -40,7 +40,7 @@
         <div class="lg:col-span-5 flex flex-col gap-4">
             <div class="w-full aspect-[3/4] bg-slate-200 dark:bg-slate-800 rounded-xl overflow-hidden shadow-xl">
                 @if($book->image)
-                    <img alt="{{ $book->title }}" class="w-full h-full object-cover" src="{{ Storage::url($book->image) }}"/>
+                    <img alt="{{ $book->title }}" class="w-full h-full object-cover" src="{{ asset($book->image) }}"/>
                 @else
                     <div class="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-primary/15 to-slate-300 dark:from-primary/25 dark:to-slate-700 gap-4">
                         <span class="material-symbols-outlined text-8xl text-primary/40">menu_book</span>
@@ -166,7 +166,7 @@
                 <div class="aspect-[3/4] bg-slate-200 dark:bg-slate-800 rounded-lg mb-3 overflow-hidden shadow-sm group-hover:shadow-md transition-all">
                     @if($rel->image)
                         <img alt="{{ $rel->title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform"
-                             src="{{ Storage::url($rel->image) }}"/>
+                             src="{{ asset($rel->image) }}"/>
                     @else
                         <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-primary/10 to-slate-300 dark:from-primary/20 dark:to-slate-700">
                             <span class="material-symbols-outlined text-4xl text-primary/40">menu_book</span>
