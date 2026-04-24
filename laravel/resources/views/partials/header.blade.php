@@ -11,7 +11,7 @@
                 <a class="text-sm font-semibold hover:text-primary transition-colors {{ request()->routeIs('home') ? 'text-primary' : '' }}" href="{{ route('home') }}">Home</a>
                 <a class="text-sm font-semibold hover:text-primary transition-colors {{ request()->routeIs('catalog') ? 'text-primary' : '' }}" href="{{ route('catalog') }}">Books</a>
                 <a class="text-sm font-semibold hover:text-primary transition-colors {{ request()->routeIs('about') ? 'text-primary' : '' }}" href="{{ route('about') }}">About Us</a>
-                <a class="text-sm font-semibold hover:text-primary transition-colors" href="#">Contact Us</a>
+                <a class="text-sm font-semibold hover:text-primary transition-colors {{ request()->routeIs('contact') ? 'text-primary' : '' }}" href="{{ route('contact') }}">Contact Us</a>
                 <a class="text-sm font-semibold hover:text-primary transition-colors" href="#">New Release</a>
             </nav>
         </div>
