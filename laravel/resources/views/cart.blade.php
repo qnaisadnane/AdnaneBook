@@ -43,7 +43,7 @@
                                     <div class="flex items-center gap-4">
                                         <div class="h-20 w-14 flex-shrink-0 overflow-hidden rounded-md bg-slate-100 dark:bg-slate-800 shadow-sm">
                                             @if($item['book']->image)
-                                                <img class="h-full w-full object-cover" src="{{ Storage::url($item['book']->image) }}" alt="{{ $item['book']->title }}"/>
+                                                <img class="h-full w-full object-cover" src="{{ asset($item['book']->image) }}" alt="{{ $item['book']->title }}"/>
                                             @else
                                                 <div class="h-full w-full flex items-center justify-center bg-gradient-to-br from-primary/10 to-slate-200">
                                                     <span class="material-symbols-outlined text-2xl text-primary/40">menu_book</span>
