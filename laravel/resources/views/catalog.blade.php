@@ -100,7 +100,7 @@
                         <a href="{{ route('books.show', $book->id) }}" class="block w-full h-full">
                             @if($book->image)
                                 <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                                     src="{{ Storage::url($book->image) }}" alt="{{ $book->title }}"/>
+                                     src="{{ asset($book->image) }}" alt="{{ $book->title }}"/>
                             @else
                                 <div class="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-primary/10 to-slate-200 dark:from-primary/20 dark:to-slate-700 gap-3">
                                     <span class="material-symbols-outlined text-7xl text-primary/40">menu_book</span>

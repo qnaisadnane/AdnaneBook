@@ -27,7 +27,7 @@
                     <div class="flex items-center gap-3">
                         <div class="h-12 w-9 rounded overflow-hidden bg-slate-100 shrink-0">
                             @if($book->image)
-                                <img src="{{ Storage::url($book->image) }}" class="h-full w-full object-cover"/>
+                                <img src="{{ asset($book->image) }}" class="h-full w-full object-cover"/>
                             @else
                                 <div class="h-full w-full flex items-center justify-center">
                                     <span class="material-symbols-outlined text-slate-300 text-sm">menu_book</span>

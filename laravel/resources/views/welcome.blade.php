@@ -14,11 +14,14 @@
                             </p>
 </div>
 <form method="GET" action="{{ route('catalog') }}" class="flex w-full max-w-lg mx-auto lg:mx-0 items-stretch rounded-2xl bg-white dark:bg-slate-800 p-2 shadow-xl shadow-slate-200/50 dark:shadow-none ring-1 ring-slate-200 dark:ring-slate-700">
-<div class="flex items-center pl-4 text-slate-400">
-<span class="material-symbols-outlined">search</span>
+<div class="flex items-center pl-3 text-slate-400 shrink-0">
+<span class="material-symbols-outlined text-xl">search</span>
 </div>
-<input name="search" class="flex-1 border-none bg-transparent px-4 text-sm focus:ring-0" placeholder="Search by title, author, or ISBN"/>
-<button type="submit" class="rounded-xl bg-primary px-8 py-3 text-sm font-bold text-white hover:bg-primary/90 transition-colors">Search</button>
+<input name="search" class="flex-1 min-w-0 border-none bg-transparent px-3 text-sm focus:ring-0" placeholder="Search by title, author, or ISBN"/>
+<button type="submit" class="shrink-0 rounded-xl bg-primary px-4 sm:px-8 py-3 text-sm font-bold text-white hover:bg-primary/90 transition-colors">
+    <span class="hidden sm:inline">Search</span>
+    <span class="sm:hidden material-symbols-outlined text-xl leading-none">arrow_forward</span>
+</button>
 </form>
 
 </div>
@@ -68,7 +71,7 @@
     <a href="{{ route('details', $book->id) }}" class="block">
         <div class="aspect-[3/4] mb-4 overflow-hidden rounded-xl bg-slate-100 dark:bg-slate-700 relative">
             @if($book->image)
-                <img class="h-full w-full object-cover group-hover:scale-105 transition-transform duration-300" src="{{ Storage::url($book->image) }}" alt="{{ $book->title }}"/>
+                <img class="h-full w-full object-cover group-hover:scale-105 transition-transform duration-300" src="{{ asset($book->image) }}" alt="{{ $book->title }}"/>
             @else
                 <div class="h-full w-full flex items-center justify-center">
                     <span class="material-symbols-outlined text-4xl text-slate-300">menu_book</span>
@@ -121,6 +124,53 @@
             <div class="absolute -right-2 -bottom-10 h-20 w-20 rounded-full bg-emerald-300/30"></div>
         </div>
     </div>
+</section>
+
+<!-- Testimonials -->
+<section class="py-20 bg-white/50 dark:bg-slate-900/50">
+<div class="mx-auto max-w-7xl px-6">
+    <div class="text-center mb-12">
+        <span class="inline-block bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest px-4 py-1.5 rounded-full mb-4">Testimonials</span>
+        <h2 class="text-3xl font-bold tracking-tight">What Our Readers Say</h2>
+        <p class="mt-2 text-slate-500">Thousands of happy readers trust ADNANE BOOKS</p>
+    </div>
+    @php
+    $testimonials = [
+        ['name' => 'Sarah M.',     'role' => 'Literature Student', 'avatar' => 'S', 'color' => 'bg-violet-500',  'rating' => 5, 'text' => 'ADNANE BOOKS has the best selection I\'ve ever seen. I found rare titles I couldn\'t find anywhere else. Fast delivery and great packaging!'],
+        ['name' => 'James K.',     'role' => 'History Teacher',    'avatar' => 'J', 'color' => 'bg-emerald-500', 'rating' => 5, 'text' => 'The catalog is incredibly well organized. I love the category filters — found exactly what I needed for my class in minutes.'],
+        ['name' => 'Amina R.',     'role' => 'Avid Reader',        'avatar' => 'A', 'color' => 'bg-amber-500',   'rating' => 5, 'text' => 'Ordering was super easy and the checkout process is smooth. My books arrived in perfect condition. Will definitely order again!'],
+        ['name' => 'Carlos D.',    'role' => 'Software Engineer',  'avatar' => 'C', 'color' => 'bg-blue-500',    'rating' => 4, 'text' => 'Great platform with a clean interface. The search feature is powerful and the prices are very competitive. Highly recommended.'],
+        ['name' => 'Fatima Z.',    'role' => 'Book Club Member',   'avatar' => 'F', 'color' => 'bg-rose-500',    'rating' => 5, 'text' => 'Our book club orders from here every month. The variety is amazing and customer support is always helpful and responsive.'],
+        ['name' => 'Thomas B.',    'role' => 'Journalist',         'avatar' => 'T', 'color' => 'bg-cyan-500',    'rating' => 5, 'text' => 'I\'ve been using ADNANE BOOKS for over a year now. The experience keeps getting better. Love the new features and the fast shipping!'],
+    ];
+    @endphp
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        @foreach($testimonials as $t)
+        <div class="flex flex-col gap-4 bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 p-6 shadow-sm hover:shadow-md transition-all">
+            {{-- Stars --}}
+            <div class="flex gap-0.5">
+                @for($i = 0; $i < 5; $i++)
+                <svg class="h-4 w-4 {{ $i < $t['rating'] ? 'text-amber-400' : 'text-slate-200' }} fill-current" viewBox="0 0 20 20">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                </svg>
+                @endfor
+            </div>
+            {{-- Text --}}
+            <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed flex-1">"{{ $t['text'] }}"</p>
+            {{-- Author --}}
+            <div class="flex items-center gap-3 pt-2 border-t border-slate-100 dark:border-slate-700">
+                <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full {{ $t['color'] }} text-white text-sm font-bold">
+                    {{ $t['avatar'] }}
+                </div>
+                <div>
+                    <p class="text-sm font-bold text-slate-900 dark:text-slate-100">{{ $t['name'] }}</p>
+                    <p class="text-xs text-slate-400">{{ $t['role'] }}</p>
+                </div>
+            </div>
+        </div>
+        @endforeach
+    </div>
+</div>
 </section>
 
 <!-- Best Sellers CTA -->

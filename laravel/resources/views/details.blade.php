@@ -34,13 +34,13 @@
     </nav>
 
     <!-- Book Detail -->
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12">
 
         <!-- Cover -->
-        <div class="lg:col-span-5 flex flex-col gap-4">
-            <div class="w-full aspect-[3/4] bg-slate-200 dark:bg-slate-800 rounded-xl overflow-hidden shadow-xl">
+        <div class="lg:col-span-5">
+            <div class="w-full max-w-xs mx-auto lg:max-w-none aspect-[3/4] bg-slate-200 dark:bg-slate-800 rounded-xl overflow-hidden shadow-xl">
                 @if($book->image)
-                    <img alt="{{ $book->title }}" class="w-full h-full object-cover" src="{{ Storage::url($book->image) }}"/>
+                    <img alt="{{ $book->title }}" class="w-full h-full object-cover" src="{{ asset($book->image) }}"/>
                 @else
                     <div class="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-primary/15 to-slate-300 dark:from-primary/25 dark:to-slate-700 gap-4">
                         <span class="material-symbols-outlined text-8xl text-primary/40">menu_book</span>
@@ -70,11 +70,11 @@
                     @endif
                 </div>
 
-                <h1 class="text-4xl font-bold text-slate-900 dark:text-slate-100 mb-2">{{ $book->title }}</h1>
-                <p class="text-xl text-primary font-medium mb-6">
+                <h1 class="text-2xl sm:text-4xl font-bold text-slate-900 dark:text-slate-100 mb-2">{{ $book->title }}</h1>
+                <p class="text-base sm:text-xl text-primary font-medium mb-4">
                     by {{ $book->authors->pluck('name')->join(', ') ?: 'Unknown Author' }}
                 </p>
-                <div class="text-4xl font-black text-slate-900 dark:text-slate-100 mb-6">
+                <div class="text-3xl sm:text-4xl font-black text-slate-900 dark:text-slate-100 mb-6">
                     ${{ number_format($book->price, 2) }}
                 </div>
 
@@ -102,29 +102,29 @@
 
                 <!-- Order form -->
                 @if($book->quantity > 0)
-                @auth
-                <form method="POST" action="{{ route('cart.add', $book->id) }}" class="flex flex-col gap-4 mb-6">
-                    @csrf
-                    <div class="flex items-center gap-3">
-                        <label for="qty_input" class="text-sm font-semibold text-slate-700 dark:text-slate-300">Quantity:</label>
-                        <input type="number" id="qty_input" name="quantity" value="1" min="1" max="{{ $book->quantity }}"
-                               class="w-20 rounded-lg border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm focus:ring-primary text-center font-bold"/>
-                    </div>
-                    <button type="submit"
-                       class="flex-1 bg-primary text-white font-bold py-4 px-8 rounded-lg shadow-lg hover:bg-primary/90 transition-all flex items-center justify-center gap-2">
-                        <span class="material-symbols-outlined">shopping_cart</span>
-                        Add to Cart
-                    </button>
-                </form>
-                @else
-                <div class="flex flex-col gap-4 mb-6">
-                    <a href="{{ route('go.login', ['intended' => url()->current()]) }}"
-                       class="flex-1 bg-primary text-white font-bold py-4 px-8 rounded-lg shadow-lg hover:bg-primary/90 transition-all flex items-center justify-center gap-2">
-                        <span class="material-symbols-outlined">login</span>
-                        Add to Cart
-                    </a>
-                </div>
-                @endauth
+                    @auth
+                        <form method="POST" action="{{ route('cart.add', $book->id) }}" class="flex flex-col gap-4 mb-6">
+                            @csrf
+                            <div class="flex items-center gap-3">
+                                <label for="qty_input" class="text-sm font-semibold text-slate-700 dark:text-slate-300">Quantity:</label>
+                                <input type="number" id="qty_input" name="quantity" value="1" min="1" max="{{ $book->quantity }}"
+                                       class="w-20 rounded-lg border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm focus:ring-primary text-center font-bold"/>
+                            </div>
+                            <button type="submit"
+                               class="w-full bg-primary text-white font-bold py-4 px-8 rounded-lg shadow-lg hover:bg-primary/90 transition-all flex items-center justify-center gap-2">
+                                <span class="material-symbols-outlined">shopping_cart</span>
+                                Add to Cart
+                            </button>
+                        </form>
+                    @else
+                        <div class="mb-6">
+                            <a href="{{ route('go.login', ['intended' => url()->current()]) }}"
+                               class="w-full bg-primary text-white font-bold py-4 px-8 rounded-lg shadow-lg hover:bg-primary/90 transition-all flex items-center justify-center gap-2">
+                                <span class="material-symbols-outlined">login</span>
+                                Sign in to Add to Cart
+                            </a>
+                        </div>
+                    @endauth
                 @else
                     <div class="flex items-center gap-3 py-4 px-6 rounded-lg bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 mb-6">
                         <span class="material-symbols-outlined text-red-500">inventory_2</span>
@@ -132,7 +132,7 @@
                     </div>
                 @endif
 
-                <div class="flex items-center gap-6 text-slate-500 dark:text-slate-400 text-sm">
+                <div class="flex flex-wrap items-center gap-4 text-slate-500 dark:text-slate-400 text-sm">
                     <div class="flex items-center gap-1">
                         <span class="material-symbols-outlined text-base">local_shipping</span>
                         Free delivery
@@ -166,7 +166,7 @@
                 <div class="aspect-[3/4] bg-slate-200 dark:bg-slate-800 rounded-lg mb-3 overflow-hidden shadow-sm group-hover:shadow-md transition-all">
                     @if($rel->image)
                         <img alt="{{ $rel->title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform"
-                             src="{{ Storage::url($rel->image) }}"/>
+                             src="{{ asset($rel->image) }}"/>
                     @else
                         <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-primary/10 to-slate-300 dark:from-primary/20 dark:to-slate-700">
                             <span class="material-symbols-outlined text-4xl text-primary/40">menu_book</span>
