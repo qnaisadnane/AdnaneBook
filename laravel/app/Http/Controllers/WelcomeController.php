@@ -15,8 +15,22 @@ class WelcomeController extends Controller
             ->take(4)
             ->get();
 
+        $bestSellers = Book::with(['category', 'authors'])
+            ->withCount('orderItems')
+            ->orderBy('order_items_count', 'desc')
+            ->take(4)
+            ->get();
+
+        // Fallback if no order items exist yet
+        if ($bestSellers->isEmpty() || $bestSellers->first()->order_items_count == 0) {
+            $bestSellers = Book::with(['category', 'authors'])
+                ->inRandomOrder()
+                ->take(4)
+                ->get();
+        }
+
         $categories = Category::withCount('books')->get();
 
-        return view('welcome', compact('featuredBooks', 'categories'));
+        return view('welcome', compact('featuredBooks', 'bestSellers', 'categories'));
     }
 }
