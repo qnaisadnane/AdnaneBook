@@ -207,8 +207,44 @@
     </div>
 </section>
 
+<!-- Best Sellers -->
+<section id="best-sellers" class="py-16 bg-white/50 dark:bg-slate-900/50">
+<div class="mx-auto max-w-7xl px-6">
+<div class="flex items-center justify-between mb-8">
+<h2 class="text-3xl font-bold tracking-tight">Best Sellers</h2>
+<a class="text-sm font-bold text-primary hover:underline" href="{{ route('catalog') }}">View All</a>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+@foreach($bestSellers as $book)
+<div class="group relative bg-white dark:bg-slate-800 rounded-2xl p-4 border border-slate-100 dark:border-slate-700 shadow-sm hover:shadow-xl transition-all">
+    <a href="{{ route('details', $book->id) }}" class="block">
+        <div class="aspect-[3/4] mb-4 overflow-hidden rounded-xl bg-slate-100 dark:bg-slate-700 relative">
+            @if($book->image)
+                <img class="h-full w-full object-cover group-hover:scale-105 transition-transform duration-300" src="{{ asset($book->image) }}" alt="{{ $book->title }}"/>
+            @else
+                <div class="h-full w-full flex items-center justify-center">
+                    <span class="material-symbols-outlined text-4xl text-slate-300">menu_book</span>
+                </div>
+            @endif
+            <span class="absolute top-2 left-2 bg-amber-400 text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase">Best Seller</span>
+        </div>
+    </a>
+    <span class="text-[10px] font-bold uppercase tracking-widest text-primary bg-primary/10 px-2 py-0.5 rounded-full">{{ $book->category->name }}</span>
+    <a href="{{ route('details', $book->id) }}" class="block">
+        <h3 class="mt-2 text-sm font-bold text-slate-900 dark:text-white line-clamp-1 group-hover:text-primary transition-colors">{{ $book->title }}</h3>
+    </a>
+    <p class="text-xs text-slate-500 mt-1">by {{ $book->authors->pluck('name')->join(', ') }}</p>
+    <div class="mt-3">
+        <span class="font-black text-slate-900 dark:text-white">${{ number_format($book->price, 2) }}</span>
+    </div>
+</div>
+@endforeach
+</div>
+</div>
+</section>
+
 <!-- Testimonials -->
-<section id="best-sellers" class="py-20 bg-white/50 dark:bg-slate-900/50">
+<section class="py-20 bg-white/50 dark:bg-slate-900/50">
 <div class="mx-auto max-w-7xl px-6">
     <div class="text-center mb-12">
         <span class="inline-block bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest px-4 py-1.5 rounded-full mb-4">Testimonials</span>
