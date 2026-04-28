@@ -36,8 +36,8 @@
             <div>
                 <h4 class="mb-6 text-sm font-bold uppercase tracking-wider">Collection</h4>
                 <ul class="space-y-4 text-sm text-slate-500">
-                    <li><a class="hover:text-primary transition-colors" href="{{ route('catalog') }}">Latest Arrivals</a></li>
-                    <li><a class="hover:text-primary transition-colors" href="{{ route('catalog') }}">Best Sellers</a></li>
+                    <li><a class="hover:text-primary transition-colors" href="{{ route('home') }}#latest-arrivals">Latest Arrivals</a></li>
+                    <li><a class="hover:text-primary transition-colors" href="{{ route('home') }}#best-sellers">Best Sellers</a></li>
                 </ul>
             </div>
             <div>
