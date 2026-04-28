@@ -14,11 +14,14 @@
                             </p>
 </div>
 <form method="GET" action="{{ route('catalog') }}" class="flex w-full max-w-lg mx-auto lg:mx-0 items-stretch rounded-2xl bg-white dark:bg-slate-800 p-2 shadow-xl shadow-slate-200/50 dark:shadow-none ring-1 ring-slate-200 dark:ring-slate-700">
-<div class="flex items-center pl-4 text-slate-400">
-<span class="material-symbols-outlined">search</span>
+<div class="flex items-center pl-3 text-slate-400 shrink-0">
+<span class="material-symbols-outlined text-xl">search</span>
 </div>
-<input name="search" class="flex-1 border-none bg-transparent px-4 text-sm focus:ring-0" placeholder="Search by title, author, or ISBN"/>
-<button type="submit" class="rounded-xl bg-primary px-8 py-3 text-sm font-bold text-white hover:bg-primary/90 transition-colors">Search</button>
+<input name="search" class="flex-1 min-w-0 border-none bg-transparent px-3 text-sm focus:ring-0" placeholder="Search by title, author, or ISBN"/>
+<button type="submit" class="shrink-0 rounded-xl bg-primary px-4 sm:px-8 py-3 text-sm font-bold text-white hover:bg-primary/90 transition-colors">
+    <span class="hidden sm:inline">Search</span>
+    <span class="sm:hidden material-symbols-outlined text-xl leading-none">arrow_forward</span>
+</button>
 </form>
 
 </div>
