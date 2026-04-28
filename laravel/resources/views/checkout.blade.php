@@ -10,6 +10,15 @@
     border: 1px solid #e2e8f0;
     border-radius: 8px;
     background: white;
+    min-height: 44px;
+}
+.StripeElement {
+    width: 100%;
+    display: block;
+}
+.StripeElement--focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 2px rgba(37,99,235,0.2);
 }
 </style>
 @endpush
@@ -166,10 +175,14 @@
                         </label>
 
                         <!-- Stripe Card Element Container -->
-                        <div id="stripe-card-section" class="hidden mt-4 p-4 rounded-xl border border-slate-200 bg-slate-50">
-                            <label class="block text-xs font-semibold text-slate-600 mb-2">Card Details</label>
-                            <div id="card-element"></div>
+                        <div id="stripe-card-section" class="hidden mt-4 p-4 rounded-xl border border-slate-200 bg-slate-50 dark:bg-slate-800 dark:border-slate-700">
+                            <label class="block text-xs font-semibold text-slate-600 dark:text-slate-400 mb-3">Card Details</label>
+                            <div id="card-element" class="w-full"></div>
                             <div id="card-errors" class="text-red-500 text-xs mt-2" role="alert"></div>
+                            <p class="text-xs text-slate-400 mt-2 flex items-center gap-1">
+                                <span class="material-symbols-outlined text-sm">lock</span>
+                                Test card: 4242 4242 4242 4242 — any future date — any CVC
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -177,7 +190,7 @@
             </div>
 
             <!-- Right — Order Summary -->
-            <div class="lg:col-span-5">
+            <div class="lg:col-span-5 order-first lg:order-last">
                 <div class="sticky top-24 bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
                     <div class="px-6 py-4 border-b border-slate-100">
                         <h2 class="font-bold text-base">Order Summary</h2>
@@ -188,7 +201,7 @@
                         <div class="flex items-center gap-3">
                             <div class="h-14 w-10 rounded bg-slate-100 overflow-hidden shrink-0">
                                 @if($item['book']->image)
-                                    <img src="{{ Storage::url($item['book']->image) }}" class="h-full w-full object-cover"/>
+                                    <img src="{{ asset($item['book']->image) }}" class="h-full w-full object-cover"/>
                                 @else
                                     <div class="h-full w-full flex items-center justify-center">
                                         <span class="material-symbols-outlined text-slate-300 text-sm">menu_book</span>
@@ -315,12 +328,15 @@ function updateTotal(radio) {
 const stripe = Stripe('{{ env('STRIPE_KEY') }}');
 const elements = stripe.elements();
 const card = elements.create('card', {
+    hidePostalCode: true,
     style: {
         base: {
             fontSize: '16px',
             color: '#32325d',
             fontFamily: '"Inter", sans-serif',
+            fontSmoothing: 'antialiased',
             '::placeholder': { color: '#aab7c4' },
+            iconColor: '#2563eb',
         },
         invalid: { color: '#fa755a', iconColor: '#fa755a' }
     }
