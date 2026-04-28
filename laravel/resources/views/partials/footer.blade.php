@@ -30,18 +30,14 @@
                 <h4 class="mb-6 text-sm font-bold uppercase tracking-wider">Company</h4>
                 <ul class="space-y-4 text-sm text-slate-500">
                     <li><a class="hover:text-primary transition-colors" href="{{ route('about') }}">About Us</a></li>
-                    <li><a class="hover:text-primary transition-colors" href="#">Careers</a></li>
-                    <li><a class="hover:text-primary transition-colors" href="#">Affiliates</a></li>
-                    <li><a class="hover:text-primary transition-colors" href="#">Store Locator</a></li>
+                    <li><a class="hover:text-primary transition-colors" href="{{ route('catalog') }}">Categories</a></li>
                 </ul>
             </div>
             <div>
-                <h4 class="mb-6 text-sm font-bold uppercase tracking-wider">Support</h4>
+                <h4 class="mb-6 text-sm font-bold uppercase tracking-wider">Collection</h4>
                 <ul class="space-y-4 text-sm text-slate-500">
-                    <li><a class="hover:text-primary transition-colors" href="#">Help Center</a></li>
-                    <li><a class="hover:text-primary transition-colors" href="#">Track Order</a></li>
-                    <li><a class="hover:text-primary transition-colors" href="#">Shipping Info</a></li>
-                    <li><a class="hover:text-primary transition-colors" href="#">Returns</a></li>
+                    <li><a class="hover:text-primary transition-colors" href="{{ route('home') }}#latest-arrivals">Latest Arrivals</a></li>
+                    <li><a class="hover:text-primary transition-colors" href="{{ route('home') }}#best-sellers">Best Sellers</a></li>
                 </ul>
             </div>
             <div>

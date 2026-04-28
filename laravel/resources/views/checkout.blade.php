@@ -179,10 +179,6 @@
                             <label class="block text-xs font-semibold text-slate-600 dark:text-slate-400 mb-3">Card Details</label>
                             <div id="card-element" class="w-full"></div>
                             <div id="card-errors" class="text-red-500 text-xs mt-2" role="alert"></div>
-                            <p class="text-xs text-slate-400 mt-2 flex items-center gap-1">
-                                <span class="material-symbols-outlined text-sm">lock</span>
-                                Test card: 4242 4242 4242 4242 — any future date — any CVC
-                            </p>
                         </div>
                     </div>
                 </div>
