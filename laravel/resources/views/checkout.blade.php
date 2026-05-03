@@ -72,7 +72,7 @@
                         </div>
                         <div>
                             <label class="block text-xs font-semibold text-slate-600 mb-1">Phone Number</label>
-                            <input type="text" name="phone" value="{{ old('phone') }}" required placeholder="06XXXXXXXX or 07XXXXXXXX"
+                            <input type="text" name="phone" value="{{ old('phone') }}" required placeholder="Enter a phone number"
                                 pattern="^0[67][0-9]{8}$"
                                 title="Must start with 06 or 07 and contain exactly 10 digits"
                                 class="w-full rounded-lg border-slate-200 text-sm focus:ring-primary focus:border-primary"/>
@@ -254,33 +254,47 @@
 const baseTotal = {{ $total }};
 
 function saveAddress() {
-    const fields = ['first_name','last_name','phone','region','city','address'];
     let valid = true;
-    fields.forEach(name => {
-        const el = document.querySelector(`[name="${name}"]`);
-        if (!el.value.trim()) { el.classList.add('border-red-400'); valid = false; }
-        else el.classList.remove('border-red-400');
-    });
+    
+    // Regex for at least 3 characters, allowing letters (including accents), spaces, and hyphens, but NO numbers.
+    const letterRegex = /^[\p{L}\s\-]{3,}$/u;
+    
+    const fieldsConfig = [
+        { name: 'first_name', validate: val => letterRegex.test(val), errorMsg: 'Must contain at least 3 letters and no numbers.' },
+        { name: 'last_name', validate: val => letterRegex.test(val), errorMsg: 'Must contain at least 3 letters and no numbers.' },
+        { name: 'region', validate: val => letterRegex.test(val), errorMsg: 'Must contain at least 3 letters and no numbers.' },
+        { name: 'city', validate: val => letterRegex.test(val), errorMsg: 'Must contain at least 3 letters and no numbers.' },
+        { name: 'phone', validate: val => /^0[67][0-9]{8}$/.test(val), errorMsg: 'Must start with 06/07 and contain exactly 10 digits.' },
+        { name: 'address', validate: val => val.length > 0, errorMsg: 'This field is required.' }
+    ];
 
-    // Validate phone
-    const phoneEl = document.querySelector('[name="phone"]');
-    const phoneValid = /^0[67][0-9]{8}$/.test(phoneEl.value.trim());
-    if (!phoneValid) {
-        phoneEl.classList.add('border-red-400');
-        let err = document.getElementById('phone-error');
+    fieldsConfig.forEach(field => {
+        const el = document.querySelector(`[name="${field.name}"]`);
+        let val = el.value.trim();
+        
+        let err = document.getElementById(field.name + '-error');
         if (!err) {
             err = document.createElement('p');
-            err.id = 'phone-error';
+            err.id = field.name + '-error';
             err.className = 'text-red-500 text-xs mt-1';
-            phoneEl.parentNode.appendChild(err);
+            el.parentNode.appendChild(err);
         }
-        err.textContent = 'Phone must start with 06 or 07 and contain exactly 10 digits.';
-        valid = false;
-    } else {
-        phoneEl.classList.remove('border-red-400');
-        const err = document.getElementById('phone-error');
-        if (err) err.remove();
-    }
+
+        if (!val) {
+            el.classList.add('border-red-400');
+            err.textContent = 'This field is required.';
+            err.style.display = 'block';
+            valid = false;
+        } else if (!field.validate(val)) {
+            el.classList.add('border-red-400');
+            err.textContent = field.errorMsg;
+            err.style.display = 'block';
+            valid = false;
+        } else {
+            el.classList.remove('border-red-400');
+            err.style.display = 'none';
+        }
+    });
 
     if (!valid) return;
 

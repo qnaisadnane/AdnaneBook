@@ -30,18 +30,22 @@ class CheckoutController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'first_name'      => 'required|string|max:100',
-            'last_name'       => 'required|string|max:100',
+            'first_name'      => ['required', 'string', 'max:100', 'regex:/^[\pL\s\-]{3,}$/u'],
+            'last_name'       => ['required', 'string', 'max:100', 'regex:/^[\pL\s\-]{3,}$/u'],
             'phone'           => ['required', 'regex:/^0[67][0-9]{8}$/'],
             'address'         => 'required|string|max:500',
-            'region'          => 'required|string|max:100',
-            'city'            => 'required|string|max:100',
+            'region'          => ['required', 'string', 'max:100', 'regex:/^[\pL\s\-]{3,}$/u'],
+            'city'            => ['required', 'string', 'max:100', 'regex:/^[\pL\s\-]{3,}$/u'],
             'additional_info' => 'nullable|string|max:500',
             'delivery_mode'   => 'required|in:standard,express',
             'payment_method'  => 'required|in:cash,card',
             'stripeToken'     => 'required_if:payment_method,card',
         ], [
-            'phone.regex' => 'Phone number must start with 06 or 07 and contain exactly 10 digits.',
+            'first_name.regex' => 'First name must contain at least 3 letters and no numbers.',
+            'last_name.regex'  => 'Last name must contain at least 3 letters and no numbers.',
+            'region.regex'     => 'Region must contain at least 3 letters and no numbers.',
+            'city.regex'       => 'City must contain at least 3 letters and no numbers.',
+            'phone.regex'      => 'Phone number must start with 06 or 07 and contain exactly 10 digits.',
         ]);
 
         $cart = session('cart', []);
@@ -100,6 +104,6 @@ class CheckoutController extends Controller
         session()->forget('cart');
 
         return redirect()->route('orders.my')
-            ->with('success', 'Commande passée avec succès ! 🎉' . ($request->payment_method === 'card' ? ' (Payée par Carte)' : ''));
+            ->with('success', 'Commande passee avec succes ! ' . ($request->payment_method === 'card' ? ' (Payee par Carte)' : ''));
     }
 }
