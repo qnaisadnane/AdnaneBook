@@ -50,12 +50,5 @@
         </div>
     </div>
     
-    <!-- Footer actions -->
-    <div class="p-6 border-t border-slate-100 bg-slate-50 flex gap-3">
-        <a href="mailto:{{ $message->email }}?subject=RE: {{ rawurlencode($message->subject) }}" class="inline-flex items-center gap-2 px-5 py-2.5 bg-primary text-white rounded-lg text-sm font-semibold hover:bg-primary/90 transition-colors shadow-sm">
-            <span class="material-symbols-outlined text-[18px]">reply</span>
-            Reply via Email
-        </a>
-    </div>
 </div>
 @endsection
