@@ -93,37 +93,34 @@
 </div>
 </section>
 
-<!-- Promo Banners -->
-<section class="py-12">
-    <div class="mx-auto max-w-7xl px-6 grid grid-cols-1 md:grid-cols-2 gap-8">
-        <!-- Banner 1 -->
-        <div class="group relative h-64 w-full rounded-[2rem] bg-amber-50 dark:bg-amber-900/10 border border-amber-100 dark:border-amber-800 overflow-hidden p-10 flex flex-col justify-center">
-            <div class="relative z-10 max-w-[60%]">
-                <span class="inline-block bg-amber-500 text-white text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-4">Summer Sale</span>
-                <h3 class="text-5xl font-black text-slate-900 leading-none mb-2">Up to<br><span class="text-amber-500">75% Off</span></h3>
-                <p class="text-slate-500 text-sm mt-3">Selected items only. limited stock available.</p>
-            </div>
-            <a href="{{ route('catalog') }}" class="mt-6 inline-flex items-center gap-1 text-sm font-bold text-amber-600 hover:text-amber-700 transition-colors">
-                Shop Now <span class="material-symbols-outlined text-base">arrow_forward</span>
-            </a>
-            <div class="absolute -right-12 -bottom-12 h-48 w-48 rounded-full bg-amber-200/50"></div>
-            <div class="absolute -right-4 -bottom-16 h-32 w-32 rounded-full bg-amber-300/30"></div>
-        </div>
-
-        <!-- Banner 2 -->
-        <div class="group relative h-64 w-full rounded-[2rem] bg-emerald-50 dark:bg-emerald-900/10 border border-emerald-100 dark:border-emerald-800 overflow-hidden p-10 flex flex-col justify-center">
-            <div class="relative z-10 max-w-[60%]">
-                <span class="inline-block bg-emerald-500 text-white text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-4">Free Delivery</span>
-                <h3 class="text-5xl font-black text-slate-900 leading-none mb-2">Order<br><span class="text-emerald-500">Today</span></h3>
-                <p class="text-slate-500 text-sm mt-3">Free shipping on all orders. No minimum required.</p>
-            </div>
-            <a href="{{ route('catalog') }}" class="mt-6 inline-flex items-center gap-1 text-sm font-bold text-emerald-600 hover:text-emerald-700 transition-colors">
-                Order Now <span class="material-symbols-outlined text-base">arrow_forward</span>
-            </a>
-            <div class="absolute -right-6 -bottom-6 h-32 w-32 rounded-full bg-emerald-200/50"></div>
-            <div class="absolute -right-2 -bottom-10 h-20 w-20 rounded-full bg-emerald-300/30"></div>
-        </div>
-    </div>
+<!-- Meet the Visionaries -->
+<section class="py-24">
+<div class="mx-auto max-w-7xl px-6">
+<h2 class="text-4xl font-bold text-center mb-16">Meet the Visionaries</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+<div class="text-center group">
+<div class="w-40 h-40 mx-auto rounded-full overflow-hidden mb-6 border-4 border-white shadow-xl ring-0 group-hover:ring-4 ring-primary/20 transition-all">
+<img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJSY6_skboE-yLOtaxHXAdX-iNcl1H1TJv1qb6nTROqx7YXmYJCzoJgGn7yInlM_QugMU9YSGRbT_QsoQWrxncURS1fsf6soyj3y_XiXHAsGxkb-laBmOLB0P3EaBRFMEM5opktwP0d_96CwM-96F3cpZqsH97oP0fLAEDx9X7qouKk4kR-UV3l9ZTbA9E9wbAWlchmYmpWiLKdw1ohsk-DyA-lHhf_uTtSTcstXlh3_sEa9-7gQs-gG8mdry4PAwS1no9CPtMG7ss" alt="David McCloskey"/>
+</div>
+<h3 class="text-xl font-bold mb-2">David McCloskey</h3>
+<p class="text-slate-500 text-sm px-8">Ex-CIA officer turned novelist, bringing unparalleled realism to modern espionage thrillers.</p>
+</div>
+<div class="text-center group">
+<div class="w-40 h-40 mx-auto rounded-full overflow-hidden mb-6 border-4 border-white shadow-xl ring-0 group-hover:ring-4 ring-primary/20 transition-all">
+<img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJj-S9eIR9S-xKxWN6lPM-BJqlG2PAKPRjTWAz-ylaeoUJq-LLyn-pzpibdBd_3teorpMfuEo8KGzyVysntcCzWCHlPfHt3qk1guiLxnMg5btH7nLCRtQ1MbIEntTlYgIkk-4PE75DJcrNlfH9hu8ezbjG9_KXNqnnfkDiSpCbG4gIzet43nnU02pKf280xnVtAf5X5FCyiqYH8qSCCmM44ntY813ySJqKP0Oj8hd6oaS12fH-ZYQS0MRndux8db2VI03sTpPTokpM" alt="Dr. Elena Vance"/>
+</div>
+<h3 class="text-xl font-bold mb-2">Dr. Elena Vance</h3>
+<p class="text-slate-500 text-sm px-8">Leading expert in Artificial Intelligence ethics and behavioral framework implementation.</p>
+</div>
+<div class="text-center group">
+<div class="w-40 h-40 mx-auto rounded-full overflow-hidden mb-6 border-4 border-white shadow-xl ring-0 group-hover:ring-4 ring-primary/20 transition-all">
+<img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvRPvNtKce7Ig1ADCNQ7VJo7BaW3QFN4d_QP4d7avxEIlhOpMCvB5tdCjDXvg_O7aXtsa9YjwFdGimKXguROlCo7VgjyJxRZF9wJb-CYDzdNBuvYLNfM57QEHu2UTfhsC6Y_iXTv8VNpFDnnHmogqHulwlGSi_ODBwvPTvrsy18Y8z6l-vh6uJdl8DeSMH8hWBHVAhlqgTiRkVNKRglu_YvmWZpY6eMfG1TW4JGUbiIsd1NzhMAkjpNqLCBFYOmMZ13Z8Jn07GvqOw" alt="Julian S. Hayes"/>
+</div>
+<h3 class="text-xl font-bold mb-2">Julian S. Hayes</h3>
+<p class="text-slate-500 text-sm px-8">Social psychologist dedicated to bridging the gap in modern human connection and empathy.</p>
+</div>
+</div>
+</div>
 </section>
 
 <!-- Best Sellers -->
