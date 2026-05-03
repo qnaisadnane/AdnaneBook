@@ -24,7 +24,7 @@
                 <td class="px-6 py-4 font-bold">${{ number_format($order->total_price, 2) }}</td>
                 <td class="px-6 py-4">
                     @php
-                        $colors = ['pending'=>'amber','paid'=>'blue','shipped'=>'purple','delivered'=>'green'];
+                        $colors = ['pending'=>'amber','paid'=>'blue'];
                         $c = $colors[$order->status] ?? 'slate';
                     @endphp
                     <span class="inline-block px-2.5 py-0.5 rounded-full text-xs font-bold bg-{{ $c }}-100 text-{{ $c }}-700 capitalize">
@@ -37,7 +37,7 @@
                         @csrf @method('PATCH')
                         <select name="status" onchange="this.form.submit()"
                             class="text-xs rounded-lg border-slate-200 focus:ring-primary focus:border-primary">
-                            @foreach(['pending','paid','shipped','delivered'] as $s)
+                            @foreach(['pending','paid'] as $s)
                                 <option value="{{ $s }}" {{ $order->status === $s ? 'selected' : '' }}>{{ ucfirst($s) }}</option>
                             @endforeach
                         </select>

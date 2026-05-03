@@ -116,7 +116,7 @@
                     </div>
                     <div class="p-4 flex flex-col flex-1">
                         @if($book->category)
-                            <span class="mb-2 inline-block px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider bg-primary/10 text-primary rounded-full w-fit">{{ $book->category->name }}</span>
+                            <span class="mb-2 inline-block px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider bg-primary/10 text-primary rounded-full w-fit">{{ $book->category?->name ?? 'Uncategorized' }}</span>
                         @endif
                         <a href="{{ route('books.show', $book->id) }}" class="block flex-1">
                             <h3 class="font-bold text-base leading-tight mb-1 group-hover:text-primary transition-colors line-clamp-2">{{ $book->title }}</h3>

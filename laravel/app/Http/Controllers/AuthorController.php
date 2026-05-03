@@ -21,8 +21,10 @@ class AuthorController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name'        => 'required|string|max:255',
+            'name'        => ['required', 'string', 'min:3', 'max:255', 'regex:/^[\pL\s\-]+$/u'],
             'nationality' => 'nullable|string|max:100',
+        ], [
+            'name.regex' => 'The author name must contain only letters, spaces, and hyphens (no numbers).',
         ]);
 
         Author::create($validated);
@@ -47,8 +49,10 @@ class AuthorController extends Controller
         $author = Author::findOrFail($id);
 
         $validated = $request->validate([
-            'name'        => 'required|string|max:255',
+            'name'        => ['required', 'string', 'min:3', 'max:255', 'regex:/^[\pL\s\-]+$/u'],
             'nationality' => 'nullable|string|max:100',
+        ], [
+            'name.regex' => 'The author name must contain only letters, spaces, and hyphens (no numbers).',
         ]);
 
         $author->update($validated);

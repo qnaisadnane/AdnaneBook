@@ -27,8 +27,8 @@
         <div class="bg-white dark:bg-slate-900 p-8 md:p-12 rounded-xl air-shadow border border-slate-200 dark:border-slate-800">
             
             <div class="mb-10 text-center">
-                <h2 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white mb-2">Bon retour</h2>
-                <p class="text-sm text-slate-500">Connectez-vous à votre espace Adnane Books.</p>
+                <h2 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white mb-2">LOGIN</h2>
+                
             </div>
 
             <form method="POST" action="{{ route('login') }}" class="space-y-6">
@@ -36,31 +36,21 @@
                 
                 <!-- Email -->
                 <div class="space-y-2">
-                    <label class="block text-xs font-semibold tracking-wide uppercase text-slate-500 ml-1" for="email">Adresse E-mail</label>
-                    <input class="w-full px-4 py-3.5 rounded-xl bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 focus:border-primary focus:ring-4 focus:ring-primary/20 transition-all outline-none text-slate-900 dark:text-slate-100 text-sm" id="email" name="email" :value="old('email')" required autofocus placeholder="exemple@adnanebooks.com" type="email"/>
+                    <label class="block text-xs font-semibold tracking-wide uppercase text-slate-500 ml-1" for="email">E-mail</label>
+                    <input class="w-full px-4 py-3.5 rounded-xl bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 focus:border-primary focus:ring-4 focus:ring-primary/20 transition-all outline-none text-slate-900 dark:text-slate-100 text-sm" id="email" name="email" :value="old('email')" type="email"/>
                     @error('email')<p class="mt-1 text-red-500 text-xs ml-1">{{ $message }}</p>@enderror
                 </div>
 
                 <!-- Password Fields Group -->
                 <div class="space-y-2">
                     <div class="flex justify-between items-center">
-                        <label class="block text-xs font-semibold tracking-wide uppercase text-slate-500 ml-1" for="password">Mot de passe</label>
+                        <label class="block text-xs font-semibold tracking-wide uppercase text-slate-500 ml-1" for="password">Password</label>
                         @if (Route::has('password.request'))
-                            <a class="text-primary font-bold text-xs hover:underline decoration-primary/30 transition-all" href="{{ route('password.request') }}">Oublié ?</a>
+                            <a class="text-primary font-bold text-xs hover:underline decoration-primary/30 transition-all" href="{{ route('password.request') }}">Forgot Password ?</a>
                         @endif
                     </div>
-                    <input class="w-full px-4 py-3.5 rounded-xl bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 focus:border-primary focus:ring-4 focus:ring-primary/20 transition-all outline-none text-slate-900 dark:text-slate-100 text-sm" id="password" name="password" required autocomplete="current-password" placeholder="••••••••" type="password"/>
+                    <input class="w-full px-4 py-3.5 rounded-xl bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 focus:border-primary focus:ring-4 focus:ring-primary/20 transition-all outline-none text-slate-900 dark:text-slate-100 text-sm" id="password" name="password" required autocomplete="current-password" type="password"/>
                     @error('password')<p class="mt-1 text-red-500 text-xs ml-1">{{ $message }}</p>@enderror
-                </div>
-
-                <!-- Terms -->
-                <div class="flex items-start gap-3 py-2">
-                    <div class="flex items-center h-5">
-                        <input class="h-4 w-4 rounded border-slate-300 dark:border-slate-700 text-primary focus:ring-primary" id="remember_me" name="remember" type="checkbox"/>
-                    </div>
-                    <label class="text-xs font-bold text-slate-500 leading-relaxed cursor-pointer" for="remember_me">
-                        Se souvenir de moi
-                    </label>
                 </div>
 
                 <!-- Submit Button -->
@@ -80,8 +70,8 @@
             <!-- Login Link -->
             <div class="mt-10 text-center">
                 <p class="text-sm text-slate-500">
-                    Pas encore membre ? 
-                    <a class="text-primary font-bold hover:underline decoration-primary/30 transition-all" href="{{ route('register') }}">S'inscrire</a>
+                    Not a member ? 
+                    <a class="text-primary font-bold hover:underline decoration-primary/30 transition-all" href="{{ route('register') }}">Sign Up</a>
                 </p>
             </div>
         </div>

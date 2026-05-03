@@ -60,9 +60,18 @@
                     class="w-full rounded-lg border-slate-200 text-sm focus:ring-primary focus:border-primary">{{ old('description') }}</textarea>
             </div>
             <div class="col-span-2">
-                <label class="block text-sm font-semibold mb-1">Cover Image <span class="text-slate-400 font-normal">(optional)</span></label>
-                <input type="file" name="image" accept="image/*"
-                    class="w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:bg-primary/10 file:text-primary file:font-semibold hover:file:bg-primary/20"/>
+                <label class="block text-sm font-semibold mb-1">Cover Image</label>
+                <div class="flex items-start gap-4">
+                    <div id="image-preview" class="hidden w-24 h-32 rounded-lg overflow-hidden border border-slate-200 bg-slate-100 shrink-0">
+                        <img id="preview-img" class="w-full h-full object-cover"/>
+                    </div>
+                    <div class="flex-1">
+                        <input type="file" name="image" accept="image/*" required id="image-input"
+                            class="w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:bg-primary/10 file:text-primary file:font-semibold hover:file:bg-primary/20"/>
+                        <p class="text-xs text-slate-400 mt-1">JPG, PNG, WEBP — max 2MB</p>
+                    </div>
+                </div>
+                @error('image')<p class="text-red-500 text-xs mt-1">{{ $message }}</p>@enderror
             </div>
         </div>
         <div class="flex gap-3 pt-2">
@@ -71,4 +80,19 @@
         </div>
     </form>
 </div>
+
+@push('scripts')
+<script>
+    document.getElementById('image-input').addEventListener('change', function() {
+        const file = this.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = e => {
+            document.getElementById('preview-img').src = e.target.result;
+            document.getElementById('image-preview').classList.remove('hidden');
+        };
+        reader.readAsDataURL(file);
+    });
+</script>
+@endpush
 @endsection

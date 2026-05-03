@@ -19,7 +19,7 @@ Route::get('/about', fn() => view('about'))->name('about');
 Route::get('/contact', fn() => view('contact'))->name('contact');
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.send');
 Route::get('/catalog', [BookController::class, 'index'])->name('catalog');
-Route::get('/books/{id}', [BookController::class, 'show'])->name('books.show');
+Route::get('/books/{id}', [BookController::class, 'show'])->name('books.show')->where('id', '[0-9]+');
 
 // Panier accessible sans auth
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');

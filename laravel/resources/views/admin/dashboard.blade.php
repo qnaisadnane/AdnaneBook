@@ -59,7 +59,7 @@
             <tbody class="divide-y divide-slate-200">
                 @forelse($recentOrders as $order)
                 @php
-                    $colors = ['pending'=>'amber','paid'=>'blue','shipped'=>'purple','delivered'=>'emerald'];
+                    $colors = ['pending'=>'amber','paid'=>'blue'];
                     $c = $colors[$order->status] ?? 'slate';
                 @endphp
                 <tr class="hover:bg-slate-50 transition-colors">

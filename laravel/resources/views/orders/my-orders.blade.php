@@ -22,19 +22,12 @@
                     $colors = [
                         'pending' => ['bg' => 'bg-amber-100', 'text' => 'text-amber-700'],
                         'paid' => ['bg' => 'bg-blue-100', 'text' => 'text-blue-700'],
-                        'shipped' => ['bg' => 'bg-purple-100', 'text' => 'text-purple-700'],
-                        'delivered' => ['bg' => 'bg-emerald-100', 'text' => 'text-emerald-700'],
                     ];
                     $c = $colors[$order->status] ?? ['bg' => 'bg-slate-100', 'text' => 'text-slate-700'];
                 @endphp
                 <span class="px-2.5 py-0.5 rounded-full text-xs font-bold {{ $c['bg'] }} {{ $c['text'] }} capitalize">{{ $order->status }}</span>
                 <span class="font-black text-primary">${{ number_format($order->total_price, 2) }}</span>
-                @if($order->status === 'pending')
-                <form method="POST" action="{{ route('orders.pay', $order->id) }}">
-                    @csrf
-                    <button class="bg-primary text-white px-4 py-1.5 rounded-lg text-xs font-bold hover:bg-primary/90">Pay Now</button>
-                </form>
-                @endif
+
                 <a href="{{ route('orders.download-invoice', $order->id) }}" 
                    class="flex items-center gap-1.5 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 px-3 py-1.5 rounded-lg text-xs font-bold hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
                     <span class="material-symbols-outlined text-sm">picture_as_pdf</span>
@@ -47,7 +40,7 @@
             <div class="flex items-center gap-4">
                 <div class="h-14 w-10 rounded bg-slate-100 dark:bg-slate-800 overflow-hidden shrink-0">
                     @if($item->book?->image)
-                        <img src="{{ Storage::url($item->book->image) }}" class="h-full w-full object-cover"/>
+                        <img src="{{ asset($item->book->image) }}" class="h-full w-full object-cover"/>
                     @else
                         <div class="h-full w-full flex items-center justify-center">
                             <span class="material-symbols-outlined text-slate-300 text-lg">menu_book</span>

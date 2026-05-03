@@ -30,8 +30,10 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name'  => 'required|string|max:255|unique:categories,name',
+            'name'  => ['required', 'string', 'min:3', 'max:255', 'regex:/^[\pL\s\-]+$/u', 'unique:categories,name'],
             'color' => 'required|string|max:50',
+        ], [
+            'name.regex' => 'The category name must contain only letters, spaces, and hyphens (no numbers).',
         ]);
 
         Category::create($validated);
@@ -63,10 +65,15 @@ class CategoryController extends Controller
     public function update(Request $request, string $id)
     {
         $category = Category::findOrFail($id);
-        $category->update([
-            'name'=>$request->name,
-            'color'=>$request->color,
+        
+        $validated = $request->validate([
+            'name'  => ['required', 'string', 'min:3', 'max:255', 'regex:/^[\pL\s\-]+$/u', 'unique:categories,name,' . $category->id],
+            'color' => 'required|string|max:50',
+        ], [
+            'name.regex' => 'The category name must contain only letters, spaces, and hyphens (no numbers).',
         ]);
+
+        $category->update($validated);
         return redirect()->route('categories.index')->with('Success', 'category has been updated with success');    
     }
 

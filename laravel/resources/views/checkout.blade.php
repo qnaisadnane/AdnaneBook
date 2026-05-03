@@ -61,36 +61,38 @@
                         <div>
                             <label class="block text-xs font-semibold text-slate-600 mb-1">First Name</label>
                             <input type="text" name="first_name" value="{{ old('first_name') }}" required
-                                class="w-full rounded-lg border-slate-200 text-sm focus:ring-primary focus:border-primary" placeholder="Adnane"/>
+                                class="w-full rounded-lg border-slate-200 text-sm focus:ring-primary focus:border-primary" placeholder="Enter your name"/>
                             @error('first_name')<p class="text-red-500 text-xs mt-1">{{ $message }}</p>@enderror
                         </div>
                         <div>
                             <label class="block text-xs font-semibold text-slate-600 mb-1">Last Name</label>
                             <input type="text" name="last_name" value="{{ old('last_name') }}" required
-                                class="w-full rounded-lg border-slate-200 text-sm focus:ring-primary focus:border-primary" placeholder="Khamlichi"/>
+                                class="w-full rounded-lg border-slate-200 text-sm focus:ring-primary focus:border-primary" placeholder="Enter your last name"/>
                             @error('last_name')<p class="text-red-500 text-xs mt-1">{{ $message }}</p>@enderror
                         </div>
                         <div>
                             <label class="block text-xs font-semibold text-slate-600 mb-1">Phone Number</label>
-                            <input type="text" name="phone" value="{{ old('phone') }}" required placeholder="+212 6XX XXX XXX"
+                            <input type="text" name="phone" value="{{ old('phone') }}" required placeholder="Enter a phone number"
+                                pattern="^0[67][0-9]{8}$"
+                                title="Must start with 06 or 07 and contain exactly 10 digits"
                                 class="w-full rounded-lg border-slate-200 text-sm focus:ring-primary focus:border-primary"/>
                             @error('phone')<p class="text-red-500 text-xs mt-1">{{ $message }}</p>@enderror
                         </div>
                         <div>
                             <label class="block text-xs font-semibold text-slate-600 mb-1">Region</label>
-                            <input type="text" name="region" value="{{ old('region') }}" required placeholder="Casablanca-Settat"
+                            <input type="text" name="region" value="{{ old('region') }}" required placeholder="Enter your region"
                                 class="w-full rounded-lg border-slate-200 text-sm focus:ring-primary focus:border-primary"/>
                             @error('region')<p class="text-red-500 text-xs mt-1">{{ $message }}</p>@enderror
                         </div>
                         <div>
                             <label class="block text-xs font-semibold text-slate-600 mb-1">City</label>
-                            <input type="text" name="city" value="{{ old('city') }}" required placeholder="Casablanca"
+                            <input type="text" name="city" value="{{ old('city') }}" required placeholder="Enter your city"
                                 class="w-full rounded-lg border-slate-200 text-sm focus:ring-primary focus:border-primary"/>
                             @error('city')<p class="text-red-500 text-xs mt-1">{{ $message }}</p>@enderror
                         </div>
                         <div class="sm:col-span-2">
                             <label class="block text-xs font-semibold text-slate-600 mb-1">Address</label>
-                            <input type="text" name="address" value="{{ old('address') }}" required placeholder="Street, building, apartment..."
+                            <input type="text" name="address" value="{{ old('address') }}" required placeholder="enter you address"
                                 class="w-full rounded-lg border-slate-200 text-sm focus:ring-primary focus:border-primary"/>
                             @error('address')<p class="text-red-500 text-xs mt-1">{{ $message }}</p>@enderror
                         </div>
@@ -252,13 +254,48 @@
 const baseTotal = {{ $total }};
 
 function saveAddress() {
-    const fields = ['first_name','last_name','phone','region','city','address'];
     let valid = true;
-    fields.forEach(name => {
-        const el = document.querySelector(`[name="${name}"]`);
-        if (!el.value.trim()) { el.classList.add('border-red-400'); valid = false; }
-        else el.classList.remove('border-red-400');
+    
+    // Regex for at least 3 characters, allowing letters (including accents), spaces, and hyphens, but NO numbers.
+    const letterRegex = /^[\p{L}\s\-]{3,}$/u;
+    
+    const fieldsConfig = [
+        { name: 'first_name', validate: val => letterRegex.test(val), errorMsg: 'Must contain at least 3 letters and no numbers.' },
+        { name: 'last_name', validate: val => letterRegex.test(val), errorMsg: 'Must contain at least 3 letters and no numbers.' },
+        { name: 'region', validate: val => letterRegex.test(val), errorMsg: 'Must contain at least 3 letters and no numbers.' },
+        { name: 'city', validate: val => letterRegex.test(val), errorMsg: 'Must contain at least 3 letters and no numbers.' },
+        { name: 'phone', validate: val => /^0[67][0-9]{8}$/.test(val), errorMsg: 'Must start with 06/07 and contain exactly 10 digits.' },
+        { name: 'address', validate: val => val.length > 0, errorMsg: 'This field is required.' }
+    ];
+
+    fieldsConfig.forEach(field => {
+        const el = document.querySelector(`[name="${field.name}"]`);
+        let val = el.value.trim();
+        
+        let err = document.getElementById(field.name + '-error');
+        if (!err) {
+            err = document.createElement('p');
+            err.id = field.name + '-error';
+            err.className = 'text-red-500 text-xs mt-1';
+            el.parentNode.appendChild(err);
+        }
+
+        if (!val) {
+            el.classList.add('border-red-400');
+            err.textContent = 'This field is required.';
+            err.style.display = 'block';
+            valid = false;
+        } else if (!field.validate(val)) {
+            el.classList.add('border-red-400');
+            err.textContent = field.errorMsg;
+            err.style.display = 'block';
+            valid = false;
+        } else {
+            el.classList.remove('border-red-400');
+            err.style.display = 'none';
+        }
     });
+
     if (!valid) return;
 
     // Build summary
