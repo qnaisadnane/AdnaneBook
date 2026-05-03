@@ -79,6 +79,18 @@
             @endif
 
             @if($role === 'admin')
+            <a href="{{ route('admin.messages.index') }}"
+               class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors {{ request()->routeIs('admin.messages.*') ? 'bg-primary/10 text-primary' : 'text-slate-600 hover:bg-slate-100' }}">
+                <span class="material-symbols-outlined">mail</span>
+                <span>Messages</span>
+                @php
+                    $unreadMessages = \App\Models\ContactMessage::where('is_read', false)->count();
+                @endphp
+                @if($unreadMessages > 0)
+                    <span class="ml-auto bg-primary text-white text-[10px] font-bold px-2 py-0.5 rounded-full">{{ $unreadMessages }}</span>
+                @endif
+            </a>
+
             <a href="{{ route('admin.users') }}"
                class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors {{ request()->routeIs('admin.users') ? 'bg-primary/10 text-primary' : 'text-slate-600 hover:bg-slate-100' }}">
                 <span class="material-symbols-outlined">group</span>
