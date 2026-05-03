@@ -15,7 +15,7 @@ class AdminDashboardController extends Controller
 
         $totalClients = User::where('role','client')->count();
 
-        $totalRevenues = Order::whereIn('status',['paid','shipped','delivered'])->sum('total_price');
+        $totalRevenues = Order::whereIn('status',['paid'])->sum('total_price');
 
         $commandesParStatut = Order::select('status', DB::raw('count(*) as total'))->groupBy('status')->get();
 
