@@ -220,27 +220,40 @@
 </div>
 </section>
 
-<!-- Best Sellers CTA -->
+<!-- Membership CTA -->
 <section class="mx-auto max-w-7xl px-6 py-16">
-<div class="relative overflow-hidden rounded-[2rem] bg-slate-900 px-8 py-16 md:px-20 lg:py-24">
-<div class="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-primary/20 blur-3xl"></div>
-<div class="absolute -bottom-20 -left-20 h-64 w-64 rounded-full bg-primary/30 blur-3xl"></div>
-<div class="relative z-10 flex flex-col items-center gap-8 text-center">
-<h2 class="max-w-2xl text-4xl font-black tracking-tight text-white lg:text-5xl">
-                            Unlock a World of Stories with Our Membership
-                        </h2>
-<p class="max-w-lg text-lg text-slate-400">
-                            Get early access to bestsellers, exclusive author interviews, and monthly credits for any book in our collection.
-                        </p>
-<div class="flex flex-col sm:flex-row gap-4">
-<button class="rounded-xl bg-primary px-10 py-4 text-base font-bold text-white shadow-lg shadow-primary/20 hover:bg-primary/90 transition-all">
-                                Get Started Now
-                            </button>
-<button class="rounded-xl bg-white/10 px-10 py-4 text-base font-bold text-white backdrop-blur-md hover:bg-white/20 transition-all">
-                                Learn More
-                            </button>
+<div class="bg-slate-900 rounded-[3rem] p-16 md:p-24 flex flex-col md:flex-row items-center gap-16 overflow-hidden relative">
+<div class="md:w-1/2 relative z-10">
+<span class="text-primary font-bold tracking-widest uppercase text-sm mb-6 block">Exclusive Access</span>
+<h2 class="text-5xl font-black text-white mb-8">Unlock a World of Stories</h2>
+<p class="text-slate-300 text-lg mb-10 leading-relaxed">
+    Join the ADNANE BOOKS Membership for early access to limited editions, member-only discussions with authors, and personalized curation sent to your door every month.
+</p>
+<a href="{{ route('catalog') }}" class="inline-block bg-primary text-white font-bold px-10 py-5 rounded-xl hover:bg-primary/90 transition-all">Become a Member</a>
+</div>
+<div class="md:w-1/2 grid grid-cols-2 gap-4 relative z-10">
+<div class="bg-white/5 backdrop-blur-lg border border-white/10 p-6 rounded-2xl">
+<span class="material-symbols-outlined text-primary text-3xl mb-4">diamond</span>
+<h4 class="text-white font-bold mb-2">Early Access</h4>
+<p class="text-slate-400 text-sm">Be the first to get signed copies.</p>
+</div>
+<div class="bg-white/5 backdrop-blur-lg border border-white/10 p-6 rounded-2xl translate-y-8">
+<span class="material-symbols-outlined text-primary text-3xl mb-4">local_shipping</span>
+<h4 class="text-white font-bold mb-2">Priority Shipping</h4>
+<p class="text-slate-400 text-sm">Free worldwide express shipping.</p>
+</div>
+<div class="bg-white/5 backdrop-blur-lg border border-white/10 p-6 rounded-2xl">
+<span class="material-symbols-outlined text-primary text-3xl mb-4">forum</span>
+<h4 class="text-white font-bold mb-2">Inner Circle</h4>
+<p class="text-slate-400 text-sm">Monthly private author Q&As.</p>
+</div>
+<div class="bg-white/5 backdrop-blur-lg border border-white/10 p-6 rounded-2xl translate-y-8">
+<span class="material-symbols-outlined text-primary text-3xl mb-4">star_rate</span>
+<h4 class="text-white font-bold mb-2">Member Gifts</h4>
+<p class="text-slate-400 text-sm">Exclusive merch and collectibles.</p>
 </div>
 </div>
+<div class="absolute -bottom-24 -right-24 w-[500px] h-[500px] bg-primary/20 rounded-full blur-[120px]"></div>
 </div>
 </section>
 @endsection
