@@ -261,6 +261,27 @@ function saveAddress() {
         if (!el.value.trim()) { el.classList.add('border-red-400'); valid = false; }
         else el.classList.remove('border-red-400');
     });
+
+    // Validate phone
+    const phoneEl = document.querySelector('[name="phone"]');
+    const phoneValid = /^0[67][0-9]{8}$/.test(phoneEl.value.trim());
+    if (!phoneValid) {
+        phoneEl.classList.add('border-red-400');
+        let err = document.getElementById('phone-error');
+        if (!err) {
+            err = document.createElement('p');
+            err.id = 'phone-error';
+            err.className = 'text-red-500 text-xs mt-1';
+            phoneEl.parentNode.appendChild(err);
+        }
+        err.textContent = 'Phone must start with 06 or 07 and contain exactly 10 digits.';
+        valid = false;
+    } else {
+        phoneEl.classList.remove('border-red-400');
+        const err = document.getElementById('phone-error');
+        if (err) err.remove();
+    }
+
     if (!valid) return;
 
     // Build summary
