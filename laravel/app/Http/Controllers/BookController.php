@@ -88,7 +88,7 @@ class BookController extends Controller
             'authors.*'   => 'exists:authors,id',
             'image'       => 'required|image|max:2048',
         ], [
-            'isbn.regex' => 'The ISBN must be in the format 978-XXXXXXXXXX (e.g., 978-0451524935).',
+            'isbn.regex' => 'The ISBN must be in the format 978-XXXXXXXXXX or 979-XXXXXXXXXX (10 digits after the dash).',
         ]);
 
         $data = $request->except(['authors', 'image']);
@@ -127,7 +127,7 @@ class BookController extends Controller
             'authors'     => 'required|array',
             'image'       => 'nullable|image|max:2048',
         ], [
-            'isbn.regex' => 'The ISBN must be in the format 978-XXXXXXXXXX (e.g., 978-0451524935).',
+            'isbn.regex' => 'The ISBN must be in the format 978-XXXXXXXXXX or 979-XXXXXXXXXX (10 digits after the dash).',
         ]);
 
         $data = $request->except(['authors', 'image']);
