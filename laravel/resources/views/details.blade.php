@@ -27,7 +27,7 @@
         @if($book->category)
         <span class="text-slate-400">/</span>
         <a class="text-slate-500 dark:text-slate-400 font-medium hover:text-primary"
-           href="{{ route('catalog', ['category_id' => $book->category_id]) }}">{{ $book->category->name }}</a>
+           href="{{ route('catalog', ['category_id' => $book->category_id]) }}">{{ $book->category?->name ?? 'Uncategorized' }}</a>
         @endif
         <span class="text-slate-400">/</span>
         <span class="text-slate-900 dark:text-slate-100 font-semibold line-clamp-1">{{ $book->title }}</span>
@@ -65,7 +65,7 @@
                     @endif
                     @if($book->category)
                         <span class="bg-primary/10 text-primary px-2.5 py-0.5 rounded-full text-xs font-bold uppercase tracking-wider">
-                            {{ $book->category->name }}
+                            {{ $book->category?->name ?? 'Uncategorized' }}
                         </span>
                     @endif
                 </div>

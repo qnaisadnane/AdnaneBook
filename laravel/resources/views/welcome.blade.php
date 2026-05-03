@@ -79,11 +79,11 @@
             @endif
         </div>
     </a>
-    <span class="text-[10px] font-bold uppercase tracking-widest text-primary bg-primary/10 px-2 py-0.5 rounded-full">{{ $book->category->name }}</span>
+    <span class="text-[10px] font-bold uppercase tracking-widest text-primary bg-primary/10 px-2 py-0.5 rounded-full">{{ $book->category?->name ?? 'Uncategorized' }}</span>
     <a href="{{ route('details', $book->id) }}" class="block">
         <h3 class="mt-2 text-sm font-bold text-slate-900 dark:text-white line-clamp-1 group-hover:text-primary transition-colors">{{ $book->title }}</h3>
     </a>
-    <p class="text-xs text-slate-500 mt-1">by {{ $book->authors->pluck('name')->join(', ') }}</p>
+    <p class="text-xs text-slate-500 mt-1">by {{ $book->authors->pluck('name')->join(', ') ?: 'Unknown Author' }}</p>
     <div class="mt-3 flex items-center">
         <span class="font-black text-slate-900 dark:text-white group-hover:text-primary transition-colors line-clamp-1">${{ number_format($book->price, 2) }}</span>
     </div>
@@ -136,7 +136,7 @@
                 
                 <div class="flex-1 flex flex-col">
                     <div class="flex items-center justify-between mb-3">
-                        <span class="text-[10px] font-bold uppercase tracking-widest text-primary bg-primary/10 px-2.5 py-1 rounded-md border border-primary/20">{{ $book->category->name ?? 'Uncategorized' }}</span>
+                        <span class="text-[10px] font-bold uppercase tracking-widest text-primary bg-primary/10 px-2.5 py-1 rounded-md border border-primary/20">{{ $book->category?->name ?? 'Uncategorized' }}</span>
                         <div class="flex items-center text-amber-400 text-xs">
                             <span class="material-symbols-outlined text-[14px] fill-current">star</span>
                             <span class="material-symbols-outlined text-[14px] fill-current">star</span>
@@ -150,7 +150,7 @@
                         <h3 class="text-xl font-bold text-white line-clamp-2 group-hover/title:text-primary transition-colors leading-tight">{{ $book->title }}</h3>
                     </a>
                     
-                    <p class="text-sm text-slate-400 mb-6 line-clamp-1 font-medium">by {{ $book->authors->pluck('name')->join(', ') }}</p>
+                    <p class="text-sm text-slate-400 mb-6 line-clamp-1 font-medium">by {{ $book->authors->pluck('name')->join(', ') ?: 'Unknown Author' }}</p>
                     
                     <div class="mt-auto flex items-center justify-between pt-5 border-t border-white/5">
                         <span class="text-2xl font-black text-white">${{ number_format($book->price, 2) }}</span>
@@ -229,11 +229,11 @@
             <span class="absolute top-2 left-2 bg-amber-400 text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase">Best Seller</span>
         </div>
     </a>
-    <span class="text-[10px] font-bold uppercase tracking-widest text-primary bg-primary/10 px-2 py-0.5 rounded-full">{{ $book->category->name }}</span>
+    <span class="text-[10px] font-bold uppercase tracking-widest text-primary bg-primary/10 px-2 py-0.5 rounded-full">{{ $book->category?->name ?? 'Uncategorized' }}</span>
     <a href="{{ route('details', $book->id) }}" class="block">
         <h3 class="mt-2 text-sm font-bold text-slate-900 dark:text-white line-clamp-1 group-hover:text-primary transition-colors">{{ $book->title }}</h3>
     </a>
-    <p class="text-xs text-slate-500 mt-1">by {{ $book->authors->pluck('name')->join(', ') }}</p>
+    <p class="text-xs text-slate-500 mt-1">by {{ $book->authors->pluck('name')->join(', ') ?: 'Unknown Author' }}</p>
     <div class="mt-3">
         <span class="font-black text-slate-900 dark:text-white">${{ number_format($book->price, 2) }}</span>
     </div>
