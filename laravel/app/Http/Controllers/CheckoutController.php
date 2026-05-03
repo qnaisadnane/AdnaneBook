@@ -32,7 +32,7 @@ class CheckoutController extends Controller
         $request->validate([
             'first_name'      => 'required|string|max:100',
             'last_name'       => 'required|string|max:100',
-            'phone'           => 'required|string|max:20',
+            'phone'           => ['required', 'regex:/^0[67][0-9]{8}$/'],
             'address'         => 'required|string|max:500',
             'region'          => 'required|string|max:100',
             'city'            => 'required|string|max:100',
@@ -40,6 +40,8 @@ class CheckoutController extends Controller
             'delivery_mode'   => 'required|in:standard,express',
             'payment_method'  => 'required|in:cash,card',
             'stripeToken'     => 'required_if:payment_method,card',
+        ], [
+            'phone.regex' => 'Phone number must start with 06 or 07 and contain exactly 10 digits.',
         ]);
 
         $cart = session('cart', []);
