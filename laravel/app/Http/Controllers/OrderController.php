@@ -100,7 +100,7 @@ class OrderController extends Controller
     {
         $order = Order::findOrFail($id);
 
-        $request->validate(['status' => 'required|in:pending,paid,shipped,delivered']);
+        $request->validate(['status' => 'required|in:pending,paid']);
         $order->update(['status' => $request->status]);
 
         return back()->with('success', 'Status updated.');
