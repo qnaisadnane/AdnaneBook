@@ -79,20 +79,25 @@ class BookController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title'       => 'required|string|max:255',
-            'isbn'        => 'required|string|unique:books,isbn',
+            'title'       => 'required|string|min:3|max:255',
+            'isbn'        => ['required', 'string', 'regex:/^(978|979)-\d{10}$/', 'unique:books,isbn'],
             'price'       => 'required|numeric|min:0',
             'quantity'    => 'required|integer|min:0',
             'category_id' => 'required|exists:categories,id',
             'authors'     => 'required|array',
             'authors.*'   => 'exists:authors,id',
-            'image'       => 'nullable|image|max:2048',
+            'image'       => 'required|image|max:2048',
+        ], [
+            'isbn.regex' => 'The ISBN must be in the format 978-XXXXXXXXXX (e.g., 978-0451524935).',
         ]);
 
         $data = $request->except(['authors', 'image']);
 
         if ($request->hasFile('image')) {
-            $data['image'] = $request->file('image')->store('books', 'public');
+            $file = $request->file('image');
+            $filename = 'images/' . uniqid() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('images'), basename($filename));
+            $data['image'] = $filename;
         }
 
         $book = Book::create($data);
@@ -114,20 +119,25 @@ class BookController extends Controller
         $book = Book::findOrFail($id);
 
         $request->validate([
-            'title'       => 'required|string|max:255',
-            'isbn'        => 'required|string|unique:books,isbn,' . $book->id,
+            'title'       => 'required|string|min:3|max:255',
+            'isbn'        => ['required', 'string', 'regex:/^(978|979)-\d{10}$/', 'unique:books,isbn,' . $book->id],
             'price'       => 'required|numeric|min:0',
             'quantity'    => 'required|integer|min:0',
             'category_id' => 'required|exists:categories,id',
             'authors'     => 'required|array',
             'image'       => 'nullable|image|max:2048',
+        ], [
+            'isbn.regex' => 'The ISBN must be in the format 978-XXXXXXXXXX (e.g., 978-0451524935).',
         ]);
 
         $data = $request->except(['authors', 'image']);
 
         if ($request->hasFile('image')) {
-            if ($book->image) Storage::disk('public')->delete($book->image);
-            $data['image'] = $request->file('image')->store('books', 'public');
+            $file = $request->file('image');
+            $filename = 'images/' . uniqid() . '.' . $file->getClientOriginalExtension();
+            if ($book->image) @unlink(public_path($book->image));
+            $file->move(public_path('images'), basename($filename));
+            $data['image'] = $filename;
         }
 
         $book->update($data);
