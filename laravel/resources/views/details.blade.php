@@ -120,8 +120,8 @@
                         <div class="mb-6">
                             <a href="{{ route('go.login', ['intended' => url()->current()]) }}"
                                class="w-full bg-primary text-white font-bold py-4 px-8 rounded-lg shadow-lg hover:bg-primary/90 transition-all flex items-center justify-center gap-2">
-                                <span class="material-symbols-outlined">login</span>
-                                Sign in to Add to Cart
+                                <span class="material-symbols-outlined">shopping_cart</span>
+                                Add to Cart
                             </a>
                         </div>
                     @endauth
