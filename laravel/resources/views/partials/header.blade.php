@@ -15,6 +15,13 @@
             <a class="text-sm font-semibold hover:text-primary transition-colors {{ request()->routeIs('catalog') ? 'text-primary' : '' }}" href="{{ route('catalog') }}">Books</a>
             <a class="text-sm font-semibold hover:text-primary transition-colors {{ request()->routeIs('about') ? 'text-primary' : '' }}" href="{{ route('about') }}">About Us</a>
             <a class="text-sm font-semibold hover:text-primary transition-colors {{ request()->routeIs('contact') ? 'text-primary' : '' }}" href="{{ route('contact') }}">Contact Us</a>
+            @auth
+                @if(Auth::user()->role === 'admin')
+                    <a class="text-sm font-bold text-primary hover:underline transition-colors {{ request()->routeIs('admin.*') ? 'underline' : '' }}" href="{{ route('admin.dashboard') }}">Dashboard</a>
+                @else
+                    <a class="text-sm font-semibold hover:text-primary transition-colors {{ request()->routeIs('orders.my') ? 'text-primary' : '' }}" href="{{ route('orders.my') }}">My Orders</a>
+                @endif
+            @endauth
         </nav>
 
         {{-- Desktop Right --}}
@@ -36,9 +43,7 @@
 
             @auth
                 @if(Auth::user()->role === 'admin')
-                    <a href="{{ route('admin.dashboard') }}" class="text-sm font-bold text-primary hover:underline">Dashboard</a>
                 @else
-                    <a href="{{ route('orders.my') }}" class="text-sm font-medium text-slate-600 hover:text-primary">My Orders</a>
                 @endif
                 <a href="{{ route('profile.edit') }}" class="flex h-10 w-10 items-center justify-center rounded-full bg-slate-200/50 dark:bg-slate-800 hover:bg-primary/20 transition-colors">
                     <span class="material-symbols-outlined text-slate-700 dark:text-slate-300">person</span>
