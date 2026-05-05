@@ -93,118 +93,34 @@
 </div>
 </section>
 
-<!-- Best Sellers Section -->
-<section class="py-24 relative overflow-hidden bg-slate-950 dark:bg-slate-950/80 my-16">
-    <!-- Decorative background elements -->
-    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-primary/20 rounded-full blur-[120px] opacity-50 pointer-events-none"></div>
-    <div class="absolute bottom-0 right-0 w-[600px] h-[600px] bg-amber-500/10 rounded-full blur-[100px] opacity-30 pointer-events-none"></div>
-
-    <div class="mx-auto max-w-7xl px-6 relative z-10">
-        <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
-            <div class="max-w-2xl">
-                <span class="inline-block text-primary font-black tracking-widest uppercase text-sm mb-3">Top Rated</span>
-                <h2 class="text-4xl md:text-5xl font-black tracking-tight text-white mb-4">Best Sellers</h2>
-                <p class="text-lg text-slate-400">Discover the books that everyone is talking about. Handpicked favorites loved by our community.</p>
-            </div>
-            <a href="{{ route('catalog') }}" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white/5 hover:bg-white/10 text-white font-bold transition-all backdrop-blur-sm border border-white/10 shrink-0">
-                View All Best Sellers <span class="material-symbols-outlined text-sm">arrow_forward</span>
-            </a>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            @foreach($bestSellers as $index => $book)
-            <div class="group relative rounded-3xl bg-slate-900/50 backdrop-blur-xl border border-white/5 p-5 hover:-translate-y-2 transition-all duration-500 hover:shadow-[0_20px_40px_-15px_rgba(var(--primary),0.3)] hover:border-primary/50 flex flex-col h-full">
-                <!-- Rank Badge -->
-                <div class="absolute -top-5 -left-5 w-14 h-14 rounded-full bg-gradient-to-br from-amber-400 to-orange-600 text-white flex items-center justify-center font-black text-2xl shadow-lg shadow-orange-500/30 z-20 border-[6px] border-slate-950">
-                    #{{ $index + 1 }}
-                </div>
-                
-                <a href="{{ route('details', $book->id) }}" class="block relative aspect-[2/3] w-full rounded-2xl overflow-hidden mb-6">
-                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent z-10 opacity-60 group-hover:opacity-40 transition-opacity duration-500"></div>
-                    @if($book->image)
-                        <img class="h-full w-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out" src="{{ asset($book->image) }}" alt="{{ $book->title }}"/>
-                    @else
-                        <div class="h-full w-full flex items-center justify-center bg-slate-800">
-                            <span class="material-symbols-outlined text-6xl text-slate-600">menu_book</span>
-                        </div>
-                    @endif
-                    <!-- Quick action -->
-                    <div class="absolute bottom-4 left-0 w-full px-4 z-20 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
-                        <span class="block w-full py-3 rounded-xl bg-white/95 text-slate-900 text-center font-bold text-sm shadow-xl backdrop-blur-sm">View Details</span>
-                    </div>
-                </a>
-                
-                <div class="flex-1 flex flex-col">
-                    <div class="flex items-center justify-between mb-3">
-                        <span class="text-[10px] font-bold uppercase tracking-widest text-primary bg-primary/10 px-2.5 py-1 rounded-md border border-primary/20">{{ $book->category?->name ?? 'Uncategorized' }}</span>
-                        <div class="flex items-center text-amber-400 text-xs">
-                            <span class="material-symbols-outlined text-[14px] fill-current">star</span>
-                            <span class="material-symbols-outlined text-[14px] fill-current">star</span>
-                            <span class="material-symbols-outlined text-[14px] fill-current">star</span>
-                            <span class="material-symbols-outlined text-[14px] fill-current">star</span>
-                            <span class="material-symbols-outlined text-[14px] fill-current">star_half</span>
-                        </div>
-                    </div>
-                    
-                    <a href="{{ route('details', $book->id) }}" class="block group/title mb-2">
-                        <h3 class="text-xl font-bold text-white line-clamp-2 group-hover/title:text-primary transition-colors leading-tight">{{ $book->title }}</h3>
-                    </a>
-                    
-                    <p class="text-sm text-slate-400 mb-6 line-clamp-1 font-medium">by {{ $book->authors->pluck('name')->join(', ') ?: 'Unknown Author' }}</p>
-                    
-                    <div class="mt-auto flex items-center justify-between pt-5 border-t border-white/5">
-                        <span class="text-2xl font-black text-white">${{ number_format($book->price, 2) }}</span>
-                        @if(Auth::check())
-                            <form action="{{ route('cart.add', $book->id) }}" method="POST">
-                                @csrf
-                                <button type="submit" class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-primary hover:text-white transition-all hover:scale-110">
-                                    <span class="material-symbols-outlined text-lg">shopping_cart</span>
-                                </button>
-                            </form>
-                        @else
-                            <a href="{{ route('go.login') }}" class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-primary hover:text-white transition-all hover:scale-110">
-                                <span class="material-symbols-outlined text-lg">shopping_cart</span>
-                            </a>
-                        @endif
-                    </div>
-                </div>
-            </div>
-            @endforeach
-        </div>
-    </div>
-</section>
-
-<!-- Promo Banners -->
-<section class="py-12">
-    <div class="mx-auto max-w-7xl px-6 grid grid-cols-1 md:grid-cols-2 gap-8">
-        <!-- Banner 1 -->
-        <div class="group relative h-64 w-full rounded-[2rem] bg-amber-50 dark:bg-amber-900/10 border border-amber-100 dark:border-amber-800 overflow-hidden p-10 flex flex-col justify-center">
-            <div class="relative z-10 max-w-[60%]">
-                <span class="inline-block bg-amber-500 text-white text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-4">Summer Sale</span>
-                <h3 class="text-5xl font-black text-slate-900 leading-none mb-2">Up to<br><span class="text-amber-500">75% Off</span></h3>
-                <p class="text-slate-500 text-sm mt-3">Selected items only. limited stock available.</p>
-            </div>
-            <a href="{{ route('catalog') }}" class="mt-6 inline-flex items-center gap-1 text-sm font-bold text-amber-600 hover:text-amber-700 transition-colors">
-                Shop Now <span class="material-symbols-outlined text-base">arrow_forward</span>
-            </a>
-            <div class="absolute -right-12 -bottom-12 h-48 w-48 rounded-full bg-amber-200/50"></div>
-            <div class="absolute -right-4 -bottom-16 h-32 w-32 rounded-full bg-amber-300/30"></div>
-        </div>
-
-        <!-- Banner 2 -->
-        <div class="group relative h-64 w-full rounded-[2rem] bg-emerald-50 dark:bg-emerald-900/10 border border-emerald-100 dark:border-emerald-800 overflow-hidden p-10 flex flex-col justify-center">
-            <div class="relative z-10 max-w-[60%]">
-                <span class="inline-block bg-emerald-500 text-white text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-4">Free Delivery</span>
-                <h3 class="text-5xl font-black text-slate-900 leading-none mb-2">Order<br><span class="text-emerald-500">Today</span></h3>
-                <p class="text-slate-500 text-sm mt-3">Free shipping on all orders. No minimum required.</p>
-            </div>
-            <a href="{{ route('catalog') }}" class="mt-6 inline-flex items-center gap-1 text-sm font-bold text-emerald-600 hover:text-emerald-700 transition-colors">
-                Order Now <span class="material-symbols-outlined text-base">arrow_forward</span>
-            </a>
-            <div class="absolute -right-6 -bottom-6 h-32 w-32 rounded-full bg-emerald-200/50"></div>
-            <div class="absolute -right-2 -bottom-10 h-20 w-20 rounded-full bg-emerald-300/30"></div>
-        </div>
-    </div>
+<!-- Meet the Visionaries -->
+<section class="py-24">
+<div class="mx-auto max-w-7xl px-6">
+<h2 class="text-4xl font-bold text-center mb-16">Meet the Visionaries</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+<div class="text-center group">
+<div class="w-40 h-40 mx-auto rounded-full overflow-hidden mb-6 border-4 border-white shadow-xl ring-0 group-hover:ring-4 ring-primary/20 transition-all">
+<img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJSY6_skboE-yLOtaxHXAdX-iNcl1H1TJv1qb6nTROqx7YXmYJCzoJgGn7yInlM_QugMU9YSGRbT_QsoQWrxncURS1fsf6soyj3y_XiXHAsGxkb-laBmOLB0P3EaBRFMEM5opktwP0d_96CwM-96F3cpZqsH97oP0fLAEDx9X7qouKk4kR-UV3l9ZTbA9E9wbAWlchmYmpWiLKdw1ohsk-DyA-lHhf_uTtSTcstXlh3_sEa9-7gQs-gG8mdry4PAwS1no9CPtMG7ss" alt="David McCloskey"/>
+</div>
+<h3 class="text-xl font-bold mb-2">David McCloskey</h3>
+<p class="text-slate-500 text-sm px-8">Ex-CIA officer turned novelist, bringing unparalleled realism to modern espionage thrillers.</p>
+</div>
+<div class="text-center group">
+<div class="w-40 h-40 mx-auto rounded-full overflow-hidden mb-6 border-4 border-white shadow-xl ring-0 group-hover:ring-4 ring-primary/20 transition-all">
+<img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJj-S9eIR9S-xKxWN6lPM-BJqlG2PAKPRjTWAz-ylaeoUJq-LLyn-pzpibdBd_3teorpMfuEo8KGzyVysntcCzWCHlPfHt3qk1guiLxnMg5btH7nLCRtQ1MbIEntTlYgIkk-4PE75DJcrNlfH9hu8ezbjG9_KXNqnnfkDiSpCbG4gIzet43nnU02pKf280xnVtAf5X5FCyiqYH8qSCCmM44ntY813ySJqKP0Oj8hd6oaS12fH-ZYQS0MRndux8db2VI03sTpPTokpM" alt="Dr. Elena Vance"/>
+</div>
+<h3 class="text-xl font-bold mb-2">Dr. Elena Vance</h3>
+<p class="text-slate-500 text-sm px-8">Leading expert in Artificial Intelligence ethics and behavioral framework implementation.</p>
+</div>
+<div class="text-center group">
+<div class="w-40 h-40 mx-auto rounded-full overflow-hidden mb-6 border-4 border-white shadow-xl ring-0 group-hover:ring-4 ring-primary/20 transition-all">
+<img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvRPvNtKce7Ig1ADCNQ7VJo7BaW3QFN4d_QP4d7avxEIlhOpMCvB5tdCjDXvg_O7aXtsa9YjwFdGimKXguROlCo7VgjyJxRZF9wJb-CYDzdNBuvYLNfM57QEHu2UTfhsC6Y_iXTv8VNpFDnnHmogqHulwlGSi_ODBwvPTvrsy18Y8z6l-vh6uJdl8DeSMH8hWBHVAhlqgTiRkVNKRglu_YvmWZpY6eMfG1TW4JGUbiIsd1NzhMAkjpNqLCBFYOmMZ13Z8Jn07GvqOw" alt="Julian S. Hayes"/>
+</div>
+<h3 class="text-xl font-bold mb-2">Julian S. Hayes</h3>
+<p class="text-slate-500 text-sm px-8">Social psychologist dedicated to bridging the gap in modern human connection and empathy.</p>
+</div>
+</div>
+</div>
 </section>
 
 <!-- Best Sellers -->
@@ -244,73 +160,100 @@
 </section>
 
 <!-- Testimonials -->
-<section class="py-20 bg-white/50 dark:bg-slate-900/50">
-<div class="mx-auto max-w-7xl px-6">
-    <div class="text-center mb-12">
-        <span class="inline-block bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest px-4 py-1.5 rounded-full mb-4">Testimonials</span>
-        <h2 class="text-3xl font-bold tracking-tight">What Our Readers Say</h2>
-        <p class="mt-2 text-slate-500">Thousands of happy readers trust ADNANE BOOKS</p>
-    </div>
-    @php
-    $testimonials = [
-        ['name' => 'Sarah M.',     'role' => 'Literature Student', 'avatar' => 'S', 'color' => 'bg-violet-500',  'rating' => 5, 'text' => 'ADNANE BOOKS has the best selection I\'ve ever seen. I found rare titles I couldn\'t find anywhere else. Fast delivery and great packaging!'],
-        ['name' => 'James K.',     'role' => 'History Teacher',    'avatar' => 'J', 'color' => 'bg-emerald-500', 'rating' => 5, 'text' => 'The catalog is incredibly well organized. I love the category filters — found exactly what I needed for my class in minutes.'],
-        ['name' => 'Amina R.',     'role' => 'Avid Reader',        'avatar' => 'A', 'color' => 'bg-amber-500',   'rating' => 5, 'text' => 'Ordering was super easy and the checkout process is smooth. My books arrived in perfect condition. Will definitely order again!'],
-        ['name' => 'Carlos D.',    'role' => 'Software Engineer',  'avatar' => 'C', 'color' => 'bg-blue-500',    'rating' => 4, 'text' => 'Great platform with a clean interface. The search feature is powerful and the prices are very competitive. Highly recommended.'],
-        ['name' => 'Fatima Z.',    'role' => 'Book Club Member',   'avatar' => 'F', 'color' => 'bg-rose-500',    'rating' => 5, 'text' => 'Our book club orders from here every month. The variety is amazing and customer support is always helpful and responsive.'],
-        ['name' => 'Thomas B.',    'role' => 'Journalist',         'avatar' => 'T', 'color' => 'bg-cyan-500',    'rating' => 5, 'text' => 'I\'ve been using ADNANE BOOKS for over a year now. The experience keeps getting better. Love the new features and the fast shipping!'],
-    ];
-    @endphp
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        @foreach($testimonials as $t)
-        <div class="flex flex-col gap-4 bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 p-6 shadow-sm hover:shadow-md transition-all">
-            {{-- Stars --}}
-            <div class="flex gap-0.5">
-                @for($i = 0; $i < 5; $i++)
-                <svg class="h-4 w-4 {{ $i < $t['rating'] ? 'text-amber-400' : 'text-slate-200' }} fill-current" viewBox="0 0 20 20">
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
-                </svg>
-                @endfor
-            </div>
-            {{-- Text --}}
-            <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed flex-1">"{{ $t['text'] }}"</p>
-            {{-- Author --}}
-            <div class="flex items-center gap-3 pt-2 border-t border-slate-100 dark:border-slate-700">
-                <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full {{ $t['color'] }} text-white text-sm font-bold">
-                    {{ $t['avatar'] }}
-                </div>
-                <div>
-                    <p class="text-sm font-bold text-slate-900 dark:text-slate-100">{{ $t['name'] }}</p>
-                    <p class="text-xs text-slate-400">{{ $t['role'] }}</p>
-                </div>
-            </div>
-        </div>
-        @endforeach
-    </div>
+<section class="mx-auto max-w-7xl px-6 py-20">
+<div class="mb-12 text-center">
+<h2 class="text-3xl font-bold tracking-tight">What our readers say</h2>
+<p class="mt-2 text-slate-500">Join a community of book lovers from around the world</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="rounded-2xl bg-white dark:bg-slate-800 p-8 shadow-sm border border-slate-100 dark:border-slate-700 flex flex-col gap-4">
+<div class="flex text-primary">
+<span class="material-symbols-outlined fill-current">star</span>
+<span class="material-symbols-outlined fill-current">star</span>
+<span class="material-symbols-outlined fill-current">star</span>
+<span class="material-symbols-outlined fill-current">star</span>
+<span class="material-symbols-outlined fill-current">star</span>
+</div>
+<p class="text-slate-600 dark:text-slate-400 italic">"The curation at ADNANE BOOKS is exceptional. I've found so many hidden gems that I wouldn't have discovered elsewhere. The delivery is always prompt!"</p>
+<div class="mt-4 flex items-center gap-3">
+<div class="h-10 w-10 rounded-full bg-slate-200 bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCTu0ivVbSD7JXj3qCmE9JApGb7trkIbvsEXPYYCQlCOpIfAIvjut2iPosg9gkOUpyJlSNotHC2XtS0xH8x7dBK2Y4uXpGklERiBqzYIg594gEu2-QNiEPMWoIwHCaJuYW-J0d_f7yHMgTqWcnavyFPQSOQb4QrmRw0XTIiVCxcPP4wnuGbi_CbavGTwtNPvzNRiM7ZLi0eNCT2-QFGNzWH54a3uWkV6KlWcjGa8Q6P4LcBxMTw5SHrP2StHhHE7pBucHFQPGrM-4m2')"></div>
+<div>
+<p class="text-sm font-bold">Sarah Jenkins</p>
+<p class="text-xs text-slate-500">Avid Reader</p>
+</div>
+</div>
+</div>
+<div class="rounded-2xl bg-white dark:bg-slate-800 p-8 shadow-sm border border-slate-100 dark:border-slate-700 flex flex-col gap-4">
+<div class="flex text-primary">
+<span class="material-symbols-outlined fill-current">star</span>
+<span class="material-symbols-outlined fill-current">star</span>
+<span class="material-symbols-outlined fill-current">star</span>
+<span class="material-symbols-outlined fill-current">star</span>
+<span class="material-symbols-outlined fill-current">star</span>
+</div>
+<p class="text-slate-600 dark:text-slate-400 italic">"I love the membership benefits. Getting early access to my favorite authors' new releases has been a game-changer for my weekend reading."</p>
+<div class="mt-4 flex items-center gap-3">
+<div class="h-10 w-10 rounded-full bg-slate-200 bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDvo8am4dP2FPrSztGwhYPVeHFXed7cWK_wdMDG_o_g-tSkJgFtB1ijgHGhuQya__UzM2w-9u12UkV8ayZdV4YKjb0t2osbx1F-KvwZ7iJSUE-934fiOiwX8z_qjH_dfRPgoc85UNaeseb2MvTY6BSMy_9MUdJu2oL5D2QWvSkLQwxUQuqVJdWJv_EdCGZGNLj14-kTQ-sJlxAFj5zMh66KnpYXu8L89W-oVhr5kSbJ-KRXvBN4IcB2ZTTxwgUjb7pGqIH0tvlE9SWf')"></div>
+<div>
+<p class="text-sm font-bold">David Thompson</p>
+<p class="text-xs text-slate-500">Premium Member</p>
+</div>
+</div>
+</div>
+<div class="rounded-2xl bg-white dark:bg-slate-800 p-8 shadow-sm border border-slate-100 dark:border-slate-700 flex flex-col gap-4">
+<div class="flex text-primary">
+<span class="material-symbols-outlined fill-current">star</span>
+<span class="material-symbols-outlined fill-current">star</span>
+<span class="material-symbols-outlined fill-current">star</span>
+<span class="material-symbols-outlined fill-current">star</span>
+<span class="material-symbols-outlined">star</span>
+</div>
+<p class="text-slate-600 dark:text-slate-400 italic">"The user interface is so clean and easy to use. Searching for specific ISBNs works flawlessly every time. Highly recommended for students."</p>
+<div class="mt-4 flex items-center gap-3">
+<div class="h-10 w-10 rounded-full bg-slate-200 bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBV4WFS9X5gEa0HgmhRUCNwx6gWtkluiYm-IVuk1P1g5HGXNktnAPRo7drJxdYPPR5WadbRj7RIZKgJTQ-HPTvdCASHnwCh7A6k-pKRa7aPaEG6Sn0vWTt30oouEPutH2mvV9cQKkjawyXENkh5Vca_edKhz8DrktvPDYGC_jsvrSfEARUEgX3IsY5xB17c-dVZNQrwJ49osIknfzRuXrgmA3JlcXgnph8StSm4QDMBzQaVpUsBaSTF__8Lh2MoQf6Ahh7fINSzGNFT')"></div>
+<div>
+<p class="text-sm font-bold">Michael Chen</p>
+<p class="text-xs text-slate-500">University Student</p>
+</div>
+</div>
+</div>
 </div>
 </section>
 
-<!-- Best Sellers CTA -->
+<!-- Membership CTA -->
 <section class="mx-auto max-w-7xl px-6 py-16">
-<div class="relative overflow-hidden rounded-[2rem] bg-slate-900 px-8 py-16 md:px-20 lg:py-24">
-<div class="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-primary/20 blur-3xl"></div>
-<div class="absolute -bottom-20 -left-20 h-64 w-64 rounded-full bg-primary/30 blur-3xl"></div>
-<div class="relative z-10 flex flex-col items-center gap-8 text-center">
-<h2 class="max-w-2xl text-4xl font-black tracking-tight text-white lg:text-5xl">
-                            Unlock a World of Stories with Our Membership
-                        </h2>
-<p class="max-w-lg text-lg text-slate-400">
-                            Get early access to bestsellers, exclusive author interviews, and monthly credits for any book in our collection.
-                        </p>
-<div class="flex flex-col sm:flex-row gap-4">
-<button class="rounded-xl bg-primary px-10 py-4 text-base font-bold text-white shadow-lg shadow-primary/20 hover:bg-primary/90 transition-all">
-                                Get Started Now
-                            </button>
-<button class="rounded-xl bg-white/10 px-10 py-4 text-base font-bold text-white backdrop-blur-md hover:bg-white/20 transition-all">
-                                Learn More
-                            </button>
+<div class="bg-slate-900 rounded-[3rem] p-16 md:p-24 flex flex-col md:flex-row items-center gap-16 overflow-hidden relative">
+<div class="md:w-1/2 relative z-10">
+<span class="text-primary font-bold tracking-widest uppercase text-sm mb-6 block">Exclusive Access</span>
+<h2 class="text-5xl font-black text-white mb-8">Unlock a World of Stories</h2>
+<p class="text-slate-300 text-lg mb-10 leading-relaxed">
+    Join the ADNANE BOOKS Membership for early access to limited editions, member-only discussions with authors, and personalized curation sent to your door every month.
+</p>
+<a href="{{ route('catalog') }}" class="inline-block bg-primary text-white font-bold px-10 py-5 rounded-xl hover:bg-primary/90 transition-all">Become a Member</a>
+</div>
+<div class="md:w-1/2 grid grid-cols-2 gap-4 relative z-10">
+<div class="bg-white/5 backdrop-blur-lg border border-white/10 p-6 rounded-2xl">
+<span class="material-symbols-outlined text-primary text-3xl mb-4">diamond</span>
+<h4 class="text-white font-bold mb-2">Early Access</h4>
+<p class="text-slate-400 text-sm">Be the first to get signed copies.</p>
+</div>
+<div class="bg-white/5 backdrop-blur-lg border border-white/10 p-6 rounded-2xl translate-y-8">
+<span class="material-symbols-outlined text-primary text-3xl mb-4">local_shipping</span>
+<h4 class="text-white font-bold mb-2">Priority Shipping</h4>
+<p class="text-slate-400 text-sm">Free worldwide express shipping.</p>
+</div>
+<div class="bg-white/5 backdrop-blur-lg border border-white/10 p-6 rounded-2xl">
+<span class="material-symbols-outlined text-primary text-3xl mb-4">forum</span>
+<h4 class="text-white font-bold mb-2">Inner Circle</h4>
+<p class="text-slate-400 text-sm">Monthly private author Q&As.</p>
+</div>
+<div class="bg-white/5 backdrop-blur-lg border border-white/10 p-6 rounded-2xl translate-y-8">
+<span class="material-symbols-outlined text-primary text-3xl mb-4">star_rate</span>
+<h4 class="text-white font-bold mb-2">Member Gifts</h4>
+<p class="text-slate-400 text-sm">Exclusive merch and collectibles.</p>
 </div>
 </div>
+<div class="absolute -bottom-24 -right-24 w-[500px] h-[500px] bg-primary/20 rounded-full blur-[120px]"></div>
 </div>
 </section>
 @endsection
