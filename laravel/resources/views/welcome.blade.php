@@ -61,9 +61,9 @@
 <!-- Latest Arrivals -->
 <section id="latest-arrivals" class="py-16">
 <div class="mx-auto max-w-7xl px-6">
-<div class="flex items-center justify-between mb-8">
+<div class="flex flex-col items-center text-center mb-8">
 <h2 class="text-3xl font-bold tracking-tight">Latest Arrivals</h2>
-<a class="text-sm font-bold text-primary hover:underline" href="{{ route('catalog') }}">View All</a>
+<a class="mt-2 text-sm font-bold text-primary hover:underline" href="{{ route('catalog') }}">View All</a>
 </div>
 <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-6">
 @foreach($featuredBooks as $book)
@@ -126,9 +126,9 @@
 <!-- Best Sellers -->
 <section id="best-sellers" class="py-16 bg-white/50 dark:bg-slate-900/50">
 <div class="mx-auto max-w-7xl px-6">
-<div class="flex items-center justify-between mb-8">
+<div class="flex flex-col items-center text-center mb-8">
 <h2 class="text-3xl font-bold tracking-tight">Best Sellers</h2>
-<a class="text-sm font-bold text-primary hover:underline" href="{{ route('catalog') }}">View All</a>
+<a class="mt-2 text-sm font-bold text-primary hover:underline" href="{{ route('catalog') }}">View All</a>
 </div>
 <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
 @foreach($bestSellers as $book)
@@ -162,59 +162,49 @@
 <!-- Testimonials -->
 <section class="mx-auto max-w-7xl px-6 py-20">
 <div class="mb-12 text-center">
-<h2 class="text-3xl font-bold tracking-tight">What our readers say</h2>
-<p class="mt-2 text-slate-500">Join a community of book lovers from around the world</p>
+<h2 class="text-3xl font-bold tracking-tight">Testimonials</h2>
 </div>
 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
 <div class="rounded-2xl bg-white dark:bg-slate-800 p-8 shadow-sm border border-slate-100 dark:border-slate-700 flex flex-col gap-4">
 <div class="flex text-primary">
-<span class="material-symbols-outlined fill-current">star</span>
-<span class="material-symbols-outlined fill-current">star</span>
-<span class="material-symbols-outlined fill-current">star</span>
-<span class="material-symbols-outlined fill-current">star</span>
-<span class="material-symbols-outlined fill-current">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">star</span>
 </div>
 <p class="text-slate-600 dark:text-slate-400 italic">"The curation at ADNANE BOOKS is exceptional. I've found so many hidden gems that I wouldn't have discovered elsewhere. The delivery is always prompt!"</p>
 <div class="mt-4 flex items-center gap-3">
-<div class="h-10 w-10 rounded-full bg-slate-200 bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCTu0ivVbSD7JXj3qCmE9JApGb7trkIbvsEXPYYCQlCOpIfAIvjut2iPosg9gkOUpyJlSNotHC2XtS0xH8x7dBK2Y4uXpGklERiBqzYIg594gEu2-QNiEPMWoIwHCaJuYW-J0d_f7yHMgTqWcnavyFPQSOQb4QrmRw0XTIiVCxcPP4wnuGbi_CbavGTwtNPvzNRiM7ZLi0eNCT2-QFGNzWH54a3uWkV6KlWcjGa8Q6P4LcBxMTw5SHrP2StHhHE7pBucHFQPGrM-4m2')"></div>
-<div>
+<img src="{{ asset('images/sara.jpg') }}" class="h-10 w-10 rounded-full object-cover" alt="Sarah Jenkins"/>
 <p class="text-sm font-bold">Sarah Jenkins</p>
-<p class="text-xs text-slate-500">Avid Reader</p>
-</div>
 </div>
 </div>
 <div class="rounded-2xl bg-white dark:bg-slate-800 p-8 shadow-sm border border-slate-100 dark:border-slate-700 flex flex-col gap-4">
 <div class="flex text-primary">
-<span class="material-symbols-outlined fill-current">star</span>
-<span class="material-symbols-outlined fill-current">star</span>
-<span class="material-symbols-outlined fill-current">star</span>
-<span class="material-symbols-outlined fill-current">star</span>
-<span class="material-symbols-outlined fill-current">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">star</span>
 </div>
 <p class="text-slate-600 dark:text-slate-400 italic">"I love the membership benefits. Getting early access to my favorite authors' new releases has been a game-changer for my weekend reading."</p>
 <div class="mt-4 flex items-center gap-3">
-<div class="h-10 w-10 rounded-full bg-slate-200 bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDvo8am4dP2FPrSztGwhYPVeHFXed7cWK_wdMDG_o_g-tSkJgFtB1ijgHGhuQya__UzM2w-9u12UkV8ayZdV4YKjb0t2osbx1F-KvwZ7iJSUE-934fiOiwX8z_qjH_dfRPgoc85UNaeseb2MvTY6BSMy_9MUdJu2oL5D2QWvSkLQwxUQuqVJdWJv_EdCGZGNLj14-kTQ-sJlxAFj5zMh66KnpYXu8L89W-oVhr5kSbJ-KRXvBN4IcB2ZTTxwgUjb7pGqIH0tvlE9SWf')"></div>
-<div>
+<img src="{{ asset('images/david.jpg') }}" class="h-10 w-10 rounded-full object-cover" alt="David Thompson"/>
 <p class="text-sm font-bold">David Thompson</p>
-<p class="text-xs text-slate-500">Premium Member</p>
-</div>
 </div>
 </div>
 <div class="rounded-2xl bg-white dark:bg-slate-800 p-8 shadow-sm border border-slate-100 dark:border-slate-700 flex flex-col gap-4">
 <div class="flex text-primary">
-<span class="material-symbols-outlined fill-current">star</span>
-<span class="material-symbols-outlined fill-current">star</span>
-<span class="material-symbols-outlined fill-current">star</span>
-<span class="material-symbols-outlined fill-current">star</span>
-<span class="material-symbols-outlined">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">star</span>
 </div>
 <p class="text-slate-600 dark:text-slate-400 italic">"The user interface is so clean and easy to use. Searching for specific ISBNs works flawlessly every time. Highly recommended for students."</p>
 <div class="mt-4 flex items-center gap-3">
-<div class="h-10 w-10 rounded-full bg-slate-200 bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBV4WFS9X5gEa0HgmhRUCNwx6gWtkluiYm-IVuk1P1g5HGXNktnAPRo7drJxdYPPR5WadbRj7RIZKgJTQ-HPTvdCASHnwCh7A6k-pKRa7aPaEG6Sn0vWTt30oouEPutH2mvV9cQKkjawyXENkh5Vca_edKhz8DrktvPDYGC_jsvrSfEARUEgX3IsY5xB17c-dVZNQrwJ49osIknfzRuXrgmA3JlcXgnph8StSm4QDMBzQaVpUsBaSTF__8Lh2MoQf6Ahh7fINSzGNFT')"></div>
-<div>
+<img src="{{ asset('images/micheal.jpg') }}" class="h-10 w-10 rounded-full object-cover" alt="Michael Chen"/>
 <p class="text-sm font-bold">Michael Chen</p>
-<p class="text-xs text-slate-500">University Student</p>
-</div>
 </div>
 </div>
 </div>
