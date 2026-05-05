@@ -229,7 +229,7 @@
 <p class="text-slate-300 text-lg mb-10 leading-relaxed">
     Join the ADNANE BOOKS Membership for early access to limited editions, member-only discussions with authors, and personalized curation sent to your door every month.
 </p>
-<a href="{{ route('catalog') }}" class="inline-block bg-primary text-white font-bold px-10 py-5 rounded-xl hover:bg-primary/90 transition-all">Become a Member</a>
+<a href="{{ route('about') }}" class="inline-block bg-primary text-white font-bold px-10 py-5 rounded-xl hover:bg-primary/90 transition-all">About Us</a>
 </div>
 <div class="md:w-1/2 grid grid-cols-2 gap-4 relative z-10">
 <div class="bg-white/5 backdrop-blur-lg border border-white/10 p-6 rounded-2xl">
