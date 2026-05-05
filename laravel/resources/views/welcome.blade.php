@@ -61,9 +61,9 @@
 <!-- Latest Arrivals -->
 <section id="latest-arrivals" class="py-16">
 <div class="mx-auto max-w-7xl px-6">
-<div class="flex flex-col items-center text-center mb-8">
+<div class="text-center mb-8">
 <h2 class="text-3xl font-bold tracking-tight">Latest Arrivals</h2>
-<a class="mt-2 text-sm font-bold text-primary hover:underline" href="{{ route('catalog') }}">View All</a>
+<a class="mt-2 inline-block text-sm font-bold text-primary hover:underline" href="{{ route('catalog') }}">View All</a>
 </div>
 <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-6">
 @foreach($featuredBooks as $book)
@@ -126,9 +126,9 @@
 <!-- Best Sellers -->
 <section id="best-sellers" class="py-16 bg-white/50 dark:bg-slate-900/50">
 <div class="mx-auto max-w-7xl px-6">
-<div class="flex flex-col items-center text-center mb-8">
+<div class="text-center mb-8">
 <h2 class="text-3xl font-bold tracking-tight">Best Sellers</h2>
-<a class="mt-2 text-sm font-bold text-primary hover:underline" href="{{ route('catalog') }}">View All</a>
+<a class="mt-2 inline-block text-sm font-bold text-primary hover:underline" href="{{ route('catalog') }}">View All</a>
 </div>
 <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
 @foreach($bestSellers as $book)
