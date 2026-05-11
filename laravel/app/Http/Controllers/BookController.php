@@ -13,7 +13,7 @@ class BookController extends Controller
     /**
      * Catalogue public — avec filtre catégorie et recherche
      */
-    public function index(Request $request)
+     public function index(Request $request)
     {
         // Admin — liste admin
         if (auth()->check() && in_array(auth()->user()->role, ['admin'])) {
